@@ -1,0 +1,230 @@
+/* Ref color */
+/*
+    rgb(248, 88, 100) - #f85864
+    rgb(95, 160, 201) - #5FA0C9
+    rgb(215,215,215) - #D7D7D7
+*/
+
+/* Mini */
+.margin-bottom-0 {margin-bottom: 0!important;}
+.ico { color: #666!important;}
+.bold { font-weight: bold; }
+.italic { font-style: italic; }
+
+/* Button */
+.filter-bar .tb-btn {
+    border: none!important;
+    padding: 0 .75rem !important;
+    margin: 5px;
+    background-color: rgb(248, 88, 100); /* #f85864 */
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14),0 1px 7px 0 rgba(0,0,0,0.12),0 3px 1px -1px rgba(0,0,0,0.2)!important;
+    outline: none;
+    height: 3rem;
+    border-radius: 5px!important;
+}
+
+.tb-btn {
+    margin: 5px;
+    padding-top: 3px!important;
+    padding-bottom: 3px!important;
+    border: none;
+}
+
+.tb-btn:hover {
+    cursor: pointer;
+}
+
+.tb-btn:active {
+    transform: scale(0.95);
+}
+
+.btn-red {
+    background-color: rgb(248, 88, 100); /* #f85864 */
+    color: #fff;
+}
+
+.btn-red:focus {
+    background-color: rgb(248, 88, 100); /* #f85864 */;
+}
+
+/* Fields */
+.tb-input {
+    border: none!important;
+    padding: 2px .75rem!important;
+    margin: 5px!important;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14),0 1px 7px 0 rgba(0,0,0,0.12),0 3px 1px -1px rgba(0,0,0,0.2)!important;
+    color: #333!important;
+    border-radius: 5px!important;
+}
+
+.tb-input::placeholder {
+    color: rgba(51, 51, 51, 0.8);
+}
+
+/* Header */
+header {
+    height: 150px;
+    padding: 0 15px;
+    box-shadow: 0 3px 14px -7px gray;
+}
+
+header .left-side {
+    position: relative;
+    height: 150px;
+}
+
+header .search-bar {
+    margin-top: 20px;
+}
+
+.search-bar .search {
+    width: 33%;
+}
+
+.search-bar .ico {
+    position: relative;
+    top: 20px;
+    right: 5px;
+}
+
+header .logo {
+    height: 100px;
+    margin: 25px 0;
+}
+
+/* Main content */
+@media all and (min-width: 600px) {
+    .filter-bar > *:first-child{
+        margin-left: 12.5%!important;
+    }
+}
+@media all and (max-width: 600px) {
+    .filter-bar > * {
+        margin: 5px 0!important;
+    }
+}
+
+section h2 {
+    color: #666;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.section-deco {
+    width: 20px;
+    height: 20px;
+    margin: 15px calc( 50% - 10px);
+    margin-top: 5px;
+    border-radius: 50%;
+    background-color: rgb(249,88,88);
+    line-height: 17px;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Card */
+.tb-card {
+    position: relative;
+    display: inline-block;
+    background-color: rgb(95, 160, 201); /* #5FA0C9 */
+    width: 47%;
+    margin: 5px 1%;
+    margin-bottom: 65px;
+    color: #fff;
+    padding: 10px!important;
+    padding-top: 30px!important;
+    height: 300px;
+}
+
+.tb-card .card-img {
+    height: 325px;
+    background-color: rgb(100, 100, 100);
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14),0 1px 7px 0 rgba(0,0,0,0.12),0 3px 1px -1px rgba(0,0,0,0.2)!important;
+}
+
+.tb-card .card-desc {
+    text-align: left;
+    height: 280px;
+    padding-right: 0;
+}
+
+.tb-card .card-desc h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.card-desc .cat-ico {
+    display: block;
+    float: left;
+    height: 60px;
+    width: 40px;
+    background-color: rgb(248, 226, 138);
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.card-desc .localisation, .card-desc .category {
+    height: 1em;
+}
+
+.card-desc .score {
+    margin-top: 5px;
+}
+
+.card-desc .star {
+    color: rgb(248, 226, 138);
+}
+
+.card-desc .summary {
+    position: relative;
+    display: block;
+    clear: left;
+    line-height: 1em;
+    font-size: 1em;
+    height: 4.2em;
+    margin: 10px 0;
+    margin-top: 20px;
+    overflow: hidden;
+    overflow-wrap: normal;
+    text-overflow: ellipsis;
+}
+
+.card-desc button {
+    margin: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14),0 1px 7px 0 rgba(0,0,0,0.12),0 3px 1px -1px rgba(0,0,0,0.2)!important;
+    color: #555;
+}
+
+.card-desc button:hover {
+    cursor: pointer;
+}
+
+.card-desc button:active {
+    transform: scale(0.9);
+}
+
+/* Phone Card */
+@media all and (max-width: 600px) {
+    .tb-card {
+        width: 96%;
+        margin: 5px 2%;
+        margin-bottom: 65px;
+    }
+}
+
+/* Map */
+.map .wrapper-map {
+    background-color: #0D47A1;
+    height: 500px;
+    margin: 5px;
+    color: #fff;
+}

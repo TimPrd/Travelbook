@@ -1,0 +1,23 @@
+{
+  "name": "travel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
+    "epub-gen": "0.0.17",
+    "express": "^4.16.2",
+    "jshint": "^2.9.5",
+    "jsonwebtoken": "^8.1.1",
+    "mongoose": "^5.0.14",
+    "node-gyp": "^3.6.2",
+    "node-pre-gyp": "^0.9.1"
+  }
+}
