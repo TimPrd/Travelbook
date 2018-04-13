@@ -31,7 +31,10 @@ var userSchema = mongoose.Schema({
   },
   passwordConf: {
     type: String
-  }
+  },
+  authorOfCards: [Number],
+  authorOfBooks: [Number],
+
 });
 
 var User = mongoose.model("User", userSchema);

@@ -35,7 +35,12 @@ app.listen(port, hostname, function () {
         "Travel book ! sur http://" + hostname + ":" + port + "\n"
     );
 });
-
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Authorization, Accept");
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+       next();
+ });
 
 //Include our own routes (ex /home, /users...)
 var routes = require('./routes/router');

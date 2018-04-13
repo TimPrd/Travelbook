@@ -34,7 +34,7 @@ router
     })
     .post(function (req, res){
         Card.create({
-            email: req.body.email,
+            title: req.body.title,
          
         }, function (err, user) {
             console.log('card - add ', user);
