@@ -1,63 +1,77 @@
-import {HTTP} from './../http/http-base';
-import auth from '../auth'
-    
-export default {
+import { HTTP } from "./../http/http-base";
+import auth from "../auth";
 
+export default {
   user: {
     authenticated: false
   },
 
   login(context, creds, redirect) {
-    HTTP.post('login', {
-        email:"hello@eu.com",
-        password:"azerty"
-    }, { 
-        headers: auth.getAuthHeader()
-      }).then(response => {
+    HTTP.post(
+      "login",
+      {
+        email: creds.username,
+        password: creds.password
+      },
+      {
+        //headers: auth.getAuthHeader()
+      }
+    )
+      .then(response => {
+        console.log(response.data);
+
         this.user.authenticated = true;
-        localStorage.setItem('id_token', response.data.token)
+        localStorage.setItem("id_token", response.data.token);
 
-        alert( response.data.token)
+        if (redirect) {
+          context.$router.replace("/dashboard");
+          // should be : context.$router.replace("/");
+
+        }
       })
-      .catch(function (error) {
-        alert('Boloss')
+      .catch(function(error) {
+        console.log(error);
       });
-
   },
 
   signup(context, creds, redirect) {
-    context.$http.post(SIGNUP_URL, creds, (data) => {
-      localStorage.setItem('id_token', data.id_token)
+    context.$http
+      .post(SIGNUP_URL, creds, data => {
+        localStorage.setItem("id_token", data.id_token);
 
-      this.user.authenticated = true
+        this.user.authenticated = true;
 
-      if(redirect) {
-      }
-
-    }).error((err) => {
-      context.error = err
-    })
+        if (redirect) {
+        }
+      })
+      .error(err => {
+        context.error = err;
+      });
   },
 
   logout() {
-    localStorage.removeItem('id_token')
-    this.user.authenticated = false
+    localStorage.removeItem("id_token");
+    this.user.authenticated = false;
   },
+  onChange() {},
 
   checkAuth() {
-    var jwt = localStorage.getItem('id_token')
-    if(jwt) {
-      this.user.authenticated = true
-    }
-    else {
-      this.user.authenticated = false      
+    var jwt = localStorage.getItem("id_token");
+    if (jwt) {
+      this.user.authenticated = true;
+    } else {
+      this.user.authenticated = false;
     }
   },
 
+  loggedIn() {
+    console.log(localStorage.getItem("id_token"));
+    return localStorage.getItem("id_token");
+  },
 
   getAuthHeader() {
     return {
-      'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-    }
+      Authorization: "Bearer " + localStorage.getItem("id_token")
+    };
   }
-}
+};

@@ -52,6 +52,7 @@ import {HTTP} from './../http/http-base';
 
         auth.login(this, credentials, 'secretquote')
 
+
       }
     }
     

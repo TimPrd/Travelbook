@@ -14,15 +14,11 @@ import './assets/css/main-style.css';
 import './assets/css/materialize.min.css';
 import auth from './auth'
 
-if(auth.checkAuth() )
-  {
-    alert('youhou')
-  }
-  else{
-    alert('nope')
-  }
+
 
 router.beforeEach((to, from, next) => {
+  var token = localStorage.getItem('id_token');
+
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   if(requiresAuth) {
      next('/');

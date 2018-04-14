@@ -3,8 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Sandbox from '@/components/Sandbox'
 import Users from '@/components/Users'
-import Connexion from '@/components/Connexion'
-import Dashboard from '@/components/Dashboard'
+import Dashboard from '@/components/Pages/Dashboard'
 
 import Signup from '@/components/Signup'
 import Login from '@/components/Login'
@@ -31,10 +30,11 @@ export default new Router({
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
-      meta: {
+      /*meta: {
         requiresAuth: true
-      }
+      }*/
    },
+   
     /* END SANDBOX */
     
     /* USER */
@@ -42,11 +42,6 @@ export default new Router({
       path: '/users',
       name: 'Users',
       component: Users
-    },
-    {
-      path: '/connexion',
-      name: 'Connexion',
-      component: Connexion
     },
     {
       path: '/map',

@@ -7,8 +7,8 @@
             </div>
             <div class="button-menu row margin-bottom-0">
 
-                <router-link to="/connexion" tag="button" class="tb-btn btn-red col s12 m5 right" >Nouveau Book</router-link>
-                <router-link to="Connexion" tag="button" class="tb-btn btn-red col s12 m5 right" >Connexion</router-link>
+                <router-link to="/" tag="button" class="tb-btn btn-red col s12 m5 right" >Nouveau Book</router-link>
+                <router-link to="" tag="button" class="tb-btn btn-red col s12 m5 right" >Connexion</router-link>
             </div>
           </div>
         <div class="wrapper-logo col s4 m4 offset-m4">
