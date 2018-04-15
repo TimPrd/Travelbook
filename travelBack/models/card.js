@@ -1,5 +1,5 @@
-/* 
- * card MODEL 
+/*
+ * card MODEL
  */
 
 var mongoose = require("mongoose");
@@ -14,7 +14,7 @@ var cardSchema = mongoose.Schema({
   adress: String,
   lat: Number,
   long: Number,
-  stars: Number,
+  stars: { type: Number, default: 0 },
   pictures: [String],
 
 });

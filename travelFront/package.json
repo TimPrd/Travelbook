@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "geocoder": "^0.2.3",
     "npm": "^5.8.0",
     "vue": "^2.5.2",
     "vue-axios": "^2.1.1",
