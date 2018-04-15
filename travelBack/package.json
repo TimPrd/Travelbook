@@ -13,7 +13,7 @@
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "epub-gen": "0.0.17",
-    "express": "^4.16.2",
+    "express": "^4.16.3",
     "jshint": "^2.9.5",
     "jsonwebtoken": "^8.1.1",
     "mongoose": "^5.0.14",
