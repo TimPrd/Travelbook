@@ -10,7 +10,7 @@ var bcrypt = require("bcryptjs");
 
 //ROUTES :
 
-//HOME 
+//HOME
 router
     .route("/")
     .all(function (req, res) {
@@ -33,15 +33,16 @@ router
         });
     })
     .post(function (req, res){
-        Card.create({
+      console.log(req.body)
+      Card.create({
             title: req.body.title,
-         
+
         }, function (err, user) {
             console.log('card - add ', user);
         });
     });
 
-    
+
 
 
 //USERS
@@ -118,7 +119,7 @@ router
                     //Send its data
                     console.log(user)
                     res.status(200).send(user);
-                    
+
                 });
         });
     });

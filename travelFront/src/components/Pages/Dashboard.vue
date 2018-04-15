@@ -62,3 +62,35 @@ export default {
 
 }
 </script>
+
+<style>
+    h1{
+      color: white;
+    }
+
+    body {
+      animation: colorchange 3s infinite; /* animation-name followed by duration in seconds*/
+         /* you could also use milliseconds (ms) or something like 2.5s */
+      -webkit-animation: colorchange 0.2s infinite; /* Chrome and Safari */
+    }
+
+    @keyframes colorchange
+    {
+      0%   {background: lime;}
+      25%  {background: yellow;}
+      50%  {background: deepskyblue;}
+      55%  {background: darkturquoise;}
+      75%  {background: darkviolet;}  
+      100%  {background: deeppink;}
+    }
+
+    @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+    {
+      0%   {background: lime;}
+      25%  {background: yellow;}
+      50%  {background: deepskyblue;}
+      55%  {background: darkturquoise;}
+      75%  {background: darkviolet;}  
+      100%  {background: deeppink;}
+    }
+</style>

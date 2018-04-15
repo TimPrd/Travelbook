@@ -1,5 +1,5 @@
-/* 
- * card MODEL 
+/*
+ * card MODEL
  */
 
 var mongoose = require("mongoose");
@@ -7,7 +7,7 @@ var bcrypt = require("bcryptjs");
 
 //Describe the schema (model)
 var cardSchema = mongoose.Schema({
-  title: String,
+  title: {type: String, default: 'test'},
   author: String,
   body: String,
   date: { type: Date, default: Date.now },

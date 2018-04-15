@@ -1,7 +1,23 @@
 <template>
   <div class="container">
-    <h1>{{items.message}}</h1>
     <h1>FOR TEST PURPOSE ONLY</h1>
+    <button class="btn btn-primary" @click="fetchItems()">retrieve </button>
+
+    <ul v-for="item in items">
+      <li>{{item.title}}</li>
+    </ul>
+
+
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter your title"
+        v-model="title"
+      >
+    </div>
+    <button class="btn btn-primary" @click="submit()">add fiche</button>
+
 
   </div>
 </template>
@@ -10,7 +26,8 @@ import {HTTP} from './../http/http-base';
 export default {
   data() {
     return {
-      items: {}
+      items: {},
+      title:''
     };
   },
   created: function() {
@@ -18,8 +35,15 @@ export default {
   },
 
   methods: {
+    submit(){
+      HTTP.post(`/cards`, {'title':this.title} ).then(response => {
+        this.items = response.data;
+        console.log(this.items)
+      });
+    },
+
     fetchItems() {
-       HTTP.get(``).then(response => {
+       HTTP.get(`/cards`).then(response => {
         this.items = response.data;
         console.log(this.items)
       });
@@ -28,7 +52,5 @@ export default {
 };
 </script>
 <style>
-body{
-  background-color: coral;
-}
+
 </style>

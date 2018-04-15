@@ -4,9 +4,9 @@ import Home from '@/components/Home'
 import Sandbox from '@/components/Sandbox'
 import Users from '@/components/Users'
 import Dashboard from '@/components/Pages/Dashboard'
-
 import Signup from '@/components/Signup'
 import Login from '@/components/Login'
+import Favorites from '@/components/Favorites'
 
 import MapTB from '@/components/Map'
 Vue.use(Router)
@@ -34,9 +34,9 @@ export default new Router({
         requiresAuth: true
       }*/
    },
-   
+
     /* END SANDBOX */
-    
+
     /* USER */
     {
       path: '/users',
@@ -49,13 +49,18 @@ export default new Router({
       component: MapTB
     },
     {
-      path:'/login',
+      path:'/signin',
       component: Login
     },
     {
       path: '/signup',
       component: Signup
-    }
-    
+    },
+    {
+      path: '/favorites',
+      component: Favorites
+    },
+
+
   ]
 })
