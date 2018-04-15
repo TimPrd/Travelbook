@@ -1,7 +1,7 @@
-<template v-for="item in items">
+<template>
   <div class="container">
-    <h1>{{item.email}}</h1>
-
+    <h1>Users</h1>
+    <ul v-for="item in items"><li>{{item.email}}</li></ul>
   </div>
 </template>
 <script>

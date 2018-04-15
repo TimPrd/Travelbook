@@ -12,7 +12,7 @@
             </div>
           </div>
         <div class="wrapper-logo col s4 m4 offset-m4">
-            <router-link to="Home">
+            <router-link to="/">
                 <img src="../assets/img/logo.png" class="logo" alt="TravelBook"/>
             </router-link>
         </div>
