@@ -7,10 +7,7 @@
           @place_changed="setPlace">
         </gmap-autocomplete>
       </label>
-      <br/>
-
     </div>
-    <br>
     <gmap-map
       :center="center"
       :zoom="12"
