@@ -17,11 +17,8 @@
                 <div class="deco-line col m12"></div>
 
                 <!-- Cards section -->
-                <div class="tb-cards row">
-                    <tb-card/>
-                    <tb-card/>
-                    <tb-card/>
-                    <tb-card/>
+                <div class="tb-cards row" v-for="card in cards">
+                    <tb-card :card="card"/>
                 </div>
                 <!-- End cards section -->
             </div>
@@ -32,8 +29,9 @@
                 <div class="section-deco">v</div>
                 <div class="deco-line m12"></div>
                 <div class="wrapper-map col m12 s12">
+                    <tbMap/>
                 <!-- <tbMap/> -->
-It's supposed to be a map</div>
+                </div>
             </div>
             <!-- End section map -->
         </section>
@@ -42,18 +40,32 @@ It's supposed to be a map</div>
 </template>
 
 <script>
-    import {HTTP} from './../http/http-base';
-    import tbHeader from './Header.vue';
-    import tbCard from './Card.vue';
-    import tbMap from './Map.vue';
-    
-    export default {
-        name: "HelloWorld",
-        components: { tbHeader, tbCard, tbMap },
-        data() {
-            return {};
-        }
+import { HTTP } from "./../http/http-base";
+import tbHeader from "./Header.vue";
+import tbCard from "./Card.vue";
+import tbMap from "./Map.vue";
+
+export default {
+  name: "HelloWorld",
+  components: { tbHeader, tbCard, tbMap },
+  data() {
+    return {
+      cards: []
     };
+  },
+  created() {
+    this.fetchItems();
+  },
+
+  methods: {
+    fetchItems() {
+      HTTP.get(`/favorites`).then(response => {
+        this.cards = response.data;
+        console.log(this.cards);
+      });
+    }
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

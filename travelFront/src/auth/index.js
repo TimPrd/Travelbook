@@ -1,4 +1,4 @@
-import { HTTP } from "./../http/http-base";
+import {HTTP} from "./../http/http-base";
 import auth from "../auth";
 
 export default {
@@ -29,7 +29,7 @@ export default {
 
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   },
@@ -53,7 +53,8 @@ export default {
     localStorage.removeItem("id_token");
     this.user.authenticated = false;
   },
-  onChange() {},
+  onChange() {
+  },
 
   checkAuth() {
     var jwt = localStorage.getItem("id_token");
