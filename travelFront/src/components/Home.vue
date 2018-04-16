@@ -49,14 +49,16 @@
     import tbHeader from './Header.vue';
     import tbCard from './Card.vue';
     import tbMap from './Map.vue';
+    import {EventBusModal} from "../events/event-modals";
+
+    //Listen for changement on login popup
+    EventBusModal.$on('')
 
     export default {
         name: "Home",
         components: { tbHeader, tbCard, tbMap, tbPopupLogin },
         data() {
-            return {
-                isPopupLoginVisible: false,
-            };
+
         },
     };
 </script>

@@ -32,6 +32,8 @@
 </template>
 
 <script>
+  import { EventBusModal} from "../../events/event-modals";
+
   export default {
       name: "modalLogin",
       data() {
@@ -42,7 +44,12 @@
       },
       methods: {
           close() {
-              showModal=false;
+              showModal = false;
+              EventBusModal.$emit('change-state-login', showModal);
+          },
+          emitGlobalChangeState() {
+              showModal = !showModal;
+              EventBusModal.$emit('change-state-login', showModal);
           }
       }
   }
