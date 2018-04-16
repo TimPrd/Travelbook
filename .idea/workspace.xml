@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5a18580-21f3-4b05-81c4-89b301d5254e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/TravelBook.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travelBack/services/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travelBack/models/card.js" beforeDir="false" afterPath="$PROJECT_DIR$/travelBack/models/card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travelBack/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/travelBack/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travelBack/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/travelBack/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travelBack/routes/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/travelBack/routes/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travelFront/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/travelFront/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travelFront/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/travelFront/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travelFront/src/auth/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/travelFront/src/auth/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travelFront/src/components/Sandbox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/travelFront/src/components/Sandbox.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travelFront/src/components/Map.vue" beforeDir="false" afterPath="$PROJECT_DIR$/travelFront/src/components/Map.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="router.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/travelBack/routes/router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+            <state relative-caret-position="238">
+              <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -39,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/travelBack/services/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-442">
-              <caret line="19" column="12" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+              <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -57,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/travelFront/src/components/Sandbox.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+              <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
               <folding>
                 <element signature="e#134#175#0" expanded="true" />
               </folding>
@@ -76,9 +66,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Map.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Map.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/travelFront/src/components/Map.vue">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+              <folding>
+                <element signature="n#style#0;n#l-map#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#0#6#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="Home.vue" pinned="false" current-in-tab="false">
@@ -141,6 +139,7 @@
         <option value="$PROJECT_DIR$/travelFront/src/components/Sandbox.vue" />
         <option value="$PROJECT_DIR$/travelBack/services/index.js" />
         <option value="$PROJECT_DIR$/travelBack/routes/router.js" />
+        <option value="$PROJECT_DIR$/travelFront/src/components/Map.vue" />
       </list>
     </option>
   </component>
@@ -1541,8 +1540,6 @@
       <path value="$PROJECT_DIR$/travelFront/node_modules/vue-template-compiler/package.json" />
       <path value="$PROJECT_DIR$/travelFront/node_modules/vue-template-es2015-compiler/package.json" />
       <path value="$PROJECT_DIR$/travelFront/node_modules/vue/package.json" />
-      <path value="$PROJECT_DIR$/travelFront/node_modules/vue2-leaflet/examples/package.json" />
-      <path value="$PROJECT_DIR$/travelFront/node_modules/vue2-leaflet/package.json" />
       <path value="$PROJECT_DIR$/travelFront/node_modules/watchpack/package.json" />
       <path value="$PROJECT_DIR$/travelFront/node_modules/wbuf/package.json" />
       <path value="$PROJECT_DIR$/travelFront/node_modules/webpack-bundle-analyzer/package.json" />
@@ -1803,16 +1800,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1523789989172</updated>
-      <workItem from="1523791650664" duration="20389000" />
+      <workItem from="1523791650664" duration="24928000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20389000" />
+    <option name="totallyTimeSpent" value="24928000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20058565" />
       <window_info anchor="bottom" id="TODO" order="7" />
@@ -1931,19 +1927,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/travelFront/src/components/Map.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/travelFront/src/components/Home.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
-          <caret line="19" column="38" selection-start-line="19" selection-end-line="20" />
-          <folding>
-            <element signature="e#1588#1629#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/travelFront/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1961,7 +1944,7 @@
     <entry file="file://$PROJECT_DIR$/travelFront/src/components/Sandbox.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
           <folding>
             <element signature="e#134#175#0" expanded="true" />
           </folding>
@@ -1987,14 +1970,35 @@
     <entry file="file://$PROJECT_DIR$/travelBack/services/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-442">
-          <caret line="19" column="12" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/travelBack/routes/router.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        <state relative-caret-position="238">
+          <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/travelFront/src/components/Home.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="19" column="38" selection-start-line="19" selection-end-line="20" />
+          <folding>
+            <element signature="e#1588#1629#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/travelFront/src/components/Map.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#l-map#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#0#6#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
