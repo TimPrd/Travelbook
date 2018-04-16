@@ -32,7 +32,6 @@ router
 
   //@todo: remove this one in prod
   //this method is way to dangerous to stay alive, for test only
-
   .delete((req, res) => {
     Card.remove({}, function (err) {
       if (err) {
