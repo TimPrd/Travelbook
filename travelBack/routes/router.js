@@ -24,11 +24,16 @@ router
 //CARDS
 
 router
+  .route("/favorites")
+  .get((req,res) => {
+    cardService.findFavorites(req,res)
+  })
+
+router
   .route("/cards")
   .get((req, res) => {
     cardService.findCard(req, res);
   })
-
 
   //@todo: remove this one in prod
   //this method is way to dangerous to stay alive, for test only

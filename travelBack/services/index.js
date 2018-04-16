@@ -74,10 +74,16 @@ function createCard(req, res, adresse) {
 
 
 
-
+function findFavorites(req,res){
+  Card.find(function (err, cards) {
+    if (err) {res.send(err);}
+    res.status(200).json(cards)
+  }).limit(6).sort({stars: -1})
+}
 
 module.exports = {
   getLatLong: getLatLong,
   insertCard: insertCard,
   findCard:findCard,
+  findFavorites: findFavorites
 };

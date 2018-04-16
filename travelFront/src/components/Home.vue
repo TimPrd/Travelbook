@@ -29,8 +29,9 @@
                 <div class="section-deco">v</div>
                 <div class="deco-line m12"></div>
                 <div class="wrapper-map col m12 s12">
+                    <tbMap/>
                 <!-- <tbMap/> -->
-It's supposed to be a map</div>
+                </div>
             </div>
             <!-- End section map -->
         </section>
@@ -49,16 +50,16 @@ export default {
   components: { tbHeader, tbCard, tbMap },
   data() {
     return {
-        cards:[]
+      cards: []
     };
   },
-   created() {
+  created() {
     this.fetchItems();
   },
 
   methods: {
     fetchItems() {
-      HTTP.get(`/cards`).then(response => {
+      HTTP.get(`/favorites`).then(response => {
         this.cards = response.data;
         console.log(this.cards);
       });
