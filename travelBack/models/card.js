@@ -14,6 +14,7 @@ var cardSchema = mongoose.Schema({
   adress: String,
   lat: Number,
   long: Number,
+  categorie: String,
   stars: { type: Number, default: 0 },
   pictures: [String],
 

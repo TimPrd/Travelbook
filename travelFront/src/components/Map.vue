@@ -1,7 +1,6 @@
 <template>
   <div>
     <div>
-      <h2>Search and add a pin</h2>
       <label>
         <gmap-autocomplete
           @place_changed="setPlace">
@@ -10,14 +9,13 @@
     </div>
     <gmap-map
       :center="center"
-      :zoom="12"
+      :zoom="4"
       style="width:100%;  height: 400px;"
     >
       <gmap-marker
         :key="index"
         v-for="(m, index) in markers"
         :position="m.position"
-        :icon.sync="m.icon"
         @click="center=m.position"
       ></gmap-marker>
     </gmap-map>
@@ -75,7 +73,7 @@ export default {
             id: card._id,
             position: { lat: card.lat, lng: card.long },
             //need to be replace with the logo of Blandine
-            icon:{url:'https://www.google.dk/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png'}
+            icon:{url:'./../../static/Marquer.svg'}
           });
       });
     }
