@@ -39,7 +39,7 @@
       methods: {
         close() {
           this.showModal = false;
-          EventBusModal.$emit('change-state-login', showModal);
+          EventBusModal.$emit('change-state-login', this.showModal);
         },
       },
       data() {

@@ -1,7 +1,6 @@
 <template>
     <div id="page-top">
-        <tb-popup-login v-if="showLoginPopup"></tb-popup-login>
-        <p v-bind="showLoginPopup">{{showLoginPopup}}</p>
+        <tb-popup-login v-show="showLoginPopup"></tb-popup-login>
         <!-- Header -->
         <tb-header></tb-header>
         <!-- End Header -->
@@ -52,12 +51,6 @@
     import tbMap from './Map.vue';
     import {EventBusModal} from "../events/event-modals";
 
-    //Listen for changement on login popup
-    EventBusModal.$on('change-state-login', showModal => {
-      console.log("Click on modal : "+showModal);
-      this.showLoginPopup = showModal;
-    });
-
     export default {
         name: "Home",
         components: { tbHeader, tbCard, tbMap, tbPopupLogin },
@@ -65,6 +58,12 @@
             return {
               showLoginPopup: false,
             }
+        },
+        mounted() {
+          //Listen for changement on login popup
+          EventBusModal.$on('change-state-login', showModal => {
+            this.showLoginPopup = showModal;
+          })
         }
     };
 </script>
