@@ -23,6 +23,8 @@
 </template>
 <script>
 import {HTTP} from './../http/http-base';
+import geocoder from 'geocoder';
+
 export default {
   data() {
     return {
