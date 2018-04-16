@@ -36,21 +36,17 @@
 
   export default {
       name: "modalLogin",
+      methods: {
+        close() {
+          this.showModal = false;
+          EventBusModal.$emit('change-state-login', showModal);
+        },
+      },
       data() {
           return {
             showModal: false,
             showSignin: false
           }
       },
-      methods: {
-          close() {
-              showModal = false;
-              EventBusModal.$emit('change-state-login', showModal);
-          },
-          emitGlobalChangeState() {
-              showModal = !showModal;
-              EventBusModal.$emit('change-state-login', showModal);
-          }
-      }
   }
 </script>

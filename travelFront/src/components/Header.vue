@@ -7,7 +7,7 @@
             </div>
             <div class="button-menu row margin-bottom-0">
                 <router-link to="/" tag="button" class="tb-btn btn-red col s12 m5 right" >Nouveau Book</router-link>
-                <button @click="showModal = true" class="tb-btn btn-red col s12 m5 right" >Connexion</button>
+                <button @click="emitGlobalChangeState()" class="tb-btn btn-red col s12 m5 right" >Connexion</button>
             </div>
           </div>
         <div class="wrapper-logo col s4 m4 offset-m4">
@@ -20,8 +20,22 @@
 
 <script>
 import tbPopupLogin from './Popup/Login';
+import {EventBusModal} from "../events/event-modals";
+
 export default {
   name: "Home",
   components: { tbPopupLogin },
+  methods: {
+    emitGlobalChangeState() {
+      this.showModal = !this.showModal;
+      EventBusModal.$emit('change-state-login', this.showModal);
+    }
+  },
+  data() {
+    return {
+      showModal: false,
+      showSignin: false,
+    }
+  }
 }
 </script>

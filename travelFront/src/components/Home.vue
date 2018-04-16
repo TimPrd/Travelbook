@@ -1,6 +1,7 @@
 <template>
     <div id="page-top">
-        <tb-popup-login></tb-popup-login>
+        <tb-popup-login v-if="showLoginPopup"></tb-popup-login>
+        <p v-bind="showLoginPopup">{{showLoginPopup}}</p>
         <!-- Header -->
         <tb-header></tb-header>
         <!-- End Header -->
@@ -52,14 +53,19 @@
     import {EventBusModal} from "../events/event-modals";
 
     //Listen for changement on login popup
-    EventBusModal.$on('')
+    EventBusModal.$on('change-state-login', showModal => {
+      console.log("Click on modal : "+showModal);
+      this.showLoginPopup = showModal;
+    });
 
     export default {
         name: "Home",
         components: { tbHeader, tbCard, tbMap, tbPopupLogin },
         data() {
-
-        },
+            return {
+              showLoginPopup: false,
+            }
+        }
     };
 </script>
 
