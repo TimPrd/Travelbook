@@ -5,8 +5,8 @@
         <p>{{ error }}</p>
       </div>
       <div class="form-group">
-        <input 
-          type="text" 
+        <input
+          type="text"
           class="form-control"
           placeholder="Enter your username"
           v-model="credentials.username"
@@ -29,7 +29,6 @@
 import {HTTP} from './../http/http-base';
 
   export default {
-
     data() {
       return {
         credentials: {
@@ -54,6 +53,6 @@ import {HTTP} from './../http/http-base';
 
       }
     }
-    
+
   }
   </script>
