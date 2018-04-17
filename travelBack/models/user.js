@@ -9,7 +9,10 @@ var bcrypt = require("bcryptjs");
 var userSchema = mongoose.Schema({
   email: {
     type: String,
-    trim: true
+    trim: true,
+    required: true,
+    unique: true,
+    match: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
   },
   username: {
     type: String,

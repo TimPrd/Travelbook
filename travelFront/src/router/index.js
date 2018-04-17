@@ -7,6 +7,7 @@ import Dashboard from '@/components/Pages/Dashboard'
 import Signup from '@/components/Signup'
 import Login from '@/components/Login'
 import Favorites from '@/components/Favorites'
+import Loader from '@/components/Loader/Loader'
 
 import MapTB from '@/components/Map'
 Vue.use(Router)
@@ -60,6 +61,10 @@ export default new Router({
       path: '/favorites',
       component: Favorites
     },
+    {
+      path:"/loader",
+      component: Loader
+    }
 
 
   ]
