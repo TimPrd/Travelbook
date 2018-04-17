@@ -1,7 +1,8 @@
 <template>
     <div id="page-top">
+        <tb-popup-login v-show="showLoginPopup"></tb-popup-login>
         <!-- Header -->
-        <tb-header/>
+        <tb-header></tb-header>
         <!-- End Header -->
         <!-- Content -->
         <section class="container center-align">
@@ -29,8 +30,13 @@
                 <div class="section-deco">v</div>
                 <div class="deco-line m12"></div>
                 <div class="wrapper-map col m12 s12">
+<<<<<<< HEAD
                     <tbMap/>
                 <!-- <tbMap/> -->
+=======
+                  <!-- <tbMap/> -->
+                  It's supposed to be a map
+>>>>>>> 0ef8fa1b09029ed3df50dfb078b66076d06b50b0
                 </div>
             </div>
             <!-- End section map -->
@@ -44,19 +50,26 @@ import { HTTP } from "./../http/http-base";
 import tbHeader from "./Header.vue";
 import tbCard from "./Card.vue";
 import tbMap from "./Map.vue";
+import {EventBusModal} from "../events/event-modals";
 
 export default {
   name: "HelloWorld",
-  components: { tbHeader, tbCard, tbMap },
+  components: { tbHeader, tbCard, tbMap, tbPopupLogin },
   data() {
     return {
-      cards: []
-    };
+      cards: [],
+      showLoginPopup: false,
+    }
+  },
+  mounted() {
+    //Listen for changement on login popup
+    EventBusModal.$on('change-state-login', showModal => {
+      this.showLoginPopup = showModal;
+    })
   },
   created() {
     this.fetchItems();
   },
-
   methods: {
     fetchItems() {
       HTTP.get(`/favorites`).then(response => {
