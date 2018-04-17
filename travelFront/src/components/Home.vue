@@ -18,8 +18,8 @@
                 <div class="deco-line col m12"></div>
 
                 <!-- Cards section -->
-                <div class="tb-cards row" v-for="card in cards">
-                    <tb-card :card="card"/>
+                <div class="tb-cards row">
+                    <tb-card v-for="card in cards" :card="card" />
                 </div>
                 <!-- End cards section -->
             </div>
