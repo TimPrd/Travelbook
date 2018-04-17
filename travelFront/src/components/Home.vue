@@ -45,6 +45,7 @@ import { HTTP } from "./../http/http-base";
 import tbHeader from "./Header.vue";
 import tbCard from "./Card.vue";
 import tbMap from "./Map.vue";
+import tbPopupLogin from './Popup/Login'
 import {EventBusModal} from "../events/event-modals";
 
 export default {

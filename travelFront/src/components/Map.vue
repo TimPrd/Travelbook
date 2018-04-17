@@ -16,6 +16,7 @@
         :key="index"
         v-for="(m, index) in markers"
         :position="m.position"
+        :icon="m.icon"
         @click="center=m.position"
       ></gmap-marker>
     </gmap-map>
@@ -73,7 +74,7 @@ export default {
             id: card._id,
             position: { lat: card.lat, lng: card.long },
             //need to be replace with the logo of Blandine
-            icon:{url:'./../../static/Marquer.svg'}
+            icon:{url:'./../../static/Marquer5.svg'}
           });
       });
     }
