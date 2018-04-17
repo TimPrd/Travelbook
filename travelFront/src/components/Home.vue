@@ -45,8 +45,8 @@ import { HTTP } from "./../http/http-base";
 import tbHeader from "./Header.vue";
 import tbCard from "./Card.vue";
 import tbMap from "./Map.vue";
-import tbPopupLogin from './Popup/Login'
-import {EventBusModal} from "../events/event-modals";
+import tbPopupLogin from "./Popup/Login";
+import { EventBusModal } from "../events/event-modals";
 
 export default {
   name: "HelloWorld",
@@ -54,23 +54,24 @@ export default {
   data() {
     return {
       cards: [],
-      showLoginPopup: false,
-    }
+      showLoginPopup: false
+    };
   },
   mounted() {
     //Listen for changement on login popup
-    EventBusModal.$on('change-state-login', showModal => {
+    EventBusModal.$on("change-state-login", showModal => {
       this.showLoginPopup = showModal;
-    })
+    });
   },
   created() {
     this.fetchItems();
   },
   methods: {
     fetchItems() {
+      EventBusModal.$emit("loading-loader", true);
       HTTP.get(`/favorites`).then(response => {
         this.cards = response.data;
-        console.log(this.cards);
+        EventBusModal.$emit("loading-loader", false);
       });
     }
   }

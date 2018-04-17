@@ -74,7 +74,7 @@ export default {
             id: card._id,
             position: { lat: card.lat, lng: card.long },
             //need to be replace with the logo of Blandine
-            icon:{url:'./../../static/Marquer5.svg'}
+            icon:{url:'./../../static/Marquer4.svg'}
           });
       });
     }

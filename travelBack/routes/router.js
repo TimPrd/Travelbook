@@ -8,7 +8,7 @@ var config = require("../config");
 var bcrypt = require("bcryptjs");
 
 const cardService = require("./../services/cardService");
-const imageService = require("./../services/imageService")
+const imageService = require("./../services/imageService");
 //ROUTES :
 
 //HOME
@@ -26,10 +26,23 @@ router.route("/favorites").get((req, res) => {
 });
 
 router
-  .route("/cards")
+  .route("/allcards")
   .get((req, res) => {
     cardService.findCard(req, res);
   })
+
+//@todo: in developpement 
+router
+  .route("/cards/")
+  .get((req, res) => {
+    Card.findOne({ 'country': req.params.country, 'category':req.params.category }, function (err, cards) {
+      if (err) return handleError(err);
+      return res.json(cards).status(302);
+    });
+    
+  })
+
+  
 
   //@todo: remove this one in prod
   //this method is way to dangerous to stay alive, for test only
@@ -52,7 +65,7 @@ router
 
   .get((req, res) => {
     Card.findById(req.params.id, function(err, cards) {
-      if (err) res.send('err');
+      if (err) res.send("err");
       res.json(cards);
     });
   })
@@ -92,8 +105,6 @@ router.route("/users").get(function(req, res) {
     res.json(users);
   });
 });
-
-
 
 router
   .post("/register", function(req, res) {
@@ -201,10 +212,8 @@ router
     });
   });
 
-router.route("/uploads").post(function (req, res) {
-  imageService.uploadImg(req,res);
-
+router.route("/uploads").post(function(req, res) {
+  imageService.uploadImg(req, res);
 });
-
 
 module.exports = router;
