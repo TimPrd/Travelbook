@@ -43,6 +43,7 @@ app.use(function(req, res, next) {
 
 //Include our own routes (ex /home, /users...)
 var routes = require("./routes/router");
+
 app.use("/", routes);
 
 // error handler

@@ -11,6 +11,7 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 import './assets/css/main-style.css';
+import './assets/css/popup.css';
 import './assets/css/materialize.min.css';
 import auth from './auth'
 
@@ -27,7 +28,7 @@ router.beforeEach((to, from, next) => {
   }
   });
 
-  
+
 
 new Vue({
   el: '#app',
