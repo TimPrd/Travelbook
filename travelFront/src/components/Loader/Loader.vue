@@ -20,11 +20,11 @@
                 <label>	●</label>
             </div>
         </div>
-    </div>  
+    </div>
 </template>
 <script>
 export default {
-  name: "Home"
+  name: "Loader"
 };
 </script>
 <style scoped>
@@ -45,7 +45,7 @@ export default {
   transform: translateY(-50%);
   top: 50%;
   position: absolute;
-  width: calc(100% - 200px);
+  width: 100%;
   padding: 0 100px;
   text-align: center;
 }
@@ -56,7 +56,7 @@ export default {
   color: #eb5865;
 }
 
-@keyframes lol {
+@keyframes wave-bebeLoutre {
   0% {
     transform: translateY(-15px);
   }
@@ -68,7 +68,7 @@ export default {
   }
 }
 
-@-webkit-keyframes lol {
+@-webkit-keyframes wave-bebeLoutre {
   0% {
     -webkit-transform: translateY(-15px);
   }
@@ -81,40 +81,40 @@ export default {
 }
 
 .cs-loader-inner label:nth-child(6) {
-  -webkit-animation: lol 1s infinite ease-in-out;
-  animation: lol 1s infinite ease-in-out;
+  -webkit-animation: wave-bebeLoutre 1s infinite ease-in-out;
+  animation: wave-bebeLoutre 1s infinite ease-in-out;
 }
 
 .cs-loader-inner label:nth-child(5) {
-  -webkit-animation: lol 1s 100ms infinite ease-in-out;
-  animation: lol 1s 100ms infinite ease-in-out;
+  -webkit-animation: wave-bebeLoutre 1s 100ms infinite ease-in-out;
+  animation: wave-bebeLoutre 1s 100ms infinite ease-in-out;
 }
 
 .cs-loader-inner label:nth-child(4) {
-  -webkit-animation: lol 1s 200ms infinite ease-in-out;
-  animation: lol 1s 200ms infinite ease-in-out;
+  -webkit-animation: wave-bebeLoutre 1s 200ms infinite ease-in-out;
+  animation: wave-bebeLoutre 1s 200ms infinite ease-in-out;
 }
 
 .cs-loader-inner label:nth-child(3) {
-  -webkit-animation: lol 1s 300ms infinite ease-in-out;
-  animation: lol 1s 300ms infinite ease-in-out;
+  -webkit-animation: wave-bebeLoutre 1s 300ms infinite ease-in-out;
+  animation: wave-bebeLoutre 1s 300ms infinite ease-in-out;
 }
 
 .cs-loader-inner label:nth-child(2) {
-  -webkit-animation: lol 1s 400ms infinite ease-in-out;
-  animation: lol 1s 400ms infinite ease-in-out;
+  -webkit-animation: wave-bebeLoutre 1s 400ms infinite ease-in-out;
+  animation: wave-bebeLoutre 1s 400ms infinite ease-in-out;
 }
 
 .cs-loader-inner label:nth-child(1) {
-  -webkit-animation: lol 1s 500ms infinite ease-in-out;
-  animation: lol 1s 500ms infinite ease-in-out;
+  -webkit-animation: wave-bebeLoutre 1s 500ms infinite ease-in-out;
+  animation: wave-bebeLoutre 1s 500ms infinite ease-in-out;
 }
 
 .cs-loader-inner-bis {
   transform: translateY(-50%);
   top: 50%;
   position: absolute;
-  width: calc(100% - 200px);
+  width: 100%;
   padding: 0 100px;
   text-align: center;
 }
@@ -125,7 +125,7 @@ export default {
   color: #589cc7;
 }
 
-@keyframes mdr {
+@keyframes wave-bebeLoutreBis {
   0% {
     transform: translateY(15px);
   }
@@ -137,7 +137,7 @@ export default {
   }
 }
 
-@-webkit-keyframes mdr {
+@-webkit-keyframes wave-bebeLoutreBis {
   0% {
     -webkit-transform: translateY(15px);
   }
@@ -150,32 +150,32 @@ export default {
 }
 
 .cs-loader-inner-bis label:nth-child(6) {
-  -webkit-animation: mdr 1s infinite ease-in-out;
-  animation: mdr 1s infinite ease-in-out;
+  -webkit-animation: wave-bebeLoutreBis 1s infinite ease-in-out;
+  animation: wave-bebeLoutreBis 1s infinite ease-in-out;
 }
 
 .cs-loader-inner-bis label:nth-child(5) {
-  -webkit-animation: mdr 1s 100ms infinite ease-in-out;
-  animation: mdr 1s 100ms infinite ease-in-out;
+  -webkit-animation: wave-bebeLoutreBis 1s 100ms infinite ease-in-out;
+  animation: wave-bebeLoutreBis 1s 100ms infinite ease-in-out;
 }
 
 .cs-loader-inner-bis label:nth-child(4) {
-  -webkit-animation: mdr 1s 200ms infinite ease-in-out;
-  animation: mdr 1s 200ms infinite ease-in-out;
+  -webkit-animation: wave-bebeLoutreBis 1s 200ms infinite ease-in-out;
+  animation: wave-bebeLoutreBis 1s 200ms infinite ease-in-out;
 }
 
 .cs-loader-inner-bis label:nth-child(3) {
-  -webkit-animation: mdr 1s 300ms infinite ease-in-out;
-  animation: mdr 1s 300ms infinite ease-in-out;
+  -webkit-animation: wave-bebeLoutreBis 1s 300ms infinite ease-in-out;
+  animation: wave-bebeLoutreBis 1s 300ms infinite ease-in-out;
 }
 
 .cs-loader-inner-bis label:nth-child(2) {
-  -webkit-animation: mdr 1s 400ms infinite ease-in-out;
-  animation: mdr 1s 400ms infinite ease-in-out;
+  -webkit-animation: wave-bebeLoutreBis 1s 400ms infinite ease-in-out;
+  animation: wave-bebeLoutreBis 1s 400ms infinite ease-in-out;
 }
 
 .cs-loader-inner-bis label:nth-child(1) {
-  -webkit-animation: mdr 1s 500ms infinite ease-in-out;
-  animation: mdr 1s 500ms infinite ease-in-out;
+  -webkit-animation: wave-bebeLoutreBis 1s 500ms infinite ease-in-out;
+  animation: wave-bebeLoutreBis 1s 500ms infinite ease-in-out;
 }
 </style>
