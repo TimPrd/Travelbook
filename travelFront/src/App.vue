@@ -14,7 +14,7 @@ export default {
   components: { tbLoader },
   data() {
     return {
-      isLoading: true,
+      isLoading: false,
     }
   },
   mounted() {

@@ -23,6 +23,7 @@
 </template>
 <script>
 import {HTTP} from './../http/http-base';
+import Loader from './loader/Loader';
 import geocoder from 'geocoder';
 
 export default {
@@ -35,7 +36,7 @@ export default {
   created: function() {
     this.fetchItems();
   },
-
+  components: { Loader },
   methods: {
     submit(){
       HTTP.post(`/cards`, {'title':this.title} ).then(response => {
