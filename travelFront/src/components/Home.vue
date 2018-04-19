@@ -1,5 +1,6 @@
 <template>
     <div id="page-top">
+        <div v-if="loggedIn" >CONNECTE </div>
         <tb-popup-login v-show="showLoginPopup"></tb-popup-login>
         <!-- Header -->
         <tb-header></tb-header>
@@ -47,6 +48,7 @@ import tbCard from "./Card.vue";
 import tbMap from "./Map.vue";
 import tbPopupLogin from "./Popup/Login";
 import { EventBusModal } from "../events/event-modals";
+import auth from './../auth/'
 
 export default {
   name: "HelloWorld",
@@ -54,7 +56,8 @@ export default {
   data() {
     return {
       cards: [],
-      showLoginPopup: false
+      showLoginPopup: false,
+      loggedIn: auth.loggedIn()
     };
   },
   mounted() {
@@ -65,8 +68,14 @@ export default {
   },
   created() {
     this.fetchItems();
+    auth.onChange = loggedIn => {
+      this.loggedIn = loggedIn;
+    };
   },
   methods: {
+    disconnect(){
+            auth.logout()
+    },
     fetchItems() {
       EventBusModal.$emit("loading-loader", true);
       HTTP.get(`/favorites`).then(response => {

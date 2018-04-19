@@ -8,7 +8,7 @@ export default {
 
   login(context, creds, redirect) {
     HTTP.post(
-      "login",
+      "/login",
       {
         email: creds.username,
         password: creds.password

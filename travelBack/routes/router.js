@@ -137,28 +137,7 @@ router
       }
     );
   })
-  .post("/login", function(req, res) {
-    //Retrieve user by its mail
-    User.findOne({ email: req.body.email }, function(err, user) {
-      //Error dealing
-      if (err) return res.status(500).send("Error on the server.");
-      if (!user) return res.status(404).send("No user found.");
-      //Check the validity of password
-      var passwordIsValid = bcrypt.compareSync(
-        req.body.password,
-        user.password
-      );
-      // If not valid 401 = unauthorized
-      if (!passwordIsValid)
-        return res.status(401).send({ auth: false, token: null });
-      // Assign token
-      var token = jwt.sign({ id: user._id }, config.secret, {
-        expiresIn: 86400 // expires in 24 hours
-      });
-      // send
-      res.status(200).send({ auth: true, token: token });
-    });
-  })
+
   .get("/account", function(req, res) {
     // Get the token in the header
     var token = req.headers["x-access-token"];
@@ -216,4 +195,27 @@ router.route("/uploads").post(function(req, res) {
   imageService.uploadImg(req, res);
 });
 
+
+router.route("/login").post(function(req, res) {
+  //Retrieve user by its mail
+  User.findOne({ email: req.body.email }, function(err, user) {
+    //Error dealing
+    if (err) return res.status(500).send("Error on the server.");
+    if (!user) return res.status(404).send("No user found.");
+    //Check the validity of password
+    var passwordIsValid = bcrypt.compareSync(
+      req.body.password,
+      user.password
+    );
+    // If not valid 401 = unauthorized
+    if (!passwordIsValid)
+      return res.status(401).send({ auth: false, token: null });
+    // Assign token
+    var token = jwt.sign({ id: user._id }, config.secret, {
+      expiresIn: 86400 // expires in 24 hours
+    });
+    // send
+    res.status(200).send({ auth: true, token: token });
+  });
+})
 module.exports = router;

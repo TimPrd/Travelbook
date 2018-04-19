@@ -23,30 +23,32 @@
 </template>
 
 <script>
-  import LoginContent from "./LoginContent";
-  import SignupContent from "./SignupContent";
-  import { EventBusModal} from "../../events/event-modals";
+import LoginContent from "./LoginContent";
+import SignupContent from "./SignupContent";
+import { EventBusModal } from "../../events/event-modals";
 
-  export default {
-      name: "modalLogin",
-      components: { LoginContent, SignupContent },
-      methods: {
-        close() {
-          this.showModal = false;
-          EventBusModal.$emit('change-state-login', this.showModal);
-        },
-        showLogin() {
-          this.showSignupPart = false;
-        },
-        showSignup() {
-          this.showSignupPart = true;
-        },
-      },
-      data() {
-          return {
-            showModal: false,
-            showSignupPart: false
-          }
-      },
+
+export default {
+  name: "modalLogin",
+  components: { LoginContent, SignupContent },
+  
+  methods: {
+    close() {
+      this.showModal = false;
+      EventBusModal.$emit("change-state-login", this.showModal);
+    },
+    showLogin() {
+      this.showSignupPart = false;
+    },
+    showSignup() {
+      this.showSignupPart = true;
+    },
+  },
+  data() {
+    return {
+      showModal: false,
+      showSignupPart: false
+    };
   }
+};
 </script>
