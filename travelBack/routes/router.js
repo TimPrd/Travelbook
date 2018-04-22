@@ -33,15 +33,20 @@ router
 
 //@todo: in developpement 
 router
-  .route("/cards/")
+  .route("/cards")
   .get((req, res) => {
-    Card.findOne({ 'country': req.params.country, 'category':req.params.category }, function (err, cards) {
+    var num = parseInt(req.query.number);
+    console.log(req.query)
+    Card.find({ 'country': req.query.country, 'category':req.query.category }, function (err, cards) {
       if (err) return handleError(err);
+      console.log(cards)
       return res.json(cards).status(302);
     });
-    
   })
 
+  /*
+
+     */
   
 
   //@todo: remove this one in prod
@@ -137,6 +142,28 @@ router
       }
     );
   })
+  .post("/login", function(req, res) {
+    //Retrieve user by its mail
+    User.findOne({ email: req.body.email }, function(err, user) {
+      //Error dealing
+      if (err) return res.status(500).send("Error on the server.");
+      if (!user) return res.status(404).send("No user found.");
+      //Check the validity of password
+      var passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        user.password
+      );
+      // If not valid 401 = unauthorized
+      if (!passwordIsValid)
+        return res.status(401).send({ auth: false, token: null });
+      // Assign token
+      var token = jwt.sign({ id: user._id }, config.secret, {
+        expiresIn: 86400 // expires in 24 hours
+      });
+      // send
+      res.status(200).send({ auth: true, token: token });
+    });
+  })
 
   .get("/account", function(req, res) {
     // Get the token in the header
@@ -196,26 +223,5 @@ router.route("/uploads").post(function(req, res) {
 });
 
 
-router.route("/login").post(function(req, res) {
-  //Retrieve user by its mail
-  User.findOne({ email: req.body.email }, function(err, user) {
-    //Error dealing
-    if (err) return res.status(500).send("Error on the server.");
-    if (!user) return res.status(404).send("No user found.");
-    //Check the validity of password
-    var passwordIsValid = bcrypt.compareSync(
-      req.body.password,
-      user.password
-    );
-    // If not valid 401 = unauthorized
-    if (!passwordIsValid)
-      return res.status(401).send({ auth: false, token: null });
-    // Assign token
-    var token = jwt.sign({ id: user._id }, config.secret, {
-      expiresIn: 86400 // expires in 24 hours
-    });
-    // send
-    res.status(200).send({ auth: true, token: token });
-  });
-})
+
 module.exports = router;

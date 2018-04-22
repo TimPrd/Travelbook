@@ -8,10 +8,15 @@
         <!-- Content -->
         <section class="container center-align">
             <div class="filter-bar row">
-                <input type="text" class="country tb-input center-align col m3 s12" placeholder="Pays">
-                <input type="text" class="category tb-input center-align col m3 s12" placeholder="Catégorie">
-                <button class="tb-btn btn-red search-btn btn-red col m3 s12">Rechercher</button>
+                <input v-model="country" type="text" class="country tb-input center-align col m3 s12" placeholder="Pays">
+                <input v-model="category" type="text" class="category tb-input center-align col m3 s12" placeholder="Catégorie">
+                <button @click="showSearch" class="tb-btn btn-red search-btn btn-red col m3 s12">     <router-link to="/cards" :data="ENCULE">Bitcoin</router-link>
+Rechercher</button>
+<router-link to='/cards' :data="cociy" > ICId,fjejf </router-link>
             </div>
+
+
+
             <!-- Section favorites -->
             <div class="favorites row">
                 <h2 class="">Les favoris</h2>
@@ -36,6 +41,13 @@
                 </div>
             </div>
             <!-- End section map -->
+
+                        <div v-show="search" class="tb-cards row">
+                <tb-card v-for="card in list" :card="card" />
+                <infinite-loading @infinite="infiniteHandler">
+                <span slot="spinner"><tbLoader/></span>
+              </infinite-loading>
+            </div>
         </section>
         <!-- End Content -->
     </div>
@@ -48,16 +60,29 @@ import tbCard from "./Card.vue";
 import tbMap from "./Map.vue";
 import tbPopupLogin from "./Popup/Login";
 import { EventBusModal } from "../events/event-modals";
-import auth from './../auth/'
+import auth from "./../auth/";
+import InfiniteLoading from "vue-infinite-loading";
+import tbLoader from "./Loader/Loader";
 
 export default {
   name: "HelloWorld",
-  components: { tbHeader, tbCard, tbMap, tbPopupLogin },
+  components: {
+    tbHeader,
+    tbCard,
+    tbMap,
+    tbPopupLogin,
+    tbLoader,
+    InfiniteLoading
+  },
   data() {
     return {
       cards: [],
       showLoginPopup: false,
-      loggedIn: auth.loggedIn()
+      search: true,
+      loggedIn: auth.loggedIn(),
+      category: "cuisine",
+      country: "france",
+      list: []
     };
   },
   mounted() {
@@ -65,6 +90,7 @@ export default {
     EventBusModal.$on("change-state-login", showModal => {
       this.showLoginPopup = showModal;
     });
+    this.scroll(this.search);
   },
   created() {
     this.fetchItems();
@@ -73,8 +99,53 @@ export default {
     };
   },
   methods: {
-    disconnect(){
-            auth.logout()
+    disconnect() {
+      auth.logout();
+    },
+    showSearch() {
+      this.showSearch = true;
+    },
+    hasDuplicates(array) {
+      return new Set(array).size !== array.length;
+    },
+    checkDuplicateInObject(propertyName, inputArray) {
+      var seenDuplicate = false,
+        testObject = {};
+
+      inputArray.map(function(item) {
+        var itemPropertyName = item[propertyName];
+        if (itemPropertyName in testObject) {
+          testObject[itemPropertyName].duplicate = true;
+          item.duplicate = true;
+          seenDuplicate = true;
+        } else {
+          testObject[itemPropertyName] = item;
+          delete item.duplicate;
+        }
+      });
+      console.log(seenDuplicate);
+      return seenDuplicate;
+    },
+    infiniteHandler($state) {
+      let api = "/allcards";
+      HTTP.get(api, {
+        params: {
+          country: this.country,
+          category: this.category
+        }
+      }).then(({ data }) => {
+        console.log(data);
+        if (data.length) {
+          if (this.checkDuplicateInObject("id", this.list)) {
+            $state.complete();
+          } else {
+            this.list = this.list.concat(data);
+            $state.loaded();
+          }
+        } else {
+          $state.complete();
+        }
+      });
     },
     fetchItems() {
       EventBusModal.$emit("loading-loader", true);

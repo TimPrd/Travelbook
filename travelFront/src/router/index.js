@@ -8,6 +8,7 @@ import Signup from '@/components/Signup'
 import Login from '@/components/Login'
 import Favorites from '@/components/Favorites'
 import Loader from '@/components/Loader/Loader'
+import Cards from '@/components/Cards'
 
 import MapTB from '@/components/Map'
 Vue.use(Router)
@@ -64,7 +65,13 @@ export default new Router({
     {
       path:"/loader",
       component: Loader
-    }
+    },
+    {
+      path:'/cards',
+      component: Cards,
+      name:'cards',
+      props: true
+      }
 
 
   ]

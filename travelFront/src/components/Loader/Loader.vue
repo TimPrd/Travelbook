@@ -28,22 +28,16 @@ export default {
 };
 </script>
 <style scoped>
-#loader {
-  margin: 0 !important;
-  padding: 0 !important;
-}
+
 
 .cs-loader {
   position: absolute;
-  top: 0;
-  left: 0;
   height: 100%;
   width: 100%;
 }
 
 .cs-loader-inner {
   transform: translateY(-50%);
-  top: 50%;
   position: absolute;
   width: calc(100% - 200px);
   padding: 0 100px;
@@ -112,7 +106,6 @@ export default {
 
 .cs-loader-inner-bis {
   transform: translateY(-50%);
-  top: 50%;
   position: absolute;
   width: calc(100% - 200px);
   padding: 0 100px;
