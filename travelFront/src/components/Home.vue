@@ -9,12 +9,15 @@
         <section class="container center-align">
             <div class="filter-bar row">
                 <input v-model="country" type="text" class="country tb-input center-align col m3 s12" placeholder="Pays">
-                <input v-model="category" type="text" class="category tb-input center-align col m3 s12" placeholder="Catégorie">
+                <input  @keyup.enter="showSearch" v-model="category" type="text" class="category tb-input center-align col m3 s12" placeholder="Catégorie">
                 <button @click="showSearch" class="tb-btn btn-red search-btn btn-red col m3 s12">Rechercher</button>
             </div>
 
             <div v-show="searched" class="tb-cards row">
-                <div class="tb-cards row">
+                <div v-if="list.length === 0" class="center">
+                  <p>Nothing to show :(</p>
+                </div>
+                <div v-else class="tb-cards row">
                   <tb-card v-for="card in list" :card="card" />
                 </div>
             </div>
