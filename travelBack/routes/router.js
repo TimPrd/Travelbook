@@ -35,12 +35,12 @@ router
 router
   .route("/cards")
   .get((req, res) => {
-    var num = parseInt(req.query.number);
     console.log(req.query)
-    Card.find({ 'country': req.query.country, 'category':req.query.category }, function (err, cards) {
+    Card.find({ 'country': req.query.country, 'category':req.query.category }, function (err, results) {
       if (err) return handleError(err);
-      console.log(cards)
-      return res.json(cards).status(302);
+      console.log(results)
+      if (!results) return res.send('Nothing found').status('500');
+      return res.json(results).status(302);
     });
   })
 

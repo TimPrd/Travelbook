@@ -67,7 +67,7 @@ export default {
     },
     //Get all the position of the cards
     fetchItems() {
-      HTTP.get(`/cards`).then(response => {
+      HTTP.get(`/allcards`).then(response => {
         let cards = response.data;
         for (var card of cards)
           this.markers.push({
