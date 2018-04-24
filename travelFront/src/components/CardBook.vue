@@ -1,5 +1,5 @@
-    <template>
-  <!-- Card -->
+<template>
+  <!-- Card (book version) -->
   <div class="tb-card">
     <img src="#" class="card-img col m5 s5" alt="card image"/>
     <div class="card-desc col m7 s7 row">
@@ -20,9 +20,10 @@
         {{card.body}}
       </div>
       <div class="btn-bar m12">
-        <button class="btn-white m4"><router-link :to="{ name: 'cardView', params: {id:card._id} }"  >Lire la suite</router-link>
-</button>
-        <button class="btn-white m1">+</button> <!-- trigger event : add -->>
+        <button class="btn-white m4">
+          <router-link :to="{ name: 'cardView', params: {id:card._id} }">Lire la suite</router-link>
+        </button>
+        <button class="btn-blue btn-round m1"><i class="fas fa-trash-alt"></i></button> <!-- trigger event : add -->
       </div>
     </div>
   </div>
@@ -30,29 +31,15 @@
 </template>
 
 <script>
-import { HTTP } from "./../http/http-base";
-
-import { EventBusModal } from "../events/event-modals";
   export default {
-    data() {
-      return { card: '' }
-    },
-
-    created() {
-      console.log(this.card)
-      EventBusModal.$emit("loading-loader", true);
-      HTTP.get(`card/`+ this.$route.params.id ).then(response => {
-        this.card = response.data;
-        EventBusModal.$emit("loading-loader", false);
-      });
-    },
-
-    method:{
-      fetchItems() {
-
+    props: {
+      card: {
+        type: Object,
       }
-    }
+    },
 
+    mounted: function () {
+      console.log(this.card)
+    }
   }
 </script>
-

@@ -5,12 +5,6 @@
     rgb(215,215,215) - #D7D7D7
 */
 
-/* Mini */
-.margin-bottom-0 {margin-bottom: 0!important;}
-.ico { color: #666!important;}
-.bold { font-weight: bold; }
-.italic { font-style: italic; }
-
 /* Button */
 .filter-bar .tb-btn {
     border: none!important;
@@ -38,13 +32,19 @@
     transform: scale(0.95);
 }
 
-.btn-red {
-    background-color: rgb(248, 88, 100); /* #f85864 */
+.btn-red, .btn-red *, .btn-red:focus {
+    background-color: rgb(248, 88, 100);
     color: #fff;
 }
 
-.btn-red:focus {
-    background-color: rgb(248, 88, 100); /* #f85864 */;
+.btn-white, .btn-white *, .btn-white:focus {
+    background-color: #fff;
+    color: #444;
+}
+
+.btn-blue, .btn-blue *, .btn-blue:focus {
+    background-color: rgb(95, 160, 201);
+    color: #fff;
 }
 
 /* Fields */
@@ -93,14 +93,9 @@ header .logo {
 }
 
 /* Main content */
-@media all and (min-width: 600px) {
-    .filter-bar > *:first-child{
-        margin-left: 12.5%!important;
-    }
-}
 @media all and (max-width: 600px) {
     .filter-bar > * {
-        margin: 5px 0!important;
+        margin: 2px 0!important;
     }
 }
 
@@ -197,11 +192,9 @@ section h2 {
     margin: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
-    background-color: #fff;
     border-radius: 5px;
     border: none;
     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14),0 1px 7px 0 rgba(0,0,0,0.12),0 3px 1px -1px rgba(0,0,0,0.2)!important;
-    color: #555;
 }
 
 .card-desc button:hover {
@@ -229,3 +222,11 @@ section h2 {
     margin: 5px;
     color: #fff;
 }
+
+/* Mini */
+.margin-bottom-0 {margin-bottom: 0!important;}
+.margin-left-9 {margin-left: 9%!important;}
+.ico { color: #666!important;}
+.bold { font-weight: bold; }
+.italic { font-style: italic; }
+.btn-round { border-radius: 50%!important; }

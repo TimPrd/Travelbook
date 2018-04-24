@@ -8,7 +8,7 @@
         <!-- Content -->
         <section class="container center-align">
             <div class="filter-bar row">
-                <input v-model="country" type="text" class="country tb-input center-align col m3 s12" placeholder="Pays">
+                <input v-model="country" type="text" class="country margin-left-9 tb-input center-align col m3 s12" placeholder="Pays">
                 <input  @keyup.enter="showSearch" v-model="category" type="text" class="category tb-input center-align col m3 s12" placeholder="Catégorie">
                 <button @click="showSearch" class="tb-btn btn-red search-btn btn-red col m3 s12">Rechercher</button>
             </div>
@@ -47,7 +47,7 @@
             </div>
             <!-- End section map -->
 
-              
+
         </section>
         <!-- End Content -->
     </div>
@@ -111,7 +111,7 @@ export default {
         }
       }).then(response => {
         this.list = response.data;
-        EventBusModal.$emit("loading-loader", false);
+        EventBusModal.$emit("loading-loader", false), 4000
       });
       this.searched = true;
     },

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "@/components/Home";
+import Book from "@/components/Book";
 import Sandbox from "@/components/Sandbox";
 import Users from "@/components/Users";
 import Dashboard from "@/components/Pages/Dashboard";
@@ -21,6 +22,14 @@ export default new Router({
       name: "Home",
       component: Home
     },
+
+    /* BOOK */
+    {
+      path: "/book",
+      name: "Book",
+      component: Book
+    },
+    /* END BOOK */
 
     /* SANDBOX */
     {
@@ -76,7 +85,8 @@ export default new Router({
       path: "/card/:id",
       component: CardView,
       name: "cardView"
-    },/*
+    },
+    /*
     {
       path: "/card/",
       component: CardCreate,
