@@ -6,7 +6,7 @@
                 <i class="ico fas fa-search right"></i>
             </div>
             <div class="button-menu row margin-bottom-0">
-                <router-link to="/" tag="button" class="tb-btn btn-red col s12 m5 right" >Nouveau Book</router-link>
+                <router-link to="/" tag="button" class="tb-btn btn-red col s12 m5 right" >Cartes</router-link>
                 <button @click="openLogin()" class="tb-btn btn-red col s12 m5 right" >Connexion</button>
             </div>
           </div>

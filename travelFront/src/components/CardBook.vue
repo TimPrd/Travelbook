@@ -1,5 +1,5 @@
 <template>
-  <!-- Card -->
+  <!-- Card (book version) -->
   <div class="tb-card">
     <img src="#" class="card-img col m5 s5" alt="card image"/>
     <div class="card-desc col m7 s7 row">
@@ -23,7 +23,7 @@
         <button class="btn-white m4">
           <router-link :to="{ name: 'cardView', params: {id:card._id} }">Lire la suite</router-link>
         </button>
-        <button class="btn-white m1">+</button> <!-- trigger event : add -->
+        <button class="btn-blue btn-round m1"><i class="fas fa-trash-alt"></i></button> <!-- trigger event : add -->
       </div>
     </div>
   </div>

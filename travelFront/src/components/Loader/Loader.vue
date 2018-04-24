@@ -28,22 +28,28 @@ export default {
 };
 </script>
 <style scoped>
+
 #loader {
-  margin: 0 !important;
-  padding: 0 !important;
+  position:fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+#loader > div  {
+  position: relative;
+  top: 50%;
 }
 
 .cs-loader {
   position: absolute;
-  top: 0;
-  left: 0;
   height: 100%;
   width: 100%;
 }
 
 .cs-loader-inner {
   transform: translateY(-50%);
-  top: 50%;
   position: absolute;
   width: 100%;
   padding: 0 100px;
@@ -112,7 +118,6 @@ export default {
 
 .cs-loader-inner-bis {
   transform: translateY(-50%);
-  top: 50%;
   position: absolute;
   width: 100%;
   padding: 0 100px;
