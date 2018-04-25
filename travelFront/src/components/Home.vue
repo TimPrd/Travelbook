@@ -8,7 +8,7 @@
         <!-- Content -->
         <section class="container center-align">
             <div class="filter-bar row">
-                <input v-model="country" type="text" class="country margin-left-9 tb-input center-align col m3 s12" placeholder="Pays">
+                <input v-model="country" type="text" class="country margin-left-9 margin-left-0-phone tb-input center-align col m3 s12" placeholder="Pays">
                 <input  @keyup.enter="showSearch" v-model="category" type="text" class="category tb-input center-align col m3 s12" placeholder="Catégorie">
                 <button @click="showSearch" class="tb-btn btn-red search-btn btn-red col m3 s12">Rechercher</button>
             </div>
