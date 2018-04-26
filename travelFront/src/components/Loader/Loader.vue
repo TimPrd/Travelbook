@@ -29,6 +29,18 @@ export default {
 </script>
 <style scoped>
 
+#loader {
+  position:fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+#loader > div  {
+  position: relative;
+  top: 50%;
+}
 
 .cs-loader {
   position: absolute;

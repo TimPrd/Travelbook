@@ -34,10 +34,9 @@ import { HTTP } from "./../http/http-base";
 
 import { EventBusModal } from "../events/event-modals";
   export default {
-     data() {
-    return {
-      card: ''}},
-
+    data() {
+      return { card: '' }
+    },
 
     created() {
       console.log(this.card)
@@ -50,8 +49,8 @@ import { EventBusModal } from "../events/event-modals";
 
     method:{
       fetchItems() {
-      
-    }
+
+      }
     }
 
   }
