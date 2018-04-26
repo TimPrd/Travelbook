@@ -7,11 +7,11 @@
       </p>
       <p class="row">
         <label for="pseudo">Nom : </label>
-        <input v-model="credentials.lastname" type="text" id="lastname" class="tb-input" required/>
+        <input v-model="credentials.lastName" type="text" id="lastname" class="tb-input" required/>
       </p>
       <p class="row">
         <label for="pseudo">Prénom : </label>
-        <input v-model="credentials.firstname" type="text" id="firstname" class="tb-input" required/>
+        <input v-model="credentials.firstName" type="text" id="firstname" class="tb-input" required/>
       </p>
       <p class="row">
         <label for="mail">Email : </label>
@@ -48,7 +48,7 @@
 <script>
 import { EventBusModal } from "../../events/event-modals";
 import auth from "./../../auth/index";
-import { HTTP } from "./../../http/http-base"
+import { HTTP } from "./../../http/http-base";
 export default {
   name: "modalSignupContent",
   data() {
@@ -61,26 +61,23 @@ export default {
         firstName: "",
         lastName: "",
         password: "",
-        passwordConf:""
+        passwordConf: ""
       },
-      passInfo: ''
+      passInfo: ""
     };
   },
   methods: {
     validateBeforeSubmit() {
-      //add more security 
-      this.submit()
+      //add more security
+      this.submit();
     },
-    chkPass(){
-      if (this.credentials.password !== this.credentials.passwordConf)
-      {
+    chkPass() {
+      if (this.credentials.password !== this.credentials.passwordConf) {
         this.passInfo = "Passwords don't match !";
-        this.$refs.btnSubmit.disabled = true; 
-      }
-      else
-      {
+        this.$refs.btnSubmit.disabled = true;
+      } else {
         this.passInfo = "Passwords matches !";
-        this.$refs.btnSubmit.disabled = false; 
+        this.$refs.btnSubmit.disabled = false;
       }
     },
     close() {
@@ -88,14 +85,24 @@ export default {
       EventBusModal.$emit("change-state-login", this.showModal);
     },
     submit() {
-      console.log("submitted")
-      try {
-        auth.signup(this, this.credentials, "secretquote");
-        console.log("logged!")
-      } catch (error) {
-        this.error = error
-      }
-    },
+      var that=this;
+      var p1 = new Promise(function(resolve, reject) {
+        resolve(auth.signup(this, that.credentials, "secretquote"));
+      });
+
+      p1
+        .then(function(value) {
+          console.log(value); // "Succès!"
+          throw 'Inscription impossible'
+        })
+        .catch(function(e) {
+          console.error(e)
+})
+        .then(function(e) {
+
+          that.error= e
+        });
+    }
   }
 };
 </script>

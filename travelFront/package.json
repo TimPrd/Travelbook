@@ -12,9 +12,12 @@
   "dependencies": {
     "axios": "^0.18.0",
     "geocoder": "^0.2.3",
+    "jade": "^1.11.0",
     "npm": "^5.8.0",
+    "vee-validate": "^2.0.6",
     "vue": "^2.5.2",
     "vue-axios": "^2.1.1",
+    "vue-file-base64": "^1.0.2",
     "vue-infinite-loading": "^2.3.1",
     "vue-resource": "^1.5.0",
     "vue-router": "^3.0.1",

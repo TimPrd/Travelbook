@@ -22,7 +22,7 @@
       <div class="btn-bar m12">
         <button class="btn-white m4"><router-link :to="{ name: 'cardView', params: {id:card._id} }"  >Lire la suite</router-link>
 </button>
-        <button class="btn-white m1">+</button> <!-- trigger event : add -->>
+        <button class="btn-white m1">+</button> <!-- trigger event : add -->
       </div>
     </div>
   </div>
