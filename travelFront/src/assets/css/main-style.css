@@ -47,15 +47,6 @@
     color: #fff;
 }
 
-.btn-account {
-    position: absolute;
-    top: 50px;
-    right: 20px;
-    background-color: #00b8d4;
-    width: 75px;
-    height: 75px;
-}
-
 /* Fields */
 .tb-input {
     border: none!important;
@@ -99,6 +90,15 @@ header .search-bar {
 header .logo {
     height: 100px;
     margin: 25px 0;
+}
+
+header .btn-account {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: #00b8d4;
+    width: 75px;
+    height: 75px;
 }
 
 /* Main content */
@@ -245,5 +245,18 @@ section h2 {
 @media all and (max-width: 600px) {
     .margin-left-0-phone {
         margin-left: 0!important;
+    }
+
+    header .logo {
+        height: 75px;
+        position: relative;
+        top: 40px;
+    }
+
+    header .btn-account {
+        height: 50px;
+        width: 50px;
+        top: 20px;
+        right: 40px;
     }
 }

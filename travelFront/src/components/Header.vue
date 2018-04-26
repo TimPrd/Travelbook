@@ -1,6 +1,6 @@
 <template>
     <header class="row">
-        <div class="left-side col s4 m4">
+        <div class="left-side col s5 m4">
             <div class="search-bar row margin-bottom-0">
                 <input class="search col s10 m4 right" type="text" placeholder="Recherche" />
                 <i class="ico fas fa-search right"></i>
@@ -22,10 +22,8 @@
             <router-link to="/">
                 <img src="../assets/img/logo.png" class="logo" alt="TravelBook"/>
             </router-link>
-            <div v-if="loggedIn" >
-                <!-- Connected -->
-                <div class="btn-account btn-round"></div>
-            </div>
+            <!-- Connected -->
+            <div v-if="loggedIn" class="btn-account btn-round"></div>
         </div>
     </header>
 </template>
