@@ -53,7 +53,6 @@ export default {
         }
     },
     created() {
-        this.fetchItems();
         auth.onChange = loggedIn => {
             this.loggedIn = loggedIn;
         };
