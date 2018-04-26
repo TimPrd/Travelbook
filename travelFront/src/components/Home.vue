@@ -26,7 +26,7 @@
             <div class="favorites row">
                 <h2 class="">Les favoris</h2>
                 <div class="section-deco">v</div>
-                <div class="deco-line col m12"></div>
+                <div class="deco-line col s12 m12"></div>
 
                 <!-- Cards section -->
                 <div class="tb-cards row">

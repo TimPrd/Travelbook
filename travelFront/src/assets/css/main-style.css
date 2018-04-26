@@ -117,15 +117,23 @@ section h2 {
 }
 
 .section-deco {
+    background-image: url("../img/Puce.svg");
+    background-repeat: no-repeat;
+    background-position: center;
     width: 20px;
     height: 20px;
-    margin: 15px calc( 50% - 10px);
-    margin-top: 5px;
-    border-radius: 50%;
-    background-color: rgb(249,88,88);
+    margin: 5px calc( 50% - 10px);
     line-height: 17px;
     color: #fff;
     font-weight: bold;
+}
+
+.deco-line {
+    background-image: url("../img/trait.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 10px;
+    margin-bottom: 10px;
 }
 
 /* Card */
@@ -256,7 +264,7 @@ section h2 {
     header .btn-account {
         height: 50px;
         width: 50px;
-        top: 20px;
+        top: 15px;
         right: 40px;
     }
 }
