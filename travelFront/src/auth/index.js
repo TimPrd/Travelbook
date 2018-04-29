@@ -31,8 +31,8 @@ export default {
             });
     },
 
-    async signup(context, creds, redirect) {
-        await HTTP.post(
+    signup(context, creds, redirect) {
+        HTTP.post(
             "/register",
             {
                 email: creds.email,
@@ -47,11 +47,11 @@ export default {
                 //headers: auth.getAuthHeader()
             }
         )
-            .then(response => {
+            .then( async response => {
                 console.log(response.data);
-                this.user.authenticated = true;
-                localStorage.setItem("id_token", response.data.token);
-
+                await localStorage.setItem("id_token", response.data.token);
+                that.getUserData(context)
+                EventBusModal.$emit("change-state-login", false)
                 if (redirect) {
                     
                     //context.$router.replace("/");
