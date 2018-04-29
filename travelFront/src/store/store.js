@@ -11,7 +11,7 @@ const vuexLocal = new VuexPersistence({
 
 const store = {
   state: {
-    cart: [] 
+    cart: [],
   },
   mutations: {
     increment () {

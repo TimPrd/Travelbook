@@ -9,9 +9,6 @@
     <button v-if="loggedIn" class="btn btn-danger"  @click="logOut()">Log out</button>
     <div v-if="loggedIn" >
       <h1>Connecté ! </h1>
-        <iframe id="ytplayer" type="text/html" width="640" height="360"
-        src="http://www.youtube.com/embed/kxopViU98Xo?autoplay=1&origin=http://example.com"
-        frameborder="0"/>
       
       <ul v-show="userShow">
           <li>username : {{user.username}}</li>
@@ -28,69 +25,49 @@
 </template>
 
 <script>
-import auth from './../../auth'
-import {HTTP} from './../../http/http-base';
+import auth from "./../../auth";
+import { HTTP } from "./../../http/http-base";
 
 export default {
-  data () {
+  data() {
     return {
       userShow: false,
       user: "",
       loggedIn: auth.loggedIn()
-    }
+    };
   },
   methods: {
-      logOut() {
-        auth.logout()
-      },
-      getAccountDetail(){
-      HTTP.get('account').then(response => {
-        this.userShow = true;
-        this.user = response.data;
-        console.log(this.user)
+    logOut() {
+      auth.logout();
+    },
+    getAccountDetail() {
+      let that = this;
+      HTTP.get("account", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem('id_token'),
+          authorization: localStorage.getItem('id_token'),
+          'x-access-token': localStorage.getItem('id_token'),
+          Accept: "application/json"
+        }
+      }).then(response => {
+        that.userShow = true;
+        that.user = response.data;
+        that.$store.commit("instanceUser", response.data);
+        //that.$router.replace("/"); //modal = false
+        console.log(this.user);
       });
-      }
-  },
-  created () {
-    console.log("created")
-    auth.onChange = loggedIn => {
-      this.loggedIn = loggedIn
     }
   },
-
- 
-
-}
+  created() {
+    console.log("created");
+    this.getAccountDetail();
+    auth.onChange = loggedIn => {
+      this.loggedIn = loggedIn;
+    };
+  }
+};
 </script>
 
 <style>
-    h1{
-      color: white;
-    }
 
-    body {
-      animation: colorchange 3s infinite; /* animation-name followed by duration in seconds*/
-         /* you could also use milliseconds (ms) or something like 2.5s */
-      -webkit-animation: colorchange 0.2s infinite; /* Chrome and Safari */
-    }
-
-    @keyframes colorchange
-    {
-      0%   {background: lime;}
-      25%  {background: yellow;}
-      50%  {background: deepskyblue;}
-      55%  {background: darkturquoise;}
-      75%  {background: darkviolet;}  
-      100%  {background: deeppink;}
-    }
-
-    @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
-    {
-      0%   {background: lime;}
-      25%  {background: yellow;}
-      50%  {background: deepskyblue;}
-      55%  {background: darkturquoise;}
-      75%  {background: darkviolet;}  
-      100%  {background: deeppink;}
-    }
 </style>

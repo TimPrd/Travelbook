@@ -23,7 +23,8 @@ import auth from './auth'
 
 const store = new Vuex.Store({
   state: {
-    cart: []
+    cart: [],
+    usr: {}
   },
   plugins: [createPersistedState()],
   mutations: {
@@ -32,7 +33,14 @@ const store = new Vuex.Store({
     },
     removeCart: (state, card) => {
       state.cart = state.cart.filter( (el) => { return el._id !== card._id }); 
+    },
+    instanceUser: (state, usr) => {
+      state.usr = usr;
+    },
+    destroyUser: (state) => {
+      state.usr = {};
     }
+
   }
 });
 
