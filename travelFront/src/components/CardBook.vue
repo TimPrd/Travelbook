@@ -21,7 +21,7 @@
       </div>
       <div class="btn-bar m12">
         <button class="btn-white m4">
-          <router-link :to="{ name: 'cardView', params: {id:card._id} }">Lire la suite</router-link>
+          <router-link :to="{ name: 'cardView', params: {id:card.id} }">Lire la suite</router-link>
         </button>
         <button class="btn-blue btn-round m1"><i class="fas fa-trash-alt"></i></button> <!-- trigger event : add -->
       </div>

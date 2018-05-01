@@ -28,10 +28,11 @@
 
         <!-- Cards section -->
         <div class="tb-cards row">
-          <tb-card v-for="card in cards" :card="card" />
+          <tb-card v-for="card in cart" :card="card" />
         </div>
         <!-- End cards section -->
       </div>
+      
       <!-- End section favorites -->
       <!-- Section map -->
       <div class="bookMap row">
@@ -52,114 +53,122 @@
 </template>
 
 <script>
-  import { HTTP } from "./../http/http-base";
-  import tbHeader from "./Header.vue";
-  import tbCard from "./CardBook.vue";
-  import tbMap from "./Map.vue";
-  import tbPopupLogin from "./Popup/Login";
-  import { EventBusModal } from "../events/event-modals";
-  import auth from "./../auth/";
-  import InfiniteLoading from "vue-infinite-loading";
-  import tbLoader from "./Loader/Loader";
+import { HTTP } from "./../http/http-base";
+import tbHeader from "./Header.vue";
+import tbCard from "./CardBook.vue";
+import tbMap from "./Map.vue";
+import tbPopupLogin from "./Popup/Login";
+import { EventBusModal } from "../events/event-modals";
+import auth from "./../auth/";
+import InfiniteLoading from "vue-infinite-loading";
+import tbLoader from "./Loader/Loader";
 
-  export default {
-    name: "Book",
-    components: {
-      tbHeader,
-      tbCard,
-      tbMap,
-      tbPopupLogin,
-      tbLoader,
-      InfiniteLoading
-    },
-    data() {
-      return {
-        cards: [],
-        showLoginPopup: false,
-        published: false,
-        loggedIn: auth.loggedIn(),
-        category: "",
-        country: "",
-        list: []
-      };
-    },
+export default {
+  name: "Book",
+  components: {
+    tbHeader,
+    tbCard,
+    tbMap,
+    tbPopupLogin,
+    tbLoader,
+    InfiniteLoading
+  },
 
-    mounted() {
-      //Listen for changement on login popup
-      EventBusModal.$on("change-state-login", showModal => {
-        this.showLoginPopup = showModal;
+  data() {
+    return {
+      cards: [],
+      showLoginPopup: false,
+      published: false,
+      loggedIn: auth.loggedIn(),
+      category: "",
+      country: "",
+      list: [],
+    };
+  },
+computed: {
+    cart () {
+      return this.$store.state.cart
+    }
+  },
+  mounted() {
+    //Listen for changement on login popup
+    EventBusModal.$on("change-state-login", showModal => {
+      this.showLoginPopup = showModal;
+    });
+  },
+  created() {
+    auth.onChange = loggedIn => {
+      this.loggedIn = loggedIn;
+    };
+  },
+  methods: {
+    
+    disconnect() {
+      auth.logout();
+    },
+    generateEbook() {
+      let ids = []
+      this.list.forEach(element => {
+        ids.push(element.id)
       });
-    },
-    created() {
-      this.fetchItems();
-      auth.onChange = loggedIn => {
-        this.loggedIn = loggedIn;
-      };
-    },
-    methods: {
-      disconnect() {
-        auth.logout();
-      },
-      generateEbook() {
-        //todo : Tim
-        //EventBusModal.$emit("loading-loader", true);
-        /*.then(response => {
+      HTTP.put("generator", ids ).then(response => {
+     
+        //that.$router.replace("/"); //modal = false
+        console.log(response);
+      });
+      
+      //todo : Tim
+      //EventBusModal.$emit("loading-loader", true);
+      /*.then(response => {
           this.list = response.data;
           EventBusModal.$emit("loading-loader", false), 4000
         });
         this.published = true;*/
-      },
-      hasDuplicates(array) {
-        return new Set(array).size !== array.length;
-      },
-      checkDuplicateInObject(propertyName, inputArray) {
-        var seenDuplicate = false,
-          testObject = {};
+    },
+    hasDuplicates(array) {
+      return new Set(array).size !== array.length;
+    },
+    checkDuplicateInObject(propertyName, inputArray) {
+      var seenDuplicate = false,
+        testObject = {};
 
-        inputArray.map(function(item) {
-          var itemPropertyName = item[propertyName];
-          if (itemPropertyName in testObject) {
-            testObject[itemPropertyName].duplicate = true;
-            item.duplicate = true;
-            seenDuplicate = true;
-          } else {
-            testObject[itemPropertyName] = item;
-            delete item.duplicate;
-          }
-        });
-        console.log(seenDuplicate);
-        return seenDuplicate;
-      },
-      infiniteHandler($state) {
-        let api = "/allcards";
-        HTTP.get(api, {
-          params: {
-            country: this.country,
-            category: this.category
-          }
-        }).then(({ data }) => {
-          console.log(data);
-          if (data.length) {
-            if (this.checkDuplicateInObject("id", this.list)) {
-              $state.complete();
-            } else {
-              this.list = this.list.concat(data);
-              $state.loaded();
-            }
-          } else {
+      inputArray.map(function(item) {
+        var itemPropertyName = item[propertyName];
+        if (itemPropertyName in testObject) {
+          testObject[itemPropertyName].duplicate = true;
+          item.duplicate = true;
+          seenDuplicate = true;
+        } else {
+          testObject[itemPropertyName] = item;
+          delete item.duplicate;
+        }
+      });
+      console.log(seenDuplicate);
+      return seenDuplicate;
+    },
+    infiniteHandler($state) {
+      let api = "/allcards";
+      HTTP.get(api, {
+        params: {
+          country: this.country,
+          category: this.category
+        }
+      }).then(({ data }) => {
+        console.log(data);
+        if (data.length) {
+          if (this.checkDuplicateInObject("id", this.list)) {
             $state.complete();
+          } else {
+            this.list = this.list.concat(data);
+            $state.loaded();
           }
-        });
-      },
-      fetchItems() {
-        EventBusModal.$emit("loading-loader", true);
-        HTTP.get(`/favorites`).then(response => {
-          this.cards = response.data;
-          EventBusModal.$emit("loading-loader", false);
-        });
-      }
+        } else {
+          $state.complete();
+        }
+      });
     }
-  };
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

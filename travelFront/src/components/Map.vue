@@ -71,7 +71,7 @@ export default {
         let cards = response.data;
         for (var card of cards)
           this.markers.push({
-            id: card._id,
+            id: card.id,
             position: { lat: card.lat, lng: card.long },
             //need to be replace with the logo of Blandine
             icon:{url:'./../../static/Marquer4.svg'}

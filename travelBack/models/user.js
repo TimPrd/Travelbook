@@ -37,6 +37,7 @@ var userSchema = mongoose.Schema({
   },
   authorOfCards: [Number],
   authorOfBooks: [Number],
+  avatar: {type:String}
 
 });
 

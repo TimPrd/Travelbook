@@ -1,7 +1,7 @@
 <template>
   <!-- Card -->
   <div class="tb-card">
-    <img src="#" class="card-img col m5 s5" alt="card image"/>
+    <img src="image:data/" class="card-img col m5 s5" alt="card image"/>
     <div class="card-desc col m7 s7 row">
       <div class="header m12">
 
@@ -21,9 +21,11 @@
       </div>
       <div class="btn-bar m12">
         <button class="btn-white m4">
-          <router-link :to="{ name: 'cardView', params: {id:card._id} }">Lire la suite</router-link>
+          <router-link :to="{ name: 'cardView', params: {id:card.id} }">Lire la suite</router-link>
         </button>
-        <button class="btn-white m1">+</button> <!-- trigger event : add -->
+        <button @click="addInCart(card)" class="btn-white m1">+</button> <!-- trigger event : add -->
+        <button @click="removeInCart(card)" class="btn-white m1">-</button> <!-- trigger event : add -->
+
       </div>
     </div>
   </div>
@@ -31,15 +33,26 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      card: {
-        type: Object,
-      }
-    },
+import { EventBusModal } from "../events/event-modals";
 
-    mounted: function () {
-      console.log(this.card)
+export default {
+  props: {
+    card: {
+      type: Object
+    }
+  },
+
+  mounted: function() {
+    console.log(this.card);
+  },
+  methods: {
+    addInCart(card) {
+      this.$store.commit("addCart", card);
+    },
+    removeInCart(card){
+      this.$store.commit("removeCart", card);
+
     }
   }
+};
 </script>

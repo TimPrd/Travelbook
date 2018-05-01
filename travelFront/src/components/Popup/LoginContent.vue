@@ -32,7 +32,7 @@
 <script>
 import { EventBusModal } from "../../events/event-modals";
 import auth from "./../../auth/index";
-import { HTTP } from "./../../http/http-base"
+import { HTTP } from "./../../http/http-base";
 export default {
   name: "modalLoginContent",
   data() {
@@ -52,10 +52,12 @@ export default {
     },
 
     submit() {
+      let that = this;
       var credentials = {
         username: this.credentials.username,
         password: this.credentials.password
       };
+
       auth.login(this, credentials, "secretquote");
     }
   }

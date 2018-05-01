@@ -114,6 +114,7 @@ router.route("/users").get(function(req, res) {
 router
   .post("/register", function(req, res) {
     //Salted pass
+    console.log(req.body)
     var hashedPassword = bcrypt.hashSync(req.body.password, 8);
     var hashedPasswordConf = bcrypt.hashSync(req.body.passwordConf, 8);
     //Create user with args in the post request
@@ -125,7 +126,8 @@ router
         lastName: req.body.lastName,
         status: req.body.userStatus, //Need to be replace by a check on email for admin
         password: hashedPassword,
-        passwordConf: hashedPasswordConf
+        passwordConf: hashedPasswordConf,
+        avatar: req.body.avatar
       },
       function(err, user) {
         // Check if correct
@@ -161,6 +163,7 @@ router
         expiresIn: 86400 // expires in 24 hours
       });
       // send
+      
       res.status(200).send({ auth: true, token: token });
     });
   })
@@ -168,6 +171,7 @@ router
   .get("/account", function(req, res) {
     // Get the token in the header
     var token = req.headers["x-access-token"];
+    console.log(req.headers)
     //Deal if not found
     if (!token)
       return res.status(401).send({ auth: false, message: "Not authorized." });
@@ -176,7 +180,7 @@ router
       if (err)
         return res
           .status(500)
-          .send({ auth: false, message: "Failed to authenticate token." });
+          .send({ auth: false, message: "Failed to authenticate token.", error: err });
       //retrieve user
       User.findById(
         decoded.id,
@@ -223,5 +227,19 @@ router.route("/uploads").post(function(req, res) {
 });
 
 
+router.route("/generator")
+.put( function(req, res){
+  console.log(req.body)
+  const { exec, spawn} = require('child_process');
 
+
+  exec('bash publish book', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+  });
+})
 module.exports = router;

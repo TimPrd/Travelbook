@@ -7,6 +7,8 @@
       <li>{{item.title}}</li>
     </ul>
 
+ 
+
 
     <div class="form-group">
       <input
@@ -19,14 +21,24 @@
     <button class="btn btn-primary" @click="submit()">add fiche</button>
 
 
+
+  <file-base64
+    v-bind:multiple="true"
+    v-bind:done="getFiles">
+  </file-base64>
+
   </div>
 </template>
 <script>
 import {HTTP} from './../http/http-base';
 import Loader from './loader/Loader';
 import geocoder from 'geocoder';
+import fileBase64 from 'vue-file-base64'
 
 export default {
+  components: {
+    fileBase64
+  },
   data() {
     return {
       items: {},
@@ -38,6 +50,9 @@ export default {
   },
   components: { Loader },
   methods: {
+     onChangeImage(file) {
+      console.log(file)
+    },
     submit(){
       HTTP.post(`/cards`, {'title':this.title} ).then(response => {
         this.items = response.data;
@@ -50,10 +65,17 @@ export default {
         this.items = response.data;
         console.log(this.items)
       });
-    }
+    },
+     getFiles(files){
+        console.log(files);
+      }
   }
 };
 </script>
 <style>
+.user {
+  width: 128px;
+  height: 128px;
+}
 
 </style>
