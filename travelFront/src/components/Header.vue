@@ -23,11 +23,11 @@
                 <img src="../assets/img/logo.png" class="logo" alt="TravelBook"/>
             </router-link>
             <!-- Connected -->
-            <div v-if="usr.username" class="btn-account btn-round">
+            <router-link to="/profile" v-if="usr.username" class="btn-account btn-round">
                 <img v-if="usr.username" :src="usr.avatar" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
                 <span class="center">{{usr.email}}</span>
                 <button @click="disconnect()" class="tb-btn btn-red col s12 m5 right" >Deconnexion</button>
-            </div>
+            </router-link>
         </div>
     </header>
 </template>

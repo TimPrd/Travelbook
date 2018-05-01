@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "@/components/Home";
+import UserProfile from "@/components/UserProfile";
 import Book from "@/components/Book";
 import Sandbox from "@/components/Sandbox";
 import Users from "@/components/Users";
@@ -49,6 +50,14 @@ export default new Router({
         },
 
         /* END SANDBOX */
+
+        /* PROFILE */
+        {
+            path: "/profile",
+            name: "Profile",
+            component: UserProfile
+        },
+        /* END PROFILE */
 
         /* USER */
         {
