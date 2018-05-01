@@ -107,6 +107,16 @@ computed: {
       auth.logout();
     },
     generateEbook() {
+      let ids = []
+      this.list.forEach(element => {
+        ids.push(element.id)
+      });
+      HTTP.put("generator", ids ).then(response => {
+     
+        //that.$router.replace("/"); //modal = false
+        console.log(response);
+      });
+      
       //todo : Tim
       //EventBusModal.$emit("loading-loader", true);
       /*.then(response => {

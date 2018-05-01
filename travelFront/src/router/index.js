@@ -10,87 +10,94 @@ import Login from "@/components/Login";
 import Favorites from "@/components/Favorites";
 import Loader from "@/components/Loader/Loader";
 import Cards from "@/components/Cards";
-import CardView from "@/components/CardView"
+import CardView from "@/components/CardView";
 import MapTB from "@/components/Map";
+import CreateCard from "@/components/CreateCard";
+
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
-  routes: [
-    {
-      path: "/",
-      name: "Home",
-      component: Home
-    },
+    mode: "history",
+    routes: [
+        {
+            path: "/",
+            name: "Home",
+            component: Home
+        },
 
-    /* BOOK */
-    {
-      path: "/book",
-      name: "Book",
-      component: Book
-    },
-    /* END BOOK */
+        /* BOOK */
+        {
+            path: "/book",
+            name: "Book",
+            component: Book
+        },
+        /* END BOOK */
 
-    /* SANDBOX */
-    {
-      path: "/sandbox",
-      name: "Sandbox",
-      component: Sandbox
-    },
-    {
-      path: "/dashboard",
-      name: "dashboard",
-      component: Dashboard
-      /*meta: {
+        /* SANDBOX */
+        {
+            path: "/sandbox",
+            name: "Sandbox",
+            component: Sandbox
+        },
+        {
+            path: "/dashboard",
+            name: "dashboard",
+            component: Dashboard
+            /*meta: {
         requiresAuth: true
       }*/
-    },
+        },
 
-    /* END SANDBOX */
+        /* END SANDBOX */
 
-    /* USER */
-    {
-      path: "/users",
-      name: "Users",
-      component: Users
-    },
-    {
-      path: "/map",
-      name: "Map",
-      component: MapTB
-    },
-    {
-      path: "/signin",
-      component: Login
-    },
-    {
-      path: "/signup",
-      component: Signup
-    },
-    {
-      path: "/favorites",
-      component: Favorites
-    },
-    {
-      path: "/loader",
-      component: Loader
-    },
-    {
-      path: "/cards",
-      component: Cards,
-      name: "cards",
-      props: true
-    },
-    {
-      path: "/card/:id",
-      component: CardView,
-      name: "cardView"
-    },
-    /*
+        /* USER */
+        {
+            path: "/users",
+            name: "Users",
+            component: Users
+        },
+        {
+            path: "/map",
+            name: "Map",
+            component: MapTB
+        },
+        {
+            path: "/signin",
+            component: Login
+        },
+        {
+            path: "/signup",
+            component: Signup
+        },
+        {
+            path: "/favorites",
+            component: Favorites
+        },
+        {
+            path: "/loader",
+            component: Loader
+        },
+        {
+            path: "/cards",
+            component: Cards,
+            name: "cards",
+            props: true
+        },
+        {
+          path: "/create",
+          name:"createCard",
+          component: CreateCard
+        },
+        {
+            path: "/card/:id",
+            component: CardView,
+            name: "cardView"
+        }
+        /*
     {
       path: "/card/",
       component: CardCreate,
       name: "cardCreate"
     }*/
-  ]
+    ]
 });

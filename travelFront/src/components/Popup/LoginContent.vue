@@ -59,8 +59,6 @@ export default {
       };
 
       auth.login(this, credentials, "secretquote");
-
-      //await auth.getUserData(this);
     }
   }
 };

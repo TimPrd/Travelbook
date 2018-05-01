@@ -227,5 +227,19 @@ router.route("/uploads").post(function(req, res) {
 });
 
 
+router.route("/generator")
+.put( function(req, res){
+  console.log(req.body)
+  const { exec, spawn} = require('child_process');
 
+
+  exec('bash publish book', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+  });
+})
 module.exports = router;
