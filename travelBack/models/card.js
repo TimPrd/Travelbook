@@ -4,9 +4,11 @@
 
 var mongoose = require("mongoose");
 var bcrypt = require("bcryptjs");
+var shortid = require("shortid");
 
 //Describe the schema (model)
 var cardSchema = mongoose.Schema({
+  id: { type: String, require: true, default: shortid.generate()},
   title: { type: String, default: "test", require: true },
   author: String,
   para1: String,

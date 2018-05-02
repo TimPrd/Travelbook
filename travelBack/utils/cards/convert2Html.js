@@ -7,14 +7,13 @@ function convert(data) {
 
   const contents = template(data);
 
-  fs.writeFile(data.id+".html", contents, err => {
+  fs.writeFile("./HTML/"+data.id+".html", contents, err => {
     if (err) {
       return console.error(`Autsch! Failed to store template: ${err.message}.`);
     }
 
     console.log("Saved template!");
   });
-  console.log("coucou " + data.title);
 }
 
 module.exports = {

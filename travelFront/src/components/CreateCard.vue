@@ -85,7 +85,7 @@ export default {
         url: "https://httpbin.org/post",
         thumbnailWidth: 150,
         maxFiles: 1,
-        maxFilesize: 0.5,
+        maxFilesize: 0.05,
         addRemoveLinks: true,
         headers: { "My-Awesome-Header": "header value" },
         accept: function accept(file, done) {
