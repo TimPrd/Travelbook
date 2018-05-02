@@ -36,7 +36,12 @@ router
   .route("/cards")
   .get((req, res) => {
     console.log(req.query)
-    Card.find({ 'country': req.query.country, 'category':req.query.category }, function (err, results) {
+    let query = {}
+  
+    if (req.query.country) query.country = req.query.country;
+    if (req.query.category) query.category = req.query.category;
+
+    Card.find(query, function (err, results) {
       if (err) return handleError(err);
       console.log(results)
       if (!results) return res.send('Nothing found').status('500');
