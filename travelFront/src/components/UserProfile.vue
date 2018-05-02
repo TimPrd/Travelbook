@@ -12,8 +12,8 @@
                     <button @click="disconnect()" class="tb-btn btn-red col s12 m4 offset-m4" >Deconnexion</button>
                 </div>
                 <div>
+                    <p><b>Photo : </b><br/><img v-if="usr.username" :src="usr.avatar" alt="" class="circle responsive-img"></p>
                     <p><b>ID : </b>{{ usr._id }}</p>
-                    <p><b>PhotoPath : </b>{{ usr.avatar }}</p>
                     <p><b>username : </b>{{ usr.username }}</p>
                     <p><b>email : </b>{{ usr.email }}</p>
                     <p><b>firstName : </b>{{ usr.firstName }}</p>
