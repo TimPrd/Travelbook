@@ -1,7 +1,7 @@
 <template>
   <!-- Card -->
   <div class="tb-card">
-    <img src="image:data/" class="card-img col m5 s5" alt="card image"/>
+    <img :src="card.cover_picture" class="card-img col m5 s5" alt="card image"/>
     <div class="card-desc col m7 s7 row">
       <div class="header m12">
 
