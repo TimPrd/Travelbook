@@ -13,8 +13,8 @@
                 </div>
                 <div v-if="usr.username" >
                     <!-- Connected -->
-                    <router-link to="/" tag="button" class="tb-btn btn-red col s12 m5 right" >Nouveau Book</router-link>
-                    <router-link to="/" tag="button" class="tb-btn btn-red col s12 m5 right" >Nouvelle Fiche</router-link>
+                    <router-link to="/book" tag="button" class="tb-btn btn-red col s12 m5 right" >Nouveau Book</router-link>
+                    <router-link to="/create" tag="button" class="tb-btn btn-red col s12 m5 right" >Nouvelle Fiche</router-link>
                 </div>
             </div>
           </div>
@@ -25,8 +25,6 @@
             <!-- Connected -->
             <router-link to="/profile" v-if="usr.username" class="btn-account btn-round">
                 <img v-if="usr.username" :src="usr.avatar" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-                <span class="center">{{usr.email}}</span>
-                <button @click="disconnect()" class="tb-btn btn-red col s12 m5 right" >Deconnexion</button>
             </router-link>
         </div>
     </header>
