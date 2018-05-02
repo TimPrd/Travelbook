@@ -1,6 +1,5 @@
 <template>
     <div id="page-top">
-        <div v-if="loggedIn" >CONNECTE </div>
         <tb-popup-login v-show="showLoginPopup"></tb-popup-login>
         <!-- Header -->
         <tb-header></tb-header>
