@@ -34,10 +34,12 @@ async function getLatLong(req) {
     provider: "google",
     // Optional depending on the providers
     httpAdapter: "https", // Default
-    apiKey: "AIzaSyAcxsdfkb3T-kMiYtf9pH55q7XK_sWFMTc", // for Mapquest, OpenCage, Google Premier
+    apiKey: "AIzaSyCbiwXh12LHMp7s094UkveRoEUK1kC0IKc", // for Mapquest, OpenCage, Google Premier
     formatter: null // 'gpx', 'string', ...
   };
   var geocoder = NodeGeocoder(options);
+  console.log(geocoder)
+  
   var result = await resolveLocation(req, geocoder).then();
   //console.log("res : ", result[0].streetNumber);
   return result[0];
