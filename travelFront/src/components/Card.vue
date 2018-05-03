@@ -1,7 +1,7 @@
 <template>
   <!-- Card -->
   <div class="tb-card">
-    <img :src="card.cover_picture" class="card-img col m5 s5" alt="card image"/>
+    <img :style="{ 'backgroundImage': 'url(' + imgSrc + ')' }" class="card-img col m5 s5">
     <div class="card-desc col m7 s7 row">
       <div class="header m12">
 
@@ -20,12 +20,11 @@
         {{card.body}}
       </div>
       <div class="btn-bar m12">
-        <button class="btn-white m4">
-          <router-link :to="{ name: 'cardView', params: {id:card.id} }">Lire la suite</router-link>
-        </button>
+        <router-link :to="{ name: 'cardView', params: {id:card.id} }">
+            <button class="btn-white m4">Lire la suite</button>
+        </router-link>
         <button @click="addInCart(card)" class="btn-white m1">+</button> <!-- trigger event : add -->
         <button @click="removeInCart(card)" class="btn-white m1">-</button> <!-- trigger event : add -->
-
       </div>
     </div>
   </div>
@@ -41,7 +40,11 @@ export default {
       type: Object
     }
   },
-
+  data() {
+      return {
+            imgSrc: this.card.cover_picture,
+      }
+  },
   mounted: function() {
     console.log(this.card);
   },

@@ -20,8 +20,7 @@
         {{card.body}}
       </div>
       <div class="btn-bar m12">
-        <button class="btn-white m4"><router-link :to="{ name: 'cardView', params: {id:card.id} }"  >Lire la suite</router-link>
-</button>
+        <router-link :to="{ name: 'cardView', params: {id:card.id} }" class="btn-white m4">Lire la suite</router-link>
         <button class="btn-white m1">+</button> <!-- trigger event : add -->
       </div>
     </div>
