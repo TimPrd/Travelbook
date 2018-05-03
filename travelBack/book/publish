@@ -1,0 +1,3 @@
+#!/bin/bash
+zip -q0X "book.epub" mimetype
+zip -qXr9D "book.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"
