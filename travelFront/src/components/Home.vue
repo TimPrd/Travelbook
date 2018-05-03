@@ -13,12 +13,17 @@
             </div>
 
             <div v-show="searched" class="tb-cards row">
+                <h2 class="">Résultat de la Recherche</h2>
+                <div class="section-deco">v</div>
+                <div class="deco-line col s12 m12"></div>
+                <!-- Display result -->
                 <div v-if="list.length === 0" class="center">
-                  <p>Nothing to show :(</p>
+                  <p>Pas de fiches correspondantes :(</p>
                 </div>
                 <div v-else class="tb-cards row">
                   <tb-card v-for="card in list" :card="card" />
                 </div>
+                <!-- End Display result -->
             </div>
 
             <!-- Section favorites -->

@@ -1,5 +1,0 @@
-#!/bin/bash
-rm -f $1.epub
-cd $1
-zip -q0X "../$1.epub" mimetype
-zip -qXr9D "../$1.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"

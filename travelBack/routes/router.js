@@ -31,13 +31,13 @@ router
     cardService.findCard(req, res);
   })
 
-//@todo: in developpement 
+//@todo: in developpement
 router
   .route("/cards")
   .get((req, res) => {
     console.log(req.query)
     let query = {}
-  
+
     if (req.query.country) query.country = req.query.country;
     if (req.query.category) query.category = req.query.category;
 
@@ -52,7 +52,7 @@ router
   /*
 
      */
-  
+
 
   //@todo: remove this one in prod
   //this method is way to dangerous to stay alive, for test only
@@ -168,7 +168,7 @@ router
         expiresIn: 86400 // expires in 24 hours
       });
       // send
-      
+
       res.status(200).send({ auth: true, token: token });
     });
   })
@@ -235,16 +235,10 @@ router.route("/uploads").post(function(req, res) {
 router.route("/generator")
 .put( function(req, res){
   console.log(req.body)
-  const { exec, spawn} = require('child_process');
+var shell = require('shelljs');
 
+shell.exec('cd book ; zip -q0X "book.epub" mimetype ;  zip -qXr9D "book.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"', function(code, stdout, stderr) {
 
-  exec('bash publish book', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`exec error: ${error}`);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-    console.log(`stderr: ${stderr}`);
-  });
+})
 })
 module.exports = router;
