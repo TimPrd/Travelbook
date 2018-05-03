@@ -1,10 +1,5 @@
 <template>
     <div id="page-top">
-        <tb-popup-login v-show="showLoginPopup"></tb-popup-login>
-        <!-- Header -->
-        <tb-header></tb-header>
-
-
         <section class="container center-align">
             <div class="main-info">
                 <h2 class="">Profil</h2>
@@ -29,13 +24,12 @@ import tbHeader from "./Header.vue";
 import tbPopupLogin from "./Popup/Login";
 import tbLoader from "./Loader/Loader";
 import auth from "./../auth/";
+import router from "./../router";
 import { EventBusModal } from "../events/event-modals";
 
 export default {
     name: "UserProfile",
     components: {
-        tbHeader,
-        tbPopupLogin,
         tbLoader,
     },
     computed: {
@@ -51,6 +45,7 @@ export default {
         },
         disconnect() {
             auth.logout(this);
+            router.push("/");
         }
     },
     data() {
