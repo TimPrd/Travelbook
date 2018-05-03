@@ -1,10 +1,5 @@
 <template>
   <div id="page-top">
-    <div v-if="loggedIn" >CONNECTE </div>
-    <tb-popup-login v-show="showLoginPopup"></tb-popup-login>
-    <!-- Header -->
-    <tb-header></tb-header>
-    <!-- End Header -->
     <!-- Content -->
     <section class="container center-align">
       <div class="filter-bar row">
@@ -32,7 +27,7 @@
         </div>
         <!-- End cards section -->
       </div>
-      
+
       <!-- End section favorites -->
       <!-- Section map -->
       <div class="bookMap row">
@@ -102,7 +97,7 @@ computed: {
     };
   },
   methods: {
-    
+
     disconnect() {
       auth.logout();
     },
@@ -112,11 +107,11 @@ computed: {
         ids.push(element.id)
       });
       HTTP.put("generator", ids ).then(response => {
-     
+
         //that.$router.replace("/"); //modal = false
         console.log(response);
       });
-      
+
       //todo : Tim
       //EventBusModal.$emit("loading-loader", true);
       /*.then(response => {

@@ -1,9 +1,5 @@
 <template>
     <div id="page-top">
-        <tb-popup-login v-show="showLoginPopup"></tb-popup-login>
-        <!-- Header -->
-        <tb-header></tb-header>
-        <!-- End Header -->
         <!-- Content -->
         <section class="container center-align">
             <div class="filter-bar row">
@@ -57,10 +53,8 @@
 
 <script>
 import { HTTP } from "./../http/http-base";
-import tbHeader from "./Header.vue";
 import tbCard from "./Card.vue";
 import tbMap from "./Map.vue";
-import tbPopupLogin from "./Popup/Login";
 import { EventBusModal } from "../events/event-modals";
 import auth from "./../auth/";
 import InfiniteLoading from "vue-infinite-loading";
@@ -69,30 +63,20 @@ import tbLoader from "./Loader/Loader";
 export default {
   name: "HelloWorld",
   components: {
-    tbHeader,
     tbCard,
     tbMap,
-    tbPopupLogin,
     tbLoader,
     InfiniteLoading
   },
   data() {
     return {
       cards: [],
-      showLoginPopup: false,
       searched: false,
       loggedIn: auth.loggedIn(),
       category: "",
       country: "",
       list: []
     };
-  },
-
-  mounted() {
-    //Listen for changement on login popup
-    EventBusModal.$on("change-state-login", showModal => {
-      this.showLoginPopup = showModal;
-    });
   },
   created() {
     this.fetchItems();
@@ -101,9 +85,6 @@ export default {
     };
   },
   methods: {
-    disconnect() {
-      auth.logout();
-    },
     showSearch() {
       EventBusModal.$emit("loading-loader", true);
       HTTP.get(`/cards`, {

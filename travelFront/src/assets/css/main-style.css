@@ -121,7 +121,8 @@ section h2 {
     background-repeat: no-repeat;
     background-position: center;
     width: 20px;
-    height: 20px;
+    height: 25px;
+    padding-top: 4px;
     margin: 5px calc( 50% - 10px);
     line-height: 17px;
     color: #fff;
