@@ -7,12 +7,11 @@
                     <button @click="disconnect()" class="tb-btn btn-red col s12 m4 offset-m4" >Deconnexion</button>
                 </div>
                 <div>
+                    <p><b>Username : </b>{{ usr.username }}</p>
                     <p><b>Photo : </b><br/><img v-if="usr.username" :src="usr.avatar" alt="" class="circle responsive-img"></p>
-                    <p><b>ID : </b>{{ usr._id }}</p>
-                    <p><b>username : </b>{{ usr.username }}</p>
-                    <p><b>email : </b>{{ usr.email }}</p>
-                    <p><b>firstName : </b>{{ usr.firstName }}</p>
-                    <p><b>lastName : </b>{{ usr.lastName }}</p>
+                    <p><b>Email : </b>{{ usr.email }}</p>
+                    <p><b>FirstName : </b>{{ usr.firstName }}</p>
+                    <p><b>LastName : </b>{{ usr.lastName }}</p>
                 </div>
             </div>
         </section>

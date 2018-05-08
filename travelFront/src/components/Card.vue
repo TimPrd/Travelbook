@@ -13,6 +13,7 @@
           <i class="fas fa-star star"></i><!-- Full star -->
           <i class="fas fa-star star"></i><!-- Full star -->
           <i class="fas fa-star star"></i><!-- Full star -->
+          <i class="fas fa-star star"></i><!-- Full star -->
           <i class="far fa-star star"></i><!-- Empty star -->
         </div>
       </div>
@@ -35,27 +36,40 @@
 import { EventBusModal } from "../events/event-modals";
 
 export default {
-  props: {
-    card: {
-      type: Object
-    }
-  },
-  data() {
-      return {
-            imgSrc: this.card.cover_picture,
-      }
-  },
-  mounted: function() {
-    console.log(this.card);
-  },
-  methods: {
-    addInCart(card) {
-      this.$store.commit("addCart", card);
+    props: {
+        card: {
+          type: Object
+        }
     },
-    removeInCart(card){
-      this.$store.commit("removeCart", card);
-
+    data() {
+        return {
+            imgSrc: this.card.cover_picture,
+        }
+    },
+    computed: {
+        usr: function() {
+            // `this` pointe sur l'instance vm
+            return this.$store.state.usr
+        }
+    },
+    mounted() {
+        console.log("Card : "+this.card);
+    },
+    created() {
+        EventBusModal.$on("usr-loaded", usrLoaded => {
+            this.usr = this.$store.state.usr;
+        });
+    },
+    methods: {
+        addInCart(card) {
+            if(typeof this.usr._id === 'undefined')
+                EventBusModal.$emit("change-state-login", true);
+            else
+                this.$store.commit("addCart", card);
+        },
+        removeInCart(card){
+            this.$store.commit("removeCart", card);
+        }
     }
-  }
 };
 </script>

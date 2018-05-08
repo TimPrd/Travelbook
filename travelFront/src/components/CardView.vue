@@ -1,4 +1,4 @@
-    <template>
+<template>
   <!-- Card -->
   <div class="tb-card">
     <img src="#" class="card-img col m5 s5" alt="card image"/>
@@ -13,6 +13,7 @@
           <i class="fas fa-star star"></i><!-- Full star -->
           <i class="fas fa-star star"></i><!-- Full star -->
           <i class="fas fa-star star"></i><!-- Full star -->
+          <i class="fas fa-star star"></i><!-- Full star -->
           <i class="far fa-star star"></i><!-- Empty star -->
         </div>
       </div>
@@ -20,8 +21,10 @@
         {{card.body}}
       </div>
       <div class="btn-bar m12">
-        <router-link :to="{ name: 'cardView', params: {id:card.id} }" class="btn-white m4">Lire la suite</router-link>
-        <button class="btn-white m1">+</button> <!-- trigger event : add -->
+          <router-link :to="{ name: 'cardView', params: {id:card.id} }">
+              <button class="btn-white m4">Lire la suite</button>
+          </router-link>
+            <button class="btn-white m1">+</button> <!-- trigger event : add -->
       </div>
     </div>
   </div>
@@ -36,7 +39,6 @@ import { EventBusModal } from "../events/event-modals";
     data() {
       return { card: '' }
     },
-
     created() {
       console.log(this.card)
       EventBusModal.$emit("loading-loader", true);
@@ -45,13 +47,10 @@ import { EventBusModal } from "../events/event-modals";
         EventBusModal.$emit("loading-loader", false);
       });
     },
-
     method:{
       fetchItems() {
-
       }
     }
-
   }
 </script>
 
