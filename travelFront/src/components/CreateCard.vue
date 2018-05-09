@@ -6,9 +6,9 @@
          <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
             @vdropzone-complete="afterComplete" style="width:750px;height:355px"/>
          <div class="content">
-           <gmap-autocomplete
-          @place_changed="setPlace">
-        </gmap-autocomplete>
+            <gmap-autocomplete
+              @place_changed="setPlace">
+            </gmap-autocomplete>
             <p style="text-align:center; font-size:18px;" >{{infos.adress}}</p>
             <!--ville/pays-->
             <!-- nom du lieux-->
@@ -22,8 +22,8 @@
       </div>
       <div class="barre">
          <!--nom d'utilisateur-->
-         <p>{{infos.adress}}</p>
-         <img src="location-pointer.svg" style="width:3%">
+         <img src="./../assets/img/MapMarquer.svg" style="width:25px; position: relative; top: 10px;">
+          <p>{{infos.adress}}</p>
          <!--adresse-->
       </div>
       <br/>
@@ -54,7 +54,7 @@
          </div>
       </div>
    </div>
-    <div class="col s12 m12">
+    <div class="row">
       <button @click="submit()" class="btn-next tb-btn btn-red right">Créer</button>
     </div>
 </div>
@@ -173,14 +173,12 @@ p {
 #colonne1 {
   width: 350px;
   height: 250px;
-  background-color: ;
   float: left;
 }
 
 #colonne2 {
   width: 350px;
   height: 250px;
-  background-color: ;
   float: right;
 }
 

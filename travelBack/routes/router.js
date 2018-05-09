@@ -234,11 +234,20 @@ router.route("/uploads").post(function(req, res) {
 
 router.route("/generator")
 .put( function(req, res){
-  console.log(req.body)
-var shell = require('shelljs');
+    console.log(req.body);
+    var shell = require('shelljs');
 
-shell.exec('cd book ; zip -q0X "book.epub" mimetype ;  zip -qXr9D "book.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"', function(code, stdout, stderr) {
+    // todo : TOUT FAIRE EN NODEJS AVEC FS
+    // On choppe toutes les données du front dont les ids
+    // Une fois qu'on a les id, on crée un dossier tmp_[idUser]
+    // On copie depuis /book le dossier OEBPS, META-INF etc.. (sauf book.epub) dans /tmp
+    // On copie depuis /HTML les fichiers avec les ids correspondant dans /tmp/[idUsr]/OEBPS/text
+    // On crée les .opf et le .toc dans tmp/[idUser]/OEBPS
+    // On exec le publish en bash
 
-})
+    shell.exec(
+        'cd book ; zip -q0X "book.epub" mimetype ;  zip -qXr9D "book.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"',
+        function(code, stdout, stderr) {}
+    );
 })
 module.exports = router;
