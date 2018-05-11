@@ -7,7 +7,7 @@ function convert(data) {
 
   const contents = template(data);
 
-  fs.writeFile("./HTML/"+data.id+".html", contents, err => {
+  fs.writeFile("./HTML/"+data.id+".xhtml", contents, err => {
     if (err) {
       return console.error(`Autsch! Failed to store template: ${err.message}.`);
     }

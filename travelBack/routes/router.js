@@ -240,13 +240,18 @@ router.route("/generator")
     var shortid = require('shortid');
 
     var id = shortid.generate();
-
+    var cards = req.body
+    let path = "epub_tmp/tmp_"+id;
     shell.exec(
         'bash ./utils/scripts/epubation_1.sh '+id,
         function(code, stdout, stderr) {
-            epubService.gen_opf_toc();
+            var fs = require('fs');
+            cards.forEach(function(element) {
+                fs.createReadStream('HTML/'+element+'.xhtml').pipe(fs.createWriteStream(path+'/OEBPS/Text/'+element+'.xhtml'));
+            });
+            epubService.gen_opf_toc(cards, path);
             shell.exec(
-                'cd epub_tmp/tmp_'+id+' ; zip -q0X "book.epub" mimetype ; zip -qXr9D "book.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"',
+                'cd epub_tmp/tmp_'+id+' ; zip -q0X "book_'+id+'.epub" mimetype ; zip -qXr9D "book_'+id+'.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"',
                 function(code, stdout, stderr) {}
             );
         }
