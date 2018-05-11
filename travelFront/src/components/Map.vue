@@ -69,12 +69,13 @@ export default {
     fetchItems() {
       HTTP.get(`/allcards`).then(response => {
         let cards = response.data;
+        console.log(cards);
+
         for (var card of cards)
           this.markers.push({
             id: card.id,
             position: { lat: card.lat, lng: card.long },
-            //need to be replace with the logo of Blandine
-            icon:{url:'./../../static/img/Marquer.svg'}
+            icon:{url:"./../../static/img/Marquer.svg"}
           });
       });
     }

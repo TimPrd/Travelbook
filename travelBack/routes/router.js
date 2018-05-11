@@ -9,6 +9,7 @@ var bcrypt = require("bcryptjs");
 
 const cardService = require("./../services/cardService");
 const imageService = require("./../services/imageService");
+const epubService = require("./../services/epubService");
 //ROUTES :
 
 //HOME
@@ -236,6 +237,20 @@ router.route("/generator")
 .put( function(req, res){
     console.log(req.body);
     var shell = require('shelljs');
+    var shortid = require('shortid');
+
+    var id = shortid.generate();
+
+    shell.exec(
+        'bash ./utils/scripts/epubation_1.sh '+id,
+        function(code, stdout, stderr) {
+            epubService.gen_opf_toc();
+            shell.exec(
+                'cd epub_tmp/tmp_'+id+' ; zip -q0X "book.epub" mimetype ; zip -qXr9D "book.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"',
+                function(code, stdout, stderr) {}
+            );
+        }
+    );
 
     // todo : TOUT FAIRE EN NODEJS AVEC FS
     // On choppe toutes les données du front dont les ids
@@ -244,10 +259,5 @@ router.route("/generator")
     // On copie depuis /HTML les fichiers avec les ids correspondant dans /tmp/[idUsr]/OEBPS/text
     // On crée les .opf et le .toc dans tmp/[idUser]/OEBPS
     // On exec le publish en bash
-
-    shell.exec(
-        'cd book ; zip -q0X "book.epub" mimetype ;  zip -qXr9D "book.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"',
-        function(code, stdout, stderr) {}
-    );
 })
 module.exports = router;
