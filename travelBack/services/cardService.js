@@ -94,9 +94,30 @@ function findFavorites(req, res) {
     .sort({ stars: -1 });
 }
 
+function findCardByQuery(req, res) {
+  let query = {}
+  if (req.query.country) query.country = req.query.country;
+  if (req.query.category) query.category = req.query.category;
+
+  Card.find(query, function (err, results) {
+    if (err) return handleError(err);
+    console.log(results)
+    if (!results) return res.send('Nothing found').status('500');
+    return res.json(results).status(302);
+  });
+}
+
+function getAuthor(req, res){
+  Card.find( { author: req.query.username }, function (err, results) {
+    console.log(results)
+    return res.json(results).status(302);
+  });
+}
 module.exports = {
   getLatLong: getLatLong,
   insertCard: insertCard,
   findCard: findCard,
-  findFavorites: findFavorites
+  findFavorites: findFavorites,
+  findCardByQuery:findCardByQuery,
+  getAuthor:getAuthor
 };

@@ -4,9 +4,11 @@
     <section class="container center-align">
       <div class="filter-bar row">
         <button @click="generateEbook()" class="tb-btn btn-red search-btn btn-red col m4 s12 offset-m8 pull-m4">Générer Book</button>
+        <button @click="generatePDF()" class="tb-btn btn-red search-btn btn-red col m4 s12 offset-m8 pull-m4">Générer PDF</button>
+
       </div>
 
-      <div v-show="searched" class="tb-cards row">
+      <div class="tb-cards row">
         <div v-if="list.length === 0" class="center">
           <p>Nothing to show :(</p>
         </div>
@@ -101,12 +103,31 @@ computed: {
     disconnect() {
       auth.logout();
     },
+    generatePDF(){
+let ids = []
+      this.cart.forEach(element => {
+          ids.push(element.id)
+      });
+      HTTP.put("generatorPDF", ids,
+
+
+          {responseType: 'arraybuffer'}
+).then(function (response) {
+  console.log(response)
+ const url = window.URL.createObjectURL(new Blob([response.data]));
+   const link = document.createElement('a');
+   link.href = url;
+   link.setAttribute('download', 'file.pdf'); //or any other extension
+   document.body.appendChild(link);
+   link.click();
+      })
+    },
     generateEbook() {
       let ids = []
       this.cart.forEach(element => {
           ids.push(element.id)
       });
-      HTTP.put("generator", ids ).then(response => {
+      HTTP.put("generatorEPUB", ids ).then(response => {
 
         //that.$router.replace("/"); //modal = false
         //console.log(response);

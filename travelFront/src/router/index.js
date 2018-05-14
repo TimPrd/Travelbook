@@ -14,6 +14,7 @@ import Cards from "@/components/Cards";
 import CardView from "@/components/CardView";
 import MapTB from "@/components/Map";
 import CreateCard from "@/components/CreateCard";
+import NotFound from "@/components/NotFound";
 
 Vue.use(Router);
 
@@ -101,6 +102,11 @@ export default new Router({
             path: "/card/:id",
             component: CardView,
             name: "cardView"
+        },
+        {
+            path: "/notFound",
+            component: NotFound,
+            name: "NotFound"
         }
         /*
     {

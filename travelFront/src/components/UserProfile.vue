@@ -13,6 +13,8 @@
                     <p><b>FirstName : </b>{{ usr.firstName }}</p>
                     <p><b>LastName : </b>{{ usr.lastName }}</p>
                 </div>
+                <tb-card v-for="card in list" :card="card" />
+
             </div>
         </section>
     </div>
@@ -25,11 +27,14 @@ import tbLoader from "./Loader/Loader";
 import auth from "./../auth/";
 import router from "./../router";
 import { EventBusModal } from "../events/event-modals";
+import tbCard from "./CardBook.vue";
+import { HTTP } from "./../http/http-base";
 
 export default {
     name: "UserProfile",
     components: {
         tbLoader,
+        tbCard,
     },
     computed: {
         usr: function() {
@@ -51,7 +56,8 @@ export default {
         return {
             showModal: false,
             showSignin: false,
-            loggedIn: auth.loggedIn()
+            loggedIn: auth.loggedIn(),
+            list: [],
         };
     },
     created() {
@@ -60,6 +66,11 @@ export default {
         };
         EventBusModal.$on("usr-loaded", usrLoaded => {
             this.usr = this.$store.state.usr;
+        });
+        HTTP.get(`/createdBy`,  { params: { username: this.usr.username } } )
+        .then(response => {
+            console.log(response.data)
+            this.list = response.data;
         });
     }
 };
