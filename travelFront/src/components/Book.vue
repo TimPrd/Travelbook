@@ -127,7 +127,7 @@ let ids = []
       this.cart.forEach(element => {
           ids.push(element.id)
       });
-      HTTP.put("generator", ids ).then(response => {
+      HTTP.put("generatorEPUB", ids ).then(response => {
 
         //that.$router.replace("/"); //modal = false
         //console.log(response);
