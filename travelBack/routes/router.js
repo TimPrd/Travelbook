@@ -65,7 +65,7 @@ router.route("/createdBy").get((req, res) => {
 router.route("/card/:id")
   .get((req, res) => {
     Card.findById(req.params.id, function(err, cards) {
-      if (err) res.send("err");
+      if(err) res.send("err");
       res.json(cards);
     });
   })
