@@ -50,11 +50,6 @@ router
     });
   })
 
-  /*
-
-     */
-
-
   //@todo: remove this one in prod
   //this method is way to dangerous to stay alive, for test only
   .delete((req, res) => {
@@ -69,6 +64,14 @@ router
 
 router.route("/card").post((req, res) => {
   cardService.insertCard(req, res);
+});
+
+router.route("/createdBy").get((req, res) => {
+  console.log("req",req.query.username)
+  Card.find( { author: req.query.username }, function (err, results) {
+    console.log(results)
+    return res.json(results).status(302);
+  });
 });
 
 router
