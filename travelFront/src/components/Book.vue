@@ -103,22 +103,23 @@ computed: {
     },
     generateEbook() {
       let ids = []
-      this.list.forEach(element => {
-        ids.push(element.id)
+      this.cart.forEach(element => {
+          ids.push(element.id)
       });
       HTTP.put("generator", ids ).then(response => {
 
         //that.$router.replace("/"); //modal = false
-        console.log(response);
-      });
+        //console.log(response);
+      //});
 
       //todo : Tim
       //EventBusModal.$emit("loading-loader", true);
-      /*.then(response => {
-          this.list = response.data;
-          EventBusModal.$emit("loading-loader", false), 4000
-        });
-        this.published = true;*/
+      //.then(response => {
+         // this.list = response.data;
+        //  EventBusModal.$emit("loading-loader", false), 4000
+        //});
+        //this.published = true;
+    })
     },
     hasDuplicates(array) {
       return new Set(array).size !== array.length;

@@ -25,6 +25,7 @@
     "node-pre-gyp": "^0.9.1",
     "shelljs": "^0.8.1",
     "shortid": "^2.2.8",
-    "sightengine": "^1.2.1"
+    "sightengine": "^1.2.1",
+    "xmlbuilder": "^10.0.0"
   }
 }
