@@ -1,11 +1,11 @@
-function gen_opf_toc(cards, path){
+async function gen_opf_toc(cards, path){
     var builder = require('xmlbuilder');
 
     var fs = require('fs');
 
     var stream = fs.createWriteStream(path+"/OEBPS/toc.ncx");
-    stream.once('open', function(fd) {
-        stream.write('<?xml version="1.0"?>\n');
+    await stream.once('open', async function(fd) {
+        stream.write('<?xml version="1.0" encoding="utf-8" standalone="yes"?>\n')
         stream.write('<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">\n')
         stream.write('<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">\n')
         stream.write("<head>\n")
@@ -26,11 +26,11 @@ function gen_opf_toc(cards, path){
         }
         stream.write('</navMap>\n')
         stream.write('</ncx>\n')
-        stream.end();
+        await stream.end();
     });
 
     var streamOPF = fs.createWriteStream(path+"/OEBPS/content.opf");
-    streamOPF.once('open', function(fd) {
+    await streamOPF.once('open', async function(fd) {
         streamOPF.write('<?xml version="1.0" encoding="utf-8" standalone="yes"?>\n')
         streamOPF.write('<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">\n')
         streamOPF.write('<metadata xmlns:opf="http://www.idpf.org/2007/opf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\n')
@@ -60,7 +60,7 @@ function gen_opf_toc(cards, path){
         streamOPF.write("</spine>\n")
         streamOPF.write("</package>\n")
 
-        stream.end();
+        await stream.end();
     });
 
 }

@@ -244,18 +244,24 @@ router.route("/generator")
     let path = "epub_tmp/tmp_"+id;
     shell.exec(
         'bash ./utils/scripts/epubation_1.sh '+id,
-        function(code, stdout, stderr) {
+        async function(code, stdout, stderr) {
             var fs = require('fs');
-            cards.forEach(function(element) {
+            await cards.forEach(function(element) {
+                console.log(element + " a copier")
                 fs.createReadStream('HTML/'+element+'.xhtml').pipe(fs.createWriteStream(path+'/OEBPS/Text/'+element+'.xhtml'));
             });
-            epubService.gen_opf_toc(cards, path);
-            shell.exec(
+            await console.log("opf et toc")
+            await epubService.gen_opf_toc(cards, path);
+            await shell.exec(
                 'cd epub_tmp/tmp_'+id+' ; zip -q0X "book_'+id+'.epub" mimetype ; zip -qXr9D "book_'+id+'.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"',
-                function(code, stdout, stderr) {}
+                function(code, stdout, stderr) {
+                    console.log("GO EPUB");
+                }
             );
         }
     );
+
+
 
     // todo : TOUT FAIRE EN NODEJS AVEC FS
     // On choppe toutes les données du front dont les ids
