@@ -1,8 +1,33 @@
+let shell = require('shelljs');
+let shortid = require('shortid');
+let fs = require('fs');
+
+function generateEPUB(req, res){
+    console.log(req.body);
+    let id = shortid.generate();
+    let cards = req.body
+    let path = "epub_tmp/tmp_"+id;
+    shell.exec(
+        'bash ./utils/scripts/epubation_1.sh '+id,
+        async function(code, stdout, stderr) {
+            var fs = require('fs');
+            await cards.forEach(function(element) {
+                console.log(element + " a copier")
+                fs.createReadStream('HTML/'+element+'.xhtml').pipe(fs.createWriteStream(path+'/OEBPS/Text/'+element+'.xhtml'));
+            });
+            await console.log("opf et toc")
+            await gen_opf_toc(cards, path);
+            await shell.exec(
+                'cd epub_tmp/tmp_'+id+' ; zip -q0X "book_'+id+'.epub" mimetype ; zip -qXr9D "book_'+id+'.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"',
+                function(code, stdout, stderr) {
+                    console.log("GO EPUB");
+                }
+            );
+        }
+    );
+}
+
 async function gen_opf_toc(cards, path){
-    var builder = require('xmlbuilder');
-
-    var fs = require('fs');
-
     var stream = fs.createWriteStream(path+"/OEBPS/toc.ncx");
     await stream.once('open', async function(fd) {
         stream.write('<?xml version="1.0" encoding="utf-8" standalone="yes"?>\n')
@@ -41,7 +66,6 @@ async function gen_opf_toc(cards, path){
         streamOPF.write('<meta name="cover" content="[COVER_NAME].jpg" />\n')
         streamOPF.write('<dc:identifier opf:scheme="UUID">urn:uuid:[UUID]</dc:identifier>\n')
         streamOPF.write("</metadata>\n")
-
         streamOPF.write("<manifest>\n");
         streamOPF.write('<item href="Images/cover.jpg" id="cover.jpg" media-type="image/jpeg" />\n');
         streamOPF.write('<item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml" />\n');
@@ -51,7 +75,6 @@ async function gen_opf_toc(cards, path){
             streamOPF.write('<item href="Text/'+cards[x]+'.xhtml" id="'+cards[x]+'" media-type="application/xhtml+xml" />\n');
         }
         streamOPF.write("</manifest>\n");
-
         streamOPF.write('<spine toc="ncx">\n')
         for(let count=0; count<cards.length; count++)
         {
@@ -59,12 +82,11 @@ async function gen_opf_toc(cards, path){
         }
         streamOPF.write("</spine>\n")
         streamOPF.write("</package>\n")
-
         await stream.end();
     });
 
 }
 
 module.exports = {
-  gen_opf_toc: gen_opf_toc,
+    generateEPUB: generateEPUB,
 };

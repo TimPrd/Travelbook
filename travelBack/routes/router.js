@@ -3,14 +3,11 @@ var router = express.Router();
 var User = require("../models/user");
 var Card = require("../models/card");
 
-var jwt = require("jsonwebtoken");
-var config = require("../config");
-var bcrypt = require("bcryptjs");
-
 const cardService = require("./../services/cardService");
-const imageService = require("./../services/imageService");
+const userService = require("./../services/userService");
 const epubService = require("./../services/epubService");
-//ROUTES :
+const pdfService = require("./../services/pdfService");
+const imageService = require("./../services/imageService");
 
 //HOME
 router.route("/").all(function(req, res) {
@@ -20,41 +17,27 @@ router.route("/").all(function(req, res) {
   });
 });
 
-//CARDS
+/********************************************
+ *              ROADS :CARDS                *
+ ********************************************/
 
+/*===========*
+ *   Type    *
+ *===========*/
+
+/* Find the favorites */
 router.route("/favorites").get((req, res) => {
   cardService.findFavorites(req, res);
 });
-
-router
-  .route("/allcards")
+/* Find all cards */
+router.route("/allcards").get((req, res) => {
+  cardService.findCard(req, res);
+})
+/* get all the cards with query (category/country) */
+router.route("/cards")
   .get((req, res) => {
-    cardService.findCard(req, res);
+    cardService.findCardByQuery(req,res)
   })
-
-//@todo: in developpement
-router
-  .route("/cards")
-  .get((req, res) => {
-    console.log(req.query)
-    let query = {}
-
-    if (req.query.country) query.country = req.query.country;
-    if (req.query.category) query.category = req.query.category;
-
-    Card.find(query, function (err, results) {
-      if (err) return handleError(err);
-      console.log(results)
-      if (!results) return res.send('Nothing found').status('500');
-      return res.json(results).status(302);
-    });
-  })
-
-  /*
-
-     */
-
-
   //@todo: remove this one in prod
   //this method is way to dangerous to stay alive, for test only
   .delete((req, res) => {
@@ -66,14 +49,20 @@ router
       }
     });
   });
-
+/* create a card */
 router.route("/card").post((req, res) => {
   cardService.insertCard(req, res);
 });
+/* Find all the cards for an author */
+router.route("/createdBy").get((req, res) => {
+  cardService.getAuthor(req,res)
+});
 
-router
-  .route("/card/:id")
+/*===========*
+ * Instance  *
+ *===========*/
 
+router.route("/card/:id")
   .get((req, res) => {
     Card.findById(req.params.id, function(err, cards) {
       if (err) res.send("err");
@@ -106,169 +95,64 @@ router
     });
   });
 
-//@todo: refactor all the code below like card
-//USERS
+
+/********************************************
+ *              ROADS : USERS               *
+ ********************************************/
+
+/*===========*
+ *   Type    *
+ *===========*/
+
+/* fetch all the users */
 router.route("/users").get(function(req, res) {
-  User.find(function(err, users) {
-    if (err) {
-      res.send(err);
-    }
-    res.json(users);
-  });
+  userService.findAllUser(req,res)
 });
 
 router
   .post("/register", function(req, res) {
-    //Salted pass
-    console.log(req.body)
-    var hashedPassword = bcrypt.hashSync(req.body.password, 8);
-    var hashedPasswordConf = bcrypt.hashSync(req.body.passwordConf, 8);
-    //Create user with args in the post request
-    User.create(
-      {
-        email: req.body.email,
-        username: req.body.username,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        status: req.body.userStatus, //Need to be replace by a check on email for admin
-        password: hashedPassword,
-        passwordConf: hashedPasswordConf,
-        avatar: req.body.avatar
-      },
-      function(err, user) {
-        // Check if correct
-        if (err)
-          return res
-            .status(500)
-            .send("There was a problem registering the user.");
-        // create a token
-        var token = jwt.sign({ id: user._id }, config.secret, {
-          expiresIn: 86400 // expires in 24 hours
-        });
-        //Send
-        res.status(200).send({ auth: true, token: token });
-      }
-    );
+    userService.register(req,res);  
   })
   .post("/login", function(req, res) {
-    //Retrieve user by its mail
-    User.findOne({ email: req.body.email }, function(err, user) {
-      //Error dealing
-      if (err) return res.status(500).send("Error on the server.");
-      if (!user) return res.status(404).send("No user found.");
-      //Check the validity of password
-      var passwordIsValid = bcrypt.compareSync(
-        req.body.password,
-        user.password
-      );
-      // If not valid 401 = unauthorized
-      if (!passwordIsValid)
-        return res.status(401).send({ auth: false, token: null });
-      // Assign token
-      var token = jwt.sign({ id: user._id }, config.secret, {
-        expiresIn: 86400 // expires in 24 hours
-      });
-      // send
-
-      res.status(200).send({ auth: true, token: token });
-    });
+    userService.login(req,res);
   })
-
   .get("/account", function(req, res) {
-    // Get the token in the header
-    var token = req.headers["x-access-token"];
-    console.log(req.headers)
-    //Deal if not found
-    if (!token)
-      return res.status(401).send({ auth: false, message: "Not authorized." });
-    jwt.verify(token, config.secret, function(err, decoded) {
-      //or found but not correct
-      if (err)
-        return res
-          .status(500)
-          .send({ auth: false, message: "Failed to authenticate token.", error: err });
-      //retrieve user
-      User.findById(
-        decoded.id,
-        { password: 0, passwordConf: 0 }, //Avoid sending the password
-        function(err, user) {
-          if (err)
-            return res
-              .status(500)
-              .send("There was a problem finding the user.");
-          if (!user) return res.status(404).send("No user found.");
-          //Send its data
-          console.log(user);
-          res.status(200).send(user);
-        }
-      );
-    });
+    userService.account(req,res);
   });
 
-//@todo: put & delete user
-//One User
-router
-  .route("/users/:user_id")
+/*===========*
+ * Instance  *
+ *===========*/
+
+router.route("/users/:user_id")
   .get(function(req, res) {
-    User.findById(req.params.user_id, function(err, user) {
-      if (err) res.send(err);
-      res.json(user);
-    });
+    userService.findOneUser(req,res);
   })
   .put(function(req, res) {
-    res.json({
-      message:
-        "Vous souhaitez modifier les informations du user n°" +
-        req.params.user_id
-    });
+    //userService.updateUser(req,res);
   })
   .delete(function(req, res) {
-    res.json({
-      message: "Vous souhaitez supprimer l'user n°" + req.params.user_id
-    });
+    //userService.deleteUser(req,res);
   });
 
+
+/********************************************
+ *           ROADS : GENERATORS             *
+ ********************************************/
+router.route("/generatorPDF").put( function(req, res){
+  pdfService.generatePDF(req,res);
+})
+
+router.route("/generatorEPUB").put( function(req, res){
+  epubService.generateEPUB(req,res);
+})
+
+
+/**
+ * NO MORE USED BUT CAN BE USEFULL
+ */
 router.route("/uploads").post(function(req, res) {
   imageService.uploadImg(req, res);
 });
 
-
-router.route("/generator")
-.put( function(req, res){
-    console.log(req.body);
-    var shell = require('shelljs');
-    var shortid = require('shortid');
-
-    var id = shortid.generate();
-    var cards = req.body
-    let path = "epub_tmp/tmp_"+id;
-    shell.exec(
-        'bash ./utils/scripts/epubation_1.sh '+id,
-        async function(code, stdout, stderr) {
-            var fs = require('fs');
-            await cards.forEach(function(element) {
-                console.log(element + " a copier")
-                fs.createReadStream('HTML/'+element+'.xhtml').pipe(fs.createWriteStream(path+'/OEBPS/Text/'+element+'.xhtml'));
-            });
-            await console.log("opf et toc")
-            await epubService.gen_opf_toc(cards, path);
-            await shell.exec(
-                'cd epub_tmp/tmp_'+id+' ; zip -q0X "book_'+id+'.epub" mimetype ; zip -qXr9D "book_'+id+'.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"',
-                function(code, stdout, stderr) {
-                    console.log("GO EPUB");
-                }
-            );
-        }
-    );
-
-
-
-    // todo : TOUT FAIRE EN NODEJS AVEC FS
-    // On choppe toutes les données du front dont les ids
-    // Une fois qu'on a les id, on crée un dossier tmp_[idUser]
-    // On copie depuis /book le dossier OEBPS, META-INF etc.. (sauf book.epub) dans /tmp
-    // On copie depuis /HTML les fichiers avec les ids correspondant dans /tmp/[idUsr]/OEBPS/text
-    // On crée les .opf et le .toc dans tmp/[idUser]/OEBPS
-    // On exec le publish en bash
-})
 module.exports = router;
