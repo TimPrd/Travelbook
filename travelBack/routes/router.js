@@ -232,6 +232,32 @@ router.route("/uploads").post(function(req, res) {
   imageService.uploadImg(req, res);
 });
 
+router.route("/generatorPDF")
+.put( function(req, res){
+  var fs = require('fs');
+  var cards = req.body
+
+  if (cards.length === 1 )
+  {
+    var pdf = require('html-pdf');
+    var html1 = fs.readFileSync('HTML/'+cards[0]+'.xhtml', 'utf8');
+    var options = { format: 'Letter' };
+   
+    pdf.create(html1, options).toFile('./foo.pdf', function(err, resu) {
+      if (err) return console.log(err);
+      var path = require('path');
+      res.type('text/html')
+      res.download(path.resolve('./foo.pdf'));
+    });
+   
+  }
+  else{
+    //apt-get install pdftk
+    const PDFMerge = require('pdf-merge');
+    PDFMerge(cards, {output: `./3.pdf`})
+    .then((buffer) => {});
+  }
+})
 
 router.route("/generator")
 .put( function(req, res){
