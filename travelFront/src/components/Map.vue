@@ -16,7 +16,6 @@
         :key="index"
         v-for="(m, index) in markers"
         :position="m.position"
-        :icon="m.icon"
         @click="center=m.position"
       ></gmap-marker>
     </gmap-map>

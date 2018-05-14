@@ -22,6 +22,7 @@
     "vue-infinite-loading": "^2.3.1",
     "vue-resource": "^1.5.0",
     "vue-router": "^3.0.1",
+    "vue-sweetalert2": "^1.2.4",
     "vue2-dropzone": "^3.1.0",
     "vue2-google-maps": "^0.9.2",
     "vue2-leaflet": "^1.0.2",
