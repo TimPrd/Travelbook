@@ -99,19 +99,15 @@ computed: {
     };
   },
   methods: {
-
     disconnect() {
       auth.logout();
     },
     generatePDF(){
-let ids = []
+    let ids = []
       this.cart.forEach(element => {
           ids.push(element.id)
       });
-      HTTP.put("generatorPDF", ids,
-
-
-          {responseType: 'arraybuffer'}
+      HTTP.put("generatorPDF", ids, {responseType: 'arraybuffer'}
 ).then(function (response) {
   console.log(response)
  const url = window.URL.createObjectURL(new Blob([response.data]));
