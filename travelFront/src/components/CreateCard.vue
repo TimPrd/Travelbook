@@ -32,11 +32,10 @@
                     <h3>Catégorie</h3>
                     <select class="tb-select tb-input-100" v-model="infos.category">
                         <option disabled value="">Choisissez une catégorie</option>
-                        <option>Restaurant</option>
-                        <option>Hotel</option>
-                        <option>Lieu</option>
-                        <option>Monument</option>
-
+                        <option value="restaurant">Restaurant</option>
+                        <option value="hotel">Hotel</option>
+                        <option value="lieu">Lieu</option>
+                        <option value="monument">Monument</option>
                     </select>
                 </div>
 
@@ -114,7 +113,7 @@ export default {
         headers: { "My-Awesome-Header": "header value" },
         dictDefaultMessage: "Glisser votre image dans la zone pour la télécharger",
         dictRemoveFile: "Suppression de l'image",
-        acceptedFiles: ".jpeg,.jpg,.png,.gif,.svg",
+        acceptedFiles: ".jpeg,.jpg,.png,.svg",
         accept: function accept(file, done) {
           done();
         }
