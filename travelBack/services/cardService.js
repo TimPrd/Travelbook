@@ -12,49 +12,51 @@ function findCard(req, res) {
 
 /** CREATE **/
 function insertCard(req, res) {
-  new Promise(resolve => {
-    //fetching the place (from adresse to {lat:, long:, country..}
-    resolve(this.getLatLong(req).then());
-  })
-    .then(addressResolved => {
-      //creating the card with the info + the resolved address
-      createCard(req, res, addressResolved);
+    new Promise(resolve => {
+      //fetching the place (from adresse to {lat:, long:, country..}
+      resolve(this.getLatLong(req,res).then());
     })
-    .catch(
-      // Promise rejected
-      () => {
-        console.log("promesse rompue");
-      }
-    );
+      .then(addressResolved => {
+        //creating the card with the info + the resolved address
+        createCard(req, res, addressResolved);
+      })
+      .catch(
+        // Promise rejected
+        () => {
+          res.status(400);
+          res.send('None shall pass');
+          console.log("promesse rompue");
+        }
+      );
+
 }
 
-async function getLatLong(req) {
+async function getLatLong(req,res) {
   var NodeGeocoder = require("node-geocoder");
   var options = {
     provider: "google",
-    // Optional depending on the providers
-    httpAdapter: "https", // Default
-    apiKey: "AIzaSyCbiwXh12LHMp7s094UkveRoEUK1kC0IKc", // for Mapquest, OpenCage, Google Premier
-    formatter: null // 'gpx', 'string', ...
+    httpAdapter: "https",
+    apiKey: "AIzaSyCbiwXh12LHMp7s094UkveRoEUK1kC0IKc",
+    formatter: null
   };
   var geocoder = NodeGeocoder(options);
   console.log(geocoder)
-  
-  var result = await resolveLocation(req, geocoder).then();
-  //console.log("res : ", result[0].streetNumber);
+  var result = await resolveLocation(req, res, geocoder).then();
   return result[0];
 }
 
-function resolveLocation(req, geocoder) {
+function resolveLocation(req, res, geocoder) {
   return new Promise(resolve => {
-    geocoder
-      .geocode(req.body.adress)
-      .then(function(res) {
-        resolve(res);
-      })
-      .catch(function(err) {
-        console.log(err);
-      });
+      geocoder
+        .geocode(req.body.adress)
+        .then(function(res) {
+          resolve(res);
+        })
+        .catch(function(err) {
+          res.status(400);
+          res.send('None shall pass');
+          console.log(err);
+        });
   });
 }
 
@@ -69,10 +71,10 @@ function createCard(req, res, adresse) {
     adress: req.body.adress,
     lat: adresse.latitude,
     long: adresse.longitude,
-    cover_picture: req.body.pictures[0],
-    picture1: req.body.pictures[1],
-    picture2: req.body.pictures[2]
-    //cityvar
+    category: req.body.category,
+    cover_picture: req.body.pictures[0].dataURL,
+    picture1: req.body.pictures[1].dataURL,
+    picture2: req.body.pictures[2].dataURL
   };
   console.log(data)
   Card.create(data, function(err, card) {

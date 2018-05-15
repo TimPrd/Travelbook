@@ -8,7 +8,7 @@
         <h3 class="title m12">{{card.title}}</h3>
         <img src="#" class="cat-ico m3" alt=""/>
         <div class="localisation bold italic m9">{{card.adress}}</div>
-        <div class="category bold m9">Catégorie</div>
+        <div class="category bold m9">{{card.category.toUpperCase() || "Non reconnue"}}</div>
         <div class="score">
           <i class="fas fa-star star"></i><!-- Full star -->
           <i class="fas fa-star star"></i><!-- Full star -->
