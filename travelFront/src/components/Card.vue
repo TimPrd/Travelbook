@@ -33,7 +33,11 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { EventBusModal } from "../events/event-modals";
+import VueSweetalert2 from 'vue-sweetalert2';
+
+Vue.use(VueSweetalert2);
 
 export default {
     props: {
@@ -68,9 +72,19 @@ export default {
                 );
             else
                 this.$store.commit("addCart", card);
+            Vue.swal({
+              type: 'info',
+              title: 'Fiche ajoutée !',
+              text: 'Vous avez ajouté : ' + card.title,
+          });
         },
         removeInCart(card){
             this.$store.commit("removeCart", card);
+            Vue.swal({
+              type: 'info',
+              title: 'Fiche retirée !',
+              text: 'Vous avez retirée : ' + card.title,
+          });
         }
     }
 };

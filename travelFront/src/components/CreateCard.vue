@@ -12,7 +12,7 @@
                     ref="myVueDropzone" id="dropzone"
                     class="tb-dropzone center-align"
                     :options="dropzoneOptions"
-                    @vdropzone-complete="afterComplete('cover')" style=""
+                    @vdropzone-complete="afterComplete" style=""
                     v-on:vdropzone-removed-file="removeThisFile"
 
                 />
@@ -137,7 +137,6 @@ export default {
         this.infos.pictures = this.infos.pictures.filter( file => file.name !== FileName);
     },
     afterComplete(file) {
-        this.$refs[""]
         this.infos.pictures.push(file); //todo : gérer le remove + push img dans l'ordre (cover, 1 et 2)
     },
     submit() {

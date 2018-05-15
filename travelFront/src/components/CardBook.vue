@@ -23,7 +23,7 @@
         <button class="btn-white m4">
           <router-link :to="{ name: 'cardView', params: {id:card.id} }">Lire la suite</router-link>
         </button>
-        <button class="btn-blue btn-round m1"><i class="fas fa-trash-alt"></i></button> <!-- trigger event : add -->
+        <button @click="removeFromCart(card)" class="btn-blue btn-round m1"><i class="fas fa-trash-alt"></i></button> <!-- trigger event : add -->
       </div>
     </div>
   </div>
@@ -31,6 +31,10 @@
 </template>
 
 <script>
+import Vue from "vue";
+import VueSweetalert2 from 'vue-sweetalert2';
+
+Vue.use(VueSweetalert2);
 export default {
         props: {
           card: {
@@ -44,6 +48,16 @@ export default {
         },
         mounted: function () {
             console.log(this.card)
+        },
+        methods: {
+        removeFromCart(card){
+            this.$store.commit("removeCart", card);
+            Vue.swal({
+              type: 'info',
+              title: 'Fiche retirée !',
+              text: 'Vous avez retirée : ' + card.title,
+          });
         }
+    }
   }
 </script>
