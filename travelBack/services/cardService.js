@@ -69,9 +69,10 @@ function createCard(req, res, adresse) {
     adress: req.body.adress,
     lat: adresse.latitude,
     long: adresse.longitude,
-    cover_picture: req.body.pictures[0],
-    picture1: req.body.pictures[1],
-    picture2: req.body.pictures[2]
+    category: req.body.category,
+    cover_picture: req.body.pictures[0].dataURL,
+    picture1: req.body.pictures[1].dataURL,
+    picture2: req.body.pictures[2].dataURL
     //cityvar
   };
   console.log(data)

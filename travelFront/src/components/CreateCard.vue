@@ -12,7 +12,9 @@
                     ref="myVueDropzone" id="dropzone"
                     class="tb-dropzone center-align"
                     :options="dropzoneOptions"
-                    @vdropzone-complete="afterComplete" style=""
+                    @vdropzone-complete="afterComplete('cover')" style=""
+                    v-on:vdropzone-removed-file="removeThisFile"
+
                 />
 
                 <div class="col s12 padding-left-0">
@@ -130,15 +132,13 @@ export default {
     };
   },
   methods: {
+    removeThisFile (file) {
+        let FileName = file.name
+        this.infos.pictures = this.infos.pictures.filter( file => file.name !== FileName);
+    },
     afterComplete(file) {
-
-      if(this.infos.pictures.length <= 4)
-        this.infos.pictures.push(file.dataURL); //todo : gérer le remove + push img dans l'ordre (cover, 1 et 2)
-      else Vue.swal({
-          type: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!'
-      });
+        this.$refs[""]
+        this.infos.pictures.push(file); //todo : gérer le remove + push img dans l'ordre (cover, 1 et 2)
     },
     submit() {
       HTTP.post("/card", this.infos).then(response => {
