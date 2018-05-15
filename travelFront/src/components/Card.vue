@@ -63,7 +63,9 @@ export default {
     methods: {
         addInCart(card) {
             if(typeof this.usr._id === 'undefined')
-                EventBusModal.$emit("change-state-login", true);
+                EventBusModal.$emit("change-state-login", true).then(
+                    this.$store.commit("addCart", card)
+                );
             else
                 this.$store.commit("addCart", card);
         },
