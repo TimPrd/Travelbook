@@ -1,7 +1,7 @@
 <template>
   <!-- Card (book version) -->
   <div class="tb-card">
-    <img src="#" class="card-img col m5 s5" alt="card image"/>
+    <img :style="{ 'backgroundImage': 'url(' + imgSrc + ')' }" class="card-img col m5 s5" alt="Card image">
     <div class="card-desc col m7 s7 row">
       <div class="header m12">
 
@@ -31,15 +31,19 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      card: {
-        type: Object,
-      }
-    },
-
-    mounted: function () {
-      console.log(this.card)
-    }
+export default {
+        props: {
+          card: {
+              type: Object
+          }
+        },
+        data() {
+          return {
+              imgSrc: this.card.cover_picture,
+          }
+        },
+        mounted: function () {
+            console.log(this.card)
+        }
   }
 </script>
