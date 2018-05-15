@@ -148,7 +148,14 @@ export default {
               title: 'Fiche créée',
               text: 'Votre fiche à été ajoutée ! '
           });
-      });
+      }).catch(error => {
+            console.log(error.response)
+            Vue.swal({
+              type: 'error',
+              title: 'Erreur detectée' + error.response.status,
+              text: 'Une erreur a été détectée. Vérifiez le formulaire',
+          });
+        });
     },
     setPlace(place) {
       this.infos.adress = place.formatted_address;
