@@ -259,12 +259,31 @@ section h3 {
     transform: scale(0.9);
 }
 
+/* Card View */
+.tb-cardView {
+    border: 2px solid #cacaca;
+    padding: 25px 5px;
+    padding: 0!important;
+}
+
+.tb-cardView .card-img {
+    height: 250px;
+    background-color: #e5e5e5;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 /* Phone Card */
 @media all and (max-width: 600px) {
     .tb-card {
         width: 96%;
         margin: 5px 2%;
         margin-bottom: 65px;
+    }
+
+    .tb-cardView .card-img {
+        height: 150px;
     }
 }
 

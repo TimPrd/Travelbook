@@ -141,14 +141,16 @@ export default {
       });
     },
     submit() {
-      HTTP.post("/card", this.infos).then(response => {
+        EventBusModal.$emit("loading-loader", true);
+        HTTP.post("/card", this.infos).then(response => {
+          EventBusModal.$emit("loading-loader", false);
           console.log(response);
           Vue.swal({
               type: 'info',
               title: 'Fiche créée',
               text: 'Votre fiche à été ajoutée ! '
           });
-      });
+        });
     },
     setPlace(place) {
       this.infos.adress = place.formatted_address;
