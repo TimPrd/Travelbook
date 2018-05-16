@@ -8,11 +8,12 @@
             <div class="button-menu row margin-bottom-0">
                 <div v-if="!usr.username" >
                     <!-- Disconnected -->
-                    <router-link to="/" tag="button" class="tb-btn btn-red col s12 m5 right" >Fiches</router-link>
+                    <router-link to="/cards" tag="button" class="tb-btn btn-red col s12 m5 right" >Fiches</router-link>
                     <button @click="openLogin()" class="tb-btn btn-red col s12 m5 right" >Connexion</button>
                 </div>
                 <div v-if="usr.username" >
                     <!-- Connected -->
+                    <router-link to="/cards" tag="button" class="tb-btn btn-red col s12 m5 right" >Fiches</router-link>
                     <router-link to="/book" tag="button" class="tb-btn btn-red col s12 m5 right" >Nouveau Book</router-link>
                     <router-link to="/create" tag="button" class="tb-btn btn-red col s12 m5 right" >Nouvelle Fiche</router-link>
                 </div>
