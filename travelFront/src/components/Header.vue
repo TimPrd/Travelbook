@@ -1,10 +1,10 @@
 <template>
     <header class="row">
         <div class="left-side col s5 m4">
-            <div class="search-bar row margin-bottom-0">
+            <!--div class="search-bar row margin-bottom-0">
                 <input class="search col s10 m4 right" type="text" placeholder="Recherche" />
                 <i class="ico fas fa-search right"></i>
-            </div>
+            </div-->
             <div class="button-menu row margin-bottom-0">
                 <div v-if="!usr.username" >
                     <!-- Disconnected -->

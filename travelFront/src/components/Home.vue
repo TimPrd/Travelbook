@@ -3,7 +3,7 @@
         <!-- Content -->
         <section class="container center-align">
             <div class="filter-bar row">
-                <input  @keyup.enter="showSearch" v-model="country" type="text" class="country margin-left-9 margin-left-0-phone tb-input center-align col m3 s12" placeholder="Pays">
+                <input  @keyup.enter="showSearch" v-model="country" type="text" class="country margin-left-10 margin-left-0-phone tb-input center-align col m3 s12" placeholder="Pays">
                 <select class="tb-select category center-align col m3 s12" v-model="category">
                     <option disabled value="">Catégorie</option>
                     <option value="Restaurant">Restaurant</option>
@@ -15,7 +15,7 @@
             </div>
 
             <div v-show="searched" class="tb-cards row">
-                <h2 class="">Résultat de la Recherche</h2>
+                <h2 class="specialTitle">Résultat de la Recherche</h2>
                 <div class="section-deco">v</div>
                 <div class="deco-line col s12 m12"></div>
                 <!-- Display result -->
@@ -30,7 +30,7 @@
 
             <!-- Section favorites -->
             <div class="favorites row">
-                <h2 class="">Les favoris</h2>
+                <h2 class="specialTitle">Fiches récentes</h2>
                 <div class="section-deco">v</div>
                 <div class="deco-line col s12 m12"></div>
 
@@ -43,7 +43,7 @@
             <!-- End section favorites -->
             <!-- Section map -->
             <div class="map row">
-                <h2 class="">La carte</h2>
+                <h2 class="specialTitle">La carte</h2>
                 <div class="section-deco">v</div>
                 <div class="deco-line m12"></div>
                 <div class="wrapper-map col m12 s12">

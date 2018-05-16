@@ -1,7 +1,7 @@
 <template>
     <!-- Card -->
     <section class="row">
-        <h2 class="center-align">Fiche</h2>
+        <h2 class="center-align specialTitle">Fiche</h2>
         <div class="section-deco center-align">v</div>
         <div class="deco-line col m12"></div>
 
@@ -15,7 +15,7 @@
 
             <div class="card-desc row">
                 <div class="header col s12 m12 center-align">
-                    <h3 class="title">{{card.title}}</h3>
+                    <h3>{{card.title}}</h3>
                 </div>
                 <div class="card-info col s12 m12">
                     <div class="col s12 m6">

@@ -2,16 +2,17 @@
   <div id="page-top">
     <!-- Content -->
     <section class="container center-align">
-      <div class="filter-bar row">
-        <button @click="generateEbook()" class="tb-btn btn-red search-btn btn-red col m4 s12 offset-m8 pull-m4">Générer Book</button>
-        <button @click="generatePDF()" class="tb-btn btn-red search-btn btn-red col m4 s12 offset-m8 pull-m4">Générer PDF</button>
-      </div>
-        
+
       <!-- Section Book -->
       <div class="bookCards row">
-        <h2 class="">Nouveau Book</h2>
+        <h2 class="specialTitle">Nouveau Book</h2>
         <div class="section-deco">v</div>
         <div class="deco-line col m12"></div>
+
+          <div class="filter-bar row">
+              <button @click="generateEbook()" class="tb-btn btn-red search-btn btn-red col m4 s12 offset-m8 pull-m4">Générer Book</button>
+              <button @click="generatePDF()" class="tb-btn btn-red search-btn btn-red col m4 s12 offset-m8 pull-m4">Générer PDF</button>
+          </div>
 
         <!-- Cards section -->
         <div class="tb-cards row">
@@ -23,7 +24,7 @@
       <!-- End section favorites -->
       <!-- Section map -->
       <div class="bookMap row">
-        <h2 class="">Carte du book</h2>
+        <h2 class="specialTitle">Carte du book</h2>
         <div class="section-deco">v</div>
         <div class="deco-line m12"></div>
         <div class="wrapper-map col m12 s12">
