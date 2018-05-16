@@ -24,8 +24,8 @@
         <router-link :to="{ name: 'cardView', params: {id:card.id} }">
             <button class="btn-white m4">Lire la suite</button>
         </router-link>
-        <button @click="addInCart(card)" class="btn-white m1">+</button> <!-- trigger event : add -->
-        <button @click="removeInCart(card)" class="btn-white m1">-</button> <!-- trigger event : add -->
+        <button @click="addInCart(card)" class="btn-white m1"><i class="fas fa-plus"></i></button> <!-- trigger event : add -->
+        <button @click="removeInCart(card)" class="btn-white m1"><i class="fas fa-minus"></i></button> <!-- trigger event : add -->
       </div>
     </div>
   </div>
