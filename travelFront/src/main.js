@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
-
+import _ from 'underscore'
 import router from './router';
 
 import VueAxios from 'vue-axios';
@@ -29,7 +29,12 @@ const store = new Vuex.Store({
   plugins: [createPersistedState()],
   mutations: {
     addCart: (state, card) => {
-      state.cart.push(card)
+      var bool = false;
+      state.cart.forEach(element => {
+        if(element.id === card.id) bool = true;
+      });
+      if(bool === false)
+        state.cart.push(card)
     },
     removeCart: (state, card) => {
       state.cart = state.cart.filter( (el) => { return el.id !== card.id }); 
@@ -39,6 +44,7 @@ const store = new Vuex.Store({
     },
     destroyUser: (state) => {
       state.usr = {};
+      state.cart = {};
     }
 
   }
