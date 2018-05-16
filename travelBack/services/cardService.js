@@ -7,8 +7,6 @@ function findCard(req, res) {
     if(cards) return res.status(200).json(cards);
     else return res.status(404).send({message:'No card found'});
   });
-
-  
 }
 
 function findOneCard(req, res){
@@ -19,6 +17,26 @@ function findOneCard(req, res){
   });
 }
 
+
+function paginateCard(req,res,next){
+  var perPage = 4
+  var page = req.params.page || 1
+
+  Card
+    .find({})
+    .skip((perPage * page) - perPage)
+    .limit(perPage)
+    .exec(function(err, cards) {
+        Card.count().exec( function(err, count) {
+            if (err) return next(err)
+            res.send({
+                cards: cards,
+                current: page,
+                pages: Math.ceil(count / perPage)
+            })
+        })
+    })
+}
 /** CREATE **/
 function insertCard(req, res) {
     new Promise(resolve => {
@@ -133,5 +151,6 @@ module.exports = {
   findFavorites: findFavorites,
   findCardByQuery:findCardByQuery,
   getAuthor:getAuthor,
-  findOneCard:findOneCard
+  findOneCard:findOneCard,
+  paginateCard:paginateCard
 };
