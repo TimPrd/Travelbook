@@ -3,6 +3,7 @@
  */
 var express = require("express");
 var mongoose = require("mongoose");
+var morgan = require('morgan')
 
 //Host-variables
 var hostname = "localhost";
@@ -10,6 +11,7 @@ var port = 3400;
 
 //Using express
 const app = express();
+app.use(morgan('combined'))
 
 var options = {
   server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
