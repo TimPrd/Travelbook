@@ -204,7 +204,6 @@ section h3 {
     float: left;
     height: 60px;
     width: 40px;
-    background-color: rgb(95, 160, 201);
     margin-right: 5px;
     margin-bottom: 5px;
 }
@@ -259,12 +258,39 @@ section h3 {
     transform: scale(0.9);
 }
 
+/* Card View */
+.tb-cardView {
+    border: 2px solid #cacaca;
+    padding: 25px 5px;
+    padding: 0!important;
+}
+
+.tb-cardView .card-img {
+    height: 250px;
+    background-color: #e5e5e5;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.tb-cardView .card-info {
+    border-top: 3px dashed rgb(95, 160, 201);
+    border-bottom: 3px dashed rgb(95, 160, 201);
+    width: 94%!important;
+    margin: 10px 3%!important;
+    padding: 15px 0!important;
+}
+
 /* Phone Card */
 @media all and (max-width: 600px) {
     .tb-card {
         width: 96%;
         margin: 5px 2%;
         margin-bottom: 65px;
+    }
+
+    .tb-cardView .card-img {
+        height: 150px;
     }
 }
 

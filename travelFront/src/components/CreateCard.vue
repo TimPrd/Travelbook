@@ -12,7 +12,7 @@
                     ref="myVueDropzone" id="dropzone"
                     class="tb-dropzone center-align"
                     :options="dropzoneOptions"
-                    @vdropzone-complete="afterComplete('cover')" style=""
+                    @vdropzone-complete="afterComplete" style=""
                     v-on:vdropzone-removed-file="removeThisFile"
 
                 />
@@ -34,10 +34,10 @@
                     <h3>Catégorie</h3>
                     <select class="tb-select tb-input-100" v-model="infos.category">
                         <option disabled value="">Choisissez une catégorie</option>
-                        <option value="restaurant">Restaurant</option>
-                        <option value="hotel">Hotel</option>
-                        <option value="lieu">Lieu</option>
-                        <option value="monument">Monument</option>
+                        <option value="Restaurant">Restaurant</option>
+                        <option value="Hotel">Hotel</option>
+                        <option value="Lieu">Lieu</option>
+                        <option value="Monument">Monument</option>
                     </select>
                 </div>
 
@@ -137,18 +137,19 @@ export default {
         this.infos.pictures = this.infos.pictures.filter( file => file.name !== FileName);
     },
     afterComplete(file) {
-        this.$refs[""]
         this.infos.pictures.push(file); //todo : gérer le remove + push img dans l'ordre (cover, 1 et 2)
     },
     submit() {
-      HTTP.post("/card", this.infos).then(response => {
-          console.log(response);
-          Vue.swal({
+        EventBusModal.$emit("loading-loader", true);
+        HTTP.post("/card", this.infos).then(response => {
+            EventBusModal.$emit("loading-loader", false);
+            console.log(response);
+            Vue.swal({
               type: 'info',
               title: 'Fiche créée',
               text: 'Votre fiche à été ajoutée ! '
-          });
-      }).catch(error => {
+            });
+        }).catch(error => {
             console.log(error.response)
             Vue.swal({
               type: 'error',
