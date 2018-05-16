@@ -1,10 +1,14 @@
 <template>
-  <div class="container">
-     <div class="tb-cards row">
-        <tb-card v-for="card in cards" :card="card" />
-      </div>
+  <section class="container row">
+        <h2 class="center-align specialTitle">Fiches</h2>
+        <div class="section-deco center-align">v</div>
+        <div class="deco-line col m12"></div>
 
-      <div v-if="pages>0">
+        <div class="tb-cards row">
+            <tb-card v-for="card in cards" :card="card" />
+        </div>
+
+      <div class="pagination-section center" v-if="pages>0">
         <ul class="pagination text-center">
           <li @click="fetchPagination(Number(current) - 1)" v-if="current != 1" class="waves-effect"><a class="a-hover"><i class="material-icons">chevron_left</i></a></li>
           <li @click="fetchPagination(1)" v-if="current != 1" ><a class="a-hover">First</a></li>
@@ -16,8 +20,8 @@
           <li @click="fetchPagination(pages)" v-if="(current != pages)"><a class="a-hover">Last</a></li>
           <li v-if="(current != pages)"  @click="fetchPagination(Number(current) + 1)"  class="waves-effect"><a class="a-hover"><i class="material-icons">chevron_right</i></a></li>
         </ul>
-      </div>      
-  </div>
+      </div>
+  </section>
 </template>
 <script>
 import {HTTP} from './../http/http-base';
@@ -56,7 +60,7 @@ export default {
     range: function(){
     var array = [],
     j = 0;
-    
+
     for(var z = this.count ; z <= (Number(this.current) + 4) && z <= this.pages; z++){
     array[j] = z;
     j++;

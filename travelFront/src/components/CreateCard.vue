@@ -1,13 +1,13 @@
 <template>
 <!-- Card Creation Form -->
     <section class="container">
-        <div id="card-creation-section" class="row">
-            <h2 class="center-align">Création d'une fiche</h2>
-            <div class="section-deco center-align">v</div>
-            <div class="deco-line col s12 m12 center-align"></div>
+        <h2 class="center-align specialTitle">Création d'une fiche</h2>
+        <div class="section-deco center-align">v</div>
+        <div class="deco-line col s12 m12 center-align"></div>
 
+        <div id="card-creation-section" class="row">
             <div class="creation-section col s12 m10 offset-m1">
-                <h3>Image de couverture</h3>
+                <h3 class="specialTitle">Image de couverture</h3>
                 <vue-dropzone
                     ref="myVueDropzone" id="dropzone"
                     class="tb-dropzone center-align"
@@ -18,12 +18,12 @@
                 />
 
                 <div class="col s12 padding-left-0">
-                    <h3>Titre</h3>
+                    <h3 class="specialTitle">Titre</h3>
                     <input class="tb-input tb-input-100" v-model="infos.title" placeholder="Votre titre"/>
                 </div>
 
                 <div class="col s12 padding-left-0">
-                    <h3>Adresse</h3>
+                    <h3 class="specialTitle">Adresse</h3>
                     <gmap-autocomplete
                         class="tb-input tb-input-100"
                         @place_changed="setPlace"
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="col s12 padding-left-0">
-                    <h3>Catégorie</h3>
+                    <h3 class="specialTitle">Catégorie</h3>
                     <select class="tb-select tb-input-100" v-model="infos.category">
                         <option disabled value="">Choisissez une catégorie</option>
                         <option value="Restaurant">Restaurant</option>
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="col s12 padding-left-0">
-                    <h3>Première colonne</h3>
+                    <h3 class="specialTitle">Première colonne</h3>
                     <vue-dropzone
                         ref="myVueDropzone" id="img2"
                         class="tb-dropzone"
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="col s12 padding-left-0">
-                    <h3>Deuxième colonne</h3>
+                    <h3 class="specialTitle">Deuxième colonne</h3>
                     <vue-dropzone
                         ref="myVueDropzone" id="img3"
                         class="tb-dropzone"
