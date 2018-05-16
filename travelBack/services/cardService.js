@@ -45,6 +45,7 @@ async function getLatLong(req,res) {
   var options = {
     provider: "google",
     httpAdapter: "https",
+    language: "fr",
     apiKey: "AIzaSyCbiwXh12LHMp7s094UkveRoEUK1kC0IKc",
     formatter: null
   };
@@ -81,6 +82,7 @@ function createCard(req, res, adresse) {
     lat: adresse.latitude,
     long: adresse.longitude,
     category: req.body.category,
+    country: adresse.country,
     cover_picture: req.body.pictures[0].dataURL,
     picture1: req.body.pictures[1].dataURL,
     picture2: req.body.pictures[2].dataURL
