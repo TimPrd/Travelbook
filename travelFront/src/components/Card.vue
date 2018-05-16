@@ -6,7 +6,7 @@
       <div class="header m12">
 
         <h3 class="title m12">{{card.title}}</h3>
-        <img src="#" class="cat-ico m3" alt=""/>
+        <img :src="imgCatPath" class="cat-ico m3" alt=""/>
         <div class="localisation bold italic m9">{{card.adress}}</div>
         <div class="category bold m9">{{card.category || "Non reconnue"}}</div>
       </div>
@@ -30,6 +30,11 @@ import Vue from "vue";
 import { EventBusModal } from "../events/event-modals";
 import VueSweetalert2 from 'vue-sweetalert2';
 
+import ImgCatHotel from './../assets/img/Hotel.svg';
+import ImgCatMonument from './../assets/img/Monument.svg';
+import ImgCatRestau from './../assets/img/Restau.svg';
+import ImgCatLieu from './../assets/img/Lieu.svg';
+
 Vue.use(VueSweetalert2);
 
 export default {
@@ -41,6 +46,7 @@ export default {
     data() {
         return {
             imgSrc: this.card.cover_picture,
+            imgCatPath: '',
         }
     },
     computed: {
@@ -56,8 +62,25 @@ export default {
         EventBusModal.$on("usr-loaded", usrLoaded => {
             this.usr = this.$store.state.usr;
         });
+        this.getCategoryImg();
     },
     methods: {
+        getCategoryImg() {
+            switch(this.card.category) {
+                case 'Restaurant':
+                    this.imgCatPath = ImgCatRestau;
+                    break;
+                case 'Hotel':
+                    this.imgCatPath = ImgCatHotel;
+                    break;
+                case 'Monument':
+                    this.imgCatPath = ImgCatMonument;
+                    break;
+                default:
+                    this.imgCatPath = ImgCatLieu;
+                    break;
+            }
+        },
         addInCart(card) {
             if(typeof this.usr._id === 'undefined')
                 EventBusModal.$emit("change-state-login", true).then(
@@ -65,6 +88,7 @@ export default {
                 );
             else
                 this.$store.commit("addCart", card);
+
             Vue.swal({
               type: 'info',
               title: 'Fiche ajoutée !',
