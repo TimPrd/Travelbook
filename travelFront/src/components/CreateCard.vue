@@ -88,6 +88,7 @@ import vue2Dropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.css";
 import { HTTP } from "./../http/http-base";
 import * as VueGoogleMaps from "vue2-google-maps";
+import router from "./../router";
 import VueSweetalert2 from 'vue-sweetalert2';
 
 Vue.use(VueGoogleMaps, {
@@ -149,6 +150,7 @@ export default {
               title: 'Fiche créée',
               text: 'Votre fiche à été ajoutée ! '
             });
+            router.push("/");
         }).catch(error => {
             console.log(error.response)
             Vue.swal({
