@@ -63,6 +63,7 @@ export default {
             this.usr = this.$store.state.usr;
         });
         this.getCategoryImg();
+        
     },
     methods: {
         getCategoryImg() {

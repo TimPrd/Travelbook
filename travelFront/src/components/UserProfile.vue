@@ -1,20 +1,30 @@
 <template>
     <div id="page-top">
-        <section class="container center-align">
-            <div class="main-info">
-                <h2 class="">Profil</h2>
+        <section class="container center-align row">
+            <h2 class="center-align specialTitle">Profil</h2>
+            <div class="section-deco center-align">v</div>
+            <div class="deco-line col s12 m12 center-align"></div>
+
+            <div class="col m12 s12 margin-bottom-30">
                 <div class="row">
                     <button @click="disconnect()" class="tb-btn btn-red col s12 m4 offset-m4" >Deconnexion</button>
                 </div>
-                <div>
-                    <p><b>Username : </b>{{ usr.username }}</p>
-                    <p><b>Photo : </b><br/><img v-if="usr.username" :src="usr.avatar" alt="" class="circle responsive-img"></p>
-                    <p><b>Email : </b>{{ usr.email }}</p>
-                    <p><b>FirstName : </b>{{ usr.firstName }}</p>
-                    <p><b>LastName : </b>{{ usr.lastName }}</p>
+                <div class="user main-info col m4 offset-m4">
+                    <div>
+                        <p><b>Username : </b>{{ usr.username }}</p>
+                        <p><b>Photo : </b><br/><img v-if="usr.username" :src="usr.avatar" alt="" class="circle responsive-img"></p>
+                        <p><b>Email : </b>{{ usr.email }}</p>
+                        <p><b>FirstName : </b>{{ usr.firstName }}</p>
+                        <p><b>LastName : </b>{{ usr.lastName }}</p>
+                    </div>
                 </div>
-                <tb-card v-for="card in list" :card="card" />
+            </div>
 
+            <h2 class="center-align specialTitle">Fiches</h2>
+            <div class="section-deco center-align">v</div>
+            <div class="deco-line col s12 m12 center-align"></div>
+            <div class="tb-cards row">
+                <tb-card v-for="card in list" :card="card" />
             </div>
         </section>
     </div>
@@ -27,7 +37,7 @@ import tbLoader from "./Loader/Loader";
 import auth from "./../auth/";
 import router from "./../router";
 import { EventBusModal } from "../events/event-modals";
-import tbCard from "./CardBook.vue";
+import tbCard from "./Card.vue";
 import { HTTP } from "./../http/http-base";
 
 export default {

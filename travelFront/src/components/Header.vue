@@ -1,10 +1,10 @@
 <template>
     <header class="row">
         <div class="left-side col s5 m4">
-            <div class="search-bar row margin-bottom-0">
+            <!--div class="search-bar row margin-bottom-0">
                 <input class="search col s10 m4 right" type="text" placeholder="Recherche" />
                 <i class="ico fas fa-search right"></i>
-            </div>
+            </div-->
             <div class="button-menu row margin-bottom-0">
                 <div v-if="!usr.username" >
                     <!-- Disconnected -->
@@ -13,9 +13,9 @@
                 </div>
                 <div v-if="usr.username" >
                     <!-- Connected -->
-                    <router-link to="/cards" tag="button" class="tb-btn btn-red col s12 m5 right" >Fiches</router-link>
-                    <router-link to="/book" tag="button" class="tb-btn btn-red col s12 m5 right" >Nouveau Book</router-link>
-                    <router-link to="/create" tag="button" class="tb-btn btn-red col s12 m5 right" >Nouvelle Fiche</router-link>
+                    <router-link to="/book" tag="button" class="tb-btn btn-red col s12 m3 right" >Nouveau Book</router-link>
+                    <router-link to="/create" tag="button" class="tb-btn btn-red col s12 m3 right" >Nouvelle Fiche</router-link>
+                    <router-link to="/cards" tag="button" class="tb-btn btn-red col s12 m3 right" >Fiches</router-link>
                 </div>
             </div>
           </div>
