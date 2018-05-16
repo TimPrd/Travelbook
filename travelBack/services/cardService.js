@@ -4,17 +4,18 @@ var Card = require("../models/card");
 function findCard(req, res) {
   Card.find(function(err, cards) {
     if(err) res.status(500).send(err);
-    res.status(200).json(cards);
+    if(cards) return res.status(200).json(cards);
+    else return res.status(404).send({message:'No card found'});
   });
+
+  
 }
 
 function findOneCard(req, res){
   Card.findOne( {id: req.params.id}, function(err, card) {
     if(err) res.status(500).send(err);
-    if(card)
-      return res.status(200).json(card);
-    else
-      return res.status(404).send({message:'No card found'});
+    if(card) return res.status(200).json(card);
+    else return res.status(404).send({message:'No card found'});
   });
 }
 
@@ -44,6 +45,7 @@ async function getLatLong(req,res) {
   var options = {
     provider: "google",
     httpAdapter: "https",
+    language: "fr",
     apiKey: "AIzaSyCbiwXh12LHMp7s094UkveRoEUK1kC0IKc",
     formatter: null
   };
@@ -80,6 +82,7 @@ function createCard(req, res, adresse) {
     lat: adresse.latitude,
     long: adresse.longitude,
     category: req.body.category,
+    country: adresse.country,
     cover_picture: req.body.pictures[0].dataURL,
     picture1: req.body.pictures[1].dataURL,
     picture2: req.body.pictures[2].dataURL

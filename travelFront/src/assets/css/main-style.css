@@ -6,7 +6,7 @@
 */
 
 /* Button */
-.filter-bar .tb-btn, .create-card-btn {
+.filter-bar .tb-btn, .create-card-btn, .tb-big-btn {
     border: none!important;
     padding: 0 .75rem !important;
     margin: 5px;
@@ -265,7 +265,7 @@ section h3 {
     padding: 0!important;
 }
 
-.tb-cardView .card-img {
+.tb-cardView .card-img, .tb-cardView .para-img {
     height: 250px;
     background-color: #e5e5e5;
     background-position: center;
@@ -279,6 +279,15 @@ section h3 {
     width: 94%!important;
     margin: 10px 3%!important;
     padding: 15px 0!important;
+    margin-bottom: 30px!important;
+}
+
+.tb-cardView .para {
+
+}
+
+.tb-cardView .para-img {
+    height: 400px;
 }
 
 /* Phone Card */
@@ -317,6 +326,8 @@ section h3 {
 
 /* Mini */
 .margin-bottom-0 {margin-bottom: 0!important;}
+.margin-bottom-10 {margin-bottom: 10px!important;}
+.margin-bottom-30 {margin-bottom: 30px!important;}
 .margin-left-9 {margin-left: 9%!important;}
 .padding-left-0 {padding-left: 0!important;}
 .ico { color: #666!important;}
@@ -324,6 +335,8 @@ section h3 {
 .italic { font-style: italic; }
 .btn-round { border-radius: 50%!important; }
 
+
+.a-hover:hover{ cursor: pointer;}
 /* Mini query */
 /* Phone */
 @media all and (max-width: 600px) {

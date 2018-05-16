@@ -25,6 +25,26 @@ router.route("/").all(function(req, res) {
  *   Type    *
  *===========*/
 
+router.route('/cards/pagination/:page').get( (req, res, next) => {
+  var perPage = 4
+  var page = req.params.page || 1
+
+  Card
+    .find({})
+    .skip((perPage * page) - perPage)
+    .limit(perPage)
+    .exec(function(err, cards) {
+        Card.count().exec( function(err, count) {
+            if (err) return next(err)
+            res.send({
+                cards: cards,
+                current: page,
+                pages: Math.ceil(count / perPage)
+            })
+        })
+    })
+})
+
 /* Find the favorites */
 router.route("/favorites").get((req, res) => {
   cardService.findFavorites(req, res);

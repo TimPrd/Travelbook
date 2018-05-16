@@ -5,10 +5,9 @@
       <div class="filter-bar row">
         <button @click="generateEbook()" class="tb-btn btn-red search-btn btn-red col m4 s12 offset-m8 pull-m4">Générer Book</button>
         <button @click="generatePDF()" class="tb-btn btn-red search-btn btn-red col m4 s12 offset-m8 pull-m4">Générer PDF</button>
-
       </div>
-
-      <!-- Section favorites -->
+        
+      <!-- Section Book -->
       <div class="bookCards row">
         <h2 class="">Nouveau Book</h2>
         <div class="section-deco">v</div>
