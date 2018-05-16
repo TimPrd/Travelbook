@@ -9,12 +9,6 @@
         <img src="#" class="cat-ico m3" alt=""/>
         <div class="localisation bold italic m9">{{card.adress}}</div>
         <div class="category bold m9">Catégorie</div>
-        <div class="score">
-          <i class="fas fa-star star"></i><!-- Full star -->
-          <i class="fas fa-star star"></i><!-- Full star -->
-          <i class="fas fa-star star"></i><!-- Full star -->
-          <i class="far fa-star star"></i><!-- Empty star -->
-        </div>
       </div>
       <div class="summary m12">
         {{card.body}}

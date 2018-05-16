@@ -204,7 +204,6 @@ section h3 {
     float: left;
     height: 60px;
     width: 40px;
-    background-color: rgb(95, 160, 201);
     margin-right: 5px;
     margin-bottom: 5px;
 }
@@ -272,6 +271,14 @@ section h3 {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.tb-cardView .card-info {
+    border-top: 3px dashed rgb(95, 160, 201);
+    border-bottom: 3px dashed rgb(95, 160, 201);
+    width: 94%!important;
+    margin: 10px 3%!important;
+    padding: 15px 0!important;
 }
 
 /* Phone Card */
