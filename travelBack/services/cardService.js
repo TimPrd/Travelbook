@@ -10,6 +10,14 @@ function findCard(req, res) {
   });
 }
 
+function findOneCard(req, res){
+  Card.findOne( {id: req.params.id}, function(err, cards) {
+    console.log(cards)
+    if(err) res.send(err);
+    return res.json(cards).status(200);
+  });
+}
+
 /** CREATE **/
 function insertCard(req, res) {
     new Promise(resolve => {
