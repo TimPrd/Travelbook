@@ -1,26 +1,26 @@
 let fs = require('fs');
 let path = require('path');
+let shell = require('shelljs');
+let os = require('os');
 
 function generatePDF(req,res){
-    let cards = req.body
-    if (cards.length === 1 )
-    {
-        let pdf = require('html-pdf');
-        let html1 = fs.readFileSync('HTML/'+cards[0]+'.xhtml', 'utf8');
-        let options = { format: 'Letter' };
-    
-        pdf.create(html1, options).toFile('./foo.pdf', function(err, resu) {
-            if (err) return console.log(err);
+    let cards = req.body;
+    let pages = [];
+
+    cards.forEach( element => {
+        pages.push('HTML/'+element+'.xhtml');
+    })
+
+    shell.exec(
+        'wkhtmltopdf ' + pages.join(" ") + " out.pdf" ,
+        async function(code, stdout, stderr) {
             res.type('text/html');
-            res.download(path.resolve('./foo.pdf'));
-        });
-    }
-    else{
-        //apt-get install pdftk
-        const PDFMerge = require('pdf-merge');
-        PDFMerge(cards, {output: `./3.pdf`})
-        .then((buffer) => {});
-    }
+            await res.download(path.resolve('./out.pdf'));
+            fs.unlink(path.resolve('./out.pdf'), (err) => {
+                if (err) throw err;
+              });
+        })
+    
 }
 
 module.exports = {

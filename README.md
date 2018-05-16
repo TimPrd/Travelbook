@@ -6,7 +6,7 @@
 
 ### Presentation
 
-TravelBook is a university (UPMC) project built by differents pathway ('Projet Web' and 'Flux Numérique'):
+TravelBook is a university (UPMC) project built by differents pathway ('Projet Web' and 'Flux Numérique') :
 - Alexandre DESHAYES
 - Nicolas BOULLET
 - Maxime VERLYNDE

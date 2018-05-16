@@ -32,7 +32,7 @@ const store = new Vuex.Store({
       state.cart.push(card)
     },
     removeCart: (state, card) => {
-      state.cart = state.cart.filter( (el) => { return el._id !== card._id }); 
+      state.cart = state.cart.filter( (el) => { return el.id !== card.id }); 
     },
     instanceUser: (state, usr) => {
       state.usr = usr;
