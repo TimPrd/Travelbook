@@ -34,10 +34,10 @@
                     <h3>Catégorie</h3>
                     <select class="tb-select tb-input-100" v-model="infos.category">
                         <option disabled value="">Choisissez une catégorie</option>
-                        <option value="restaurant">Restaurant</option>
-                        <option value="hotel">Hotel</option>
-                        <option value="lieu">Lieu</option>
-                        <option value="monument">Monument</option>
+                        <option value="Restaurant">Restaurant</option>
+                        <option value="Hotel">Hotel</option>
+                        <option value="Lieu">Lieu</option>
+                        <option value="Monument">Monument</option>
                     </select>
                 </div>
 

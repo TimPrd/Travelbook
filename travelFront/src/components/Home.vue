@@ -4,7 +4,13 @@
         <section class="container center-align">
             <div class="filter-bar row">
                 <input v-model="country" type="text" class="country margin-left-9 margin-left-0-phone tb-input center-align col m3 s12" placeholder="Pays">
-                <input  @keyup.enter="showSearch" v-model="category" type="text" class="category tb-input center-align col m3 s12" placeholder="Catégorie">
+                <select class="tb-select category center-align col m3 s12" v-model="category">
+                    <option disabled value="">Catégorie</option>
+                    <option value="Restaurant">Restaurant</option>
+                    <option value="Hotel">Hotel</option>
+                    <option value="Lieu">Lieu</option>
+                    <option value="Monument">Monument</option>
+                </select>
                 <button @click="showSearch" class="tb-btn btn-red search-btn btn-red col m3 s12">Rechercher</button>
             </div>
 
