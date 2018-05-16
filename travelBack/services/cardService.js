@@ -4,17 +4,18 @@ var Card = require("../models/card");
 function findCard(req, res) {
   Card.find(function(err, cards) {
     if(err) res.status(500).send(err);
-    res.status(200).json(cards);
+    if(cards) return res.status(200).json(cards);
+    else return res.status(404).send({message:'No card found'});
   });
+
+  
 }
 
 function findOneCard(req, res){
   Card.findOne( {id: req.params.id}, function(err, card) {
     if(err) res.status(500).send(err);
-    if(card)
-      return res.status(200).json(card);
-    else
-      return res.status(404).send({message:'No card found'});
+    if(card) return res.status(200).json(card);
+    else return res.status(404).send({message:'No card found'});
   });
 }
 

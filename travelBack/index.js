@@ -48,6 +48,7 @@ var routes = require("./routes/router");
 
 app.use("/", routes);
 
+module.exports = app;
 // error handler
 /*app.use(function (err, req, res, next) {
   res.status(err.status || 500);
