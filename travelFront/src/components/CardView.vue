@@ -53,7 +53,7 @@ export default {
     created() {
         console.log(this.card)
         EventBusModal.$emit("loading-loader", true);
-        HTTP.get(`card/`+ this.$route.params.id ).then(response => {
+        HTTP.get(`card/`+ this.$route.params.id ).then(response => {            
             this.card = response.data;
             this.getCategoryImg();
             EventBusModal.$emit("loading-loader", false);
