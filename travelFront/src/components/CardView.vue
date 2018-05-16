@@ -18,8 +18,15 @@
                         <div class="localisation bold italic">Auteur : {{card.author}}</div>
                     </div>
                 </div>
-                <div class="summary col s12 m12">
-                    {{ card.para1 }}
+                <div class="content col s12 m12">
+                    <div class="right-col col s12 m6 row">
+                        <div :style="{ 'backgroundImage': 'url(' + card.picture1 + ')' }" class="para-img col s12 m12"></div>
+                        <div class="para col s12 m12">{{ card.para1 }}</div>
+                    </div>
+                    <div class="left-col col s12 m6 row">
+                        <div class="para col s12 m12">{{ card.para2 }}</div>
+                        <div :style="{ 'backgroundImage': 'url(' + card.picture2 + ')' }" class="para-img col s12 m12"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,6 +40,8 @@ import { EventBusModal } from "../events/event-modals";
 
 import ImgCatHotel from './../assets/img/Hotel.svg';
 import ImgCatMonument from './../assets/img/Monument.svg';
+import ImgCatRestau from './../assets/img/Restau.svg';
+import ImgCatLieu from './../assets/img/Lieu.svg';
 
 export default {
     data() {
@@ -52,22 +61,18 @@ export default {
     },
     methods:{
         getCategoryImg() {
-            console.log("debug: Get category img");
             switch(this.card.category) {
                 case 'Restaurant':
-                    console.log("debug: Restaurant");
-                    this.imgCatPath = "";
+                    this.imgCatPath = ImgCatRestau;
                     break;
                 case 'Hotel':
-                    console.log("debug: Hotel");
                     this.imgCatPath = ImgCatHotel;
                     break;
                 case 'Monument':
-                    console.log("debug: Monument");
                     this.imgCatPath = ImgCatMonument;
                     break;
                 default:
-                    console.log("debug: Autre > "+this.card.category);
+                    this.imgCatPath = ImgCatLieu;
                     break;
             }
         },
