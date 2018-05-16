@@ -3,7 +3,7 @@
         <!-- Content -->
         <section class="container center-align">
             <div class="filter-bar row">
-                <input v-model="country" type="text" class="country margin-left-9 margin-left-0-phone tb-input center-align col m3 s12" placeholder="Pays">
+                <input  @keyup.enter="showSearch" v-model="country" type="text" class="country margin-left-9 margin-left-0-phone tb-input center-align col m3 s12" placeholder="Pays">
                 <select class="tb-select category center-align col m3 s12" v-model="category">
                     <option disabled value="">Catégorie</option>
                     <option value="Restaurant">Restaurant</option>

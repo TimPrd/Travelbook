@@ -25,8 +25,8 @@ router.route("/").all(function(req, res) {
  *   Type    *
  *===========*/
 
-router.route('/card/:page').get( (req, res, next) => {
-  var perPage = 1
+router.route('/cards/pagination/:page').get( (req, res, next) => {
+  var perPage = 4
   var page = req.params.page || 1
 
   Card

@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h1>FOR TEST PURPOSE ONLY</h1>
      <div class="tb-cards row">
         <tb-card v-for="card in cards" :card="card" />
       </div>
@@ -16,16 +15,8 @@
 
           <li @click="fetchPagination(pages)" v-if="(current != pages)"><a class="a-hover">Last</a></li>
           <li v-if="(current != pages)"  @click="fetchPagination(Number(current) + 1)"  class="waves-effect"><a class="a-hover"><i class="material-icons">chevron_right</i></a></li>
-
         </ul>
-        {{current}} - {{pages}}
-      </div>
-
-
-
-
-
-      
+      </div>      
   </div>
 </template>
 <script>
@@ -54,8 +45,7 @@ export default {
 
   methods: {
     fetchPagination(page){
-      HTTP.get(`/card/`+ page ).then(response => {
-        console.log(response.data)
+      HTTP.get(`cards/pagination/`+ page ).then(response => {
         this.cards = response.data.cards;
         this.current = response.data.current;
         this.pages = response.data.pages;
