@@ -29,7 +29,7 @@ function paginateCard(req,res,next){
     .exec(function(err, cards) {
         Card.count().exec( function(err, count) {
             if (err) return next(err)
-            res.send({
+            res.status(200).send({
                 cards: cards,
                 current: page,
                 pages: Math.ceil(count / perPage)
@@ -50,9 +50,8 @@ function insertCard(req, res) {
       .catch(
         // Promise rejected
         () => {
-          res.status(400);
-          res.send('None shall pass');
-          console.log("promesse rompue");
+          res.status(500);
+          res.send('Something went wrong with the geocoding');
         }
       );
 
@@ -82,8 +81,6 @@ function resolveLocation(req, res, geocoder) {
         })
         .catch(function(err) {
           res.status(400);
-          res.send('None shall pass');
-          console.log(err);
         });
   });
 }
@@ -108,21 +105,21 @@ function createCard(req, res, adresse) {
   console.log(data)
   Card.create(data, function(err, card) {
     console.log("card - add ", card);
-    res.status(200).send({ card: card });
+    res.status(201).send({ card: card });
   });
   const converter2HTML = require("./../utils/cards/convert2Html");
   converter2HTML.convert(data);
 }
 
-function findFavorites(req, res) {
+function findRecent(req, res) {
   Card.find(function(err, cards) {
-    if (err) {
-      res.send(err);
-    }
-    res.status(200).json(cards);
+    if (err)  res.send(err);
+    if (cards) res.status(200).json(cards);
+    else res.status(404).send({message:'No card found'});
+
   })
     .limit(6)
-    .sort({ stars: -1 });
+    .sort({ date: -1 });
 }
 
 function findCardByQuery(req, res) {
@@ -132,23 +129,22 @@ function findCardByQuery(req, res) {
 
   Card.find(query, function (err, results) {
     if (err) return handleError(err);
-    console.log(results)
-    if (!results) return res.send('Nothing found').status('500');
-    return res.json(results).status(302);
+    if (!results) return res.send('Nothing found').status('404');
+    return res.json(results).status(200);
   });
 }
 
 function getAuthor(req, res){
   Card.find( { author: req.query.username }, function (err, results) {
-    console.log(results)
-    return res.json(results).status(302);
+    if (results) res.json(results).status(200);
+    else res.send('No author found').status('404');
   });
 }
 module.exports = {
   getLatLong: getLatLong,
   insertCard: insertCard,
   findCard: findCard,
-  findFavorites: findFavorites,
+  findRecent: findRecent,
   findCardByQuery:findCardByQuery,
   getAuthor:getAuthor,
   findOneCard:findOneCard,

@@ -86,6 +86,9 @@ export default {
   },
   created() {
     this.fetchItems();
+    EventBusModal.$on("reload-home", reloaded => {
+      this.cards = this.fetchItems();
+    });
     auth.onChange = loggedIn => {
       this.loggedIn = loggedIn;
     };
@@ -148,7 +151,7 @@ export default {
     },
     fetchItems() {
       EventBusModal.$emit("loading-loader", true);
-      HTTP.get(`/favorites`).then(response => {
+      HTTP.get(`/recent`).then(response => {
         this.cards = response.data;
         EventBusModal.$emit("loading-loader", false);
       });
