@@ -98,15 +98,12 @@ computed: {
       this.cart.forEach(element => {
           ids.push(element.id)
       });
+      var that=this;
       HTTP.put("generatorPDF", ids, {responseType: 'arraybuffer'}
-).then(function (response) {
-  console.log(response)
- const url = window.URL.createObjectURL(new Blob([response.data]));
-   const link = document.createElement('a');
-   link.href = url;
-   link.setAttribute('download', 'file.pdf'); //or any other extension
-   document.body.appendChild(link);
-   link.click();
+      ).then(function (response) {
+        console.log(response)
+        that.download(response,"file.pdf")
+     
       })
     },
     generateEbook() {
@@ -114,20 +111,20 @@ computed: {
       this.cart.forEach(element => {
           ids.push(element.id)
       });
-      HTTP.put("generatorEPUB", ids ).then(response => {
-
-        //that.$router.replace("/"); //modal = false
-        //console.log(response);
-      //});
-
-      //todo : Tim
-      //EventBusModal.$emit("loading-loader", true);
-      //.then(response => {
-         // this.list = response.data;
-        //  EventBusModal.$emit("loading-loader", false), 4000
-        //});
-        //this.published = true;
+      var that = this;
+      HTTP.put("generatorEPUB", ids , {responseType: 'arraybuffer'}
+      ).then(function (response) {
+        console.log(response)
+        that.download(response,"book.epub")
     })
+    },
+    download(response, nameFile){
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', nameFile); //or any other extension
+        document.body.appendChild(link);
+        link.click();
     },
     hasDuplicates(array) {
       return new Set(array).size !== array.length;

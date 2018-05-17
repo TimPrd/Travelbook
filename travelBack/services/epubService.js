@@ -1,6 +1,7 @@
 let shell = require('shelljs');
 let shortid = require('shortid');
 let fs = require('fs');
+let os = require('os');
 
 function generateEPUB(req, res){
     console.log(req.body);
@@ -28,13 +29,20 @@ function generateEPUB(req, res){
                 let dire = pathR.resolve('epub_tmp/tmp_'+id)
                 shell.exec('cd "epub_tmp/tmp_'+id+'"', () => {})
                 console.log("6 - SHELL ")
-                shell.exec(
-                    //'cd "epub_tmp/tmp_'+id+'" ; 7z a "e.epub" "mimetype"  7z a "e.epub" *   ',
-                    'cd epub_tmp/tmp_'+id+' ; zip -q0X "book_'+id+'.epub" mimetype ; zip -qXr9D "book_'+id+'.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"',
-                    function(code, stdout, stderr) {
+                let cmd;
+
+                
+                (os.platform() === 'win32') ?
+                cmd = 'cd "epub_tmp/tmp_'+id+'" && 7z a "book_'+id+'.epub" "mimetype" && 7z a "book_'+id+'.epub" *' :
+                cmd = 'cd epub_tmp/tmp_'+id+' ; zip -q0X "book_'+id+'.epub" mimetype ; zip -qXr9D "book_'+id+'.epub" * -x "*.svn*" -x "*~" -x "*.hg*" -x "*.swp" -x "*.DS_Store"' 
+                
+                shell.exec(  cmd,
+                    async function(code, stdout, stderr) {
                         console.log(stdout)
                         console.log(stderr)
                         console.log("7 - DONE ")
+                        res.type('zip/epub');
+                        await res.download(pathR.resolve('epub_tmp/tmp_'+id+'/book_'+id+'.epub'));
 
                     }
                 );
