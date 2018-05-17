@@ -16,9 +16,6 @@ function generatePDF(req,res){
         async function(code, stdout, stderr) {
             res.type('text/html');
             await res.download(path.resolve('./out.pdf'));
-            fs.unlink(path.resolve('./out.pdf'), (err) => {
-                if (err) throw err;
-              });
         })
     
 }
