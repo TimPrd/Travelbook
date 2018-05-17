@@ -150,7 +150,7 @@ export default {
               title: 'Fiche créée',
               text: 'Votre fiche à été ajoutée ! '
             });
-            router.push("/");
+            this.$router.push("/");
         }).catch(error => {
             console.log(error.response)
             Vue.swal({
@@ -161,6 +161,7 @@ export default {
         });
     },
     setPlace(place) {
+        console.log(place.formatted_address)
       this.infos.adress = place.formatted_address;
     },
   }

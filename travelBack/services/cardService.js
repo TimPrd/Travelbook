@@ -67,7 +67,6 @@ async function getLatLong(req,res) {
     formatter: null
   };
   var geocoder = NodeGeocoder(options);
-  console.log(geocoder)
   var result = await resolveLocation(req, res, geocoder).then();
   return result[0];
 }
@@ -88,7 +87,7 @@ function resolveLocation(req, res, geocoder) {
 function createCard(req, res, adresse) {
   var shortid = require("shortid");
   let data = {
-    id: shortid.generate(),
+    id: req.body.id || shortid.generate(),
     title: req.body.title,
     author: req.body.author,
     para1: req.body.para1,
@@ -102,9 +101,7 @@ function createCard(req, res, adresse) {
     picture1: req.body.pictures[1].dataURL,
     picture2: req.body.pictures[2].dataURL
   };
-  console.log(data)
   Card.create(data, function(err, card) {
-    console.log("card - add ", card);
     res.status(201).send({ card: card });
   });
   const converter2HTML = require("./../utils/cards/convert2Html");
