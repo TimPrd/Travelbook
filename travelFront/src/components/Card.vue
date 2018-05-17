@@ -2,7 +2,7 @@
   <!-- Card -->
   <div class="tb-card">
       <div :style="{ 'backgroundImage': 'url(' + imgSrc + ')' }" class="card-img col m5 s5"></div>
-    <div class="card-desc col m7 s7 row">
+      <div class="card-desc col m7 s7 row">
       <div class="header m12">
 
         <h3 class="title m12">{{card.title}}</h3>
@@ -19,6 +19,8 @@
         </router-link>
         <button @click="addInCart(card)" class="btn-white m1"><i class="fas fa-plus"></i></button> <!-- trigger event : add -->
         <button @click="removeInCart(card)" class="btn-white m1"><i class="fas fa-minus"></i></button> <!-- trigger event : add -->
+        <button v-if="card.author === usr.username"  @click="deleteCard()" class="btn-red m1"><i  class="far fa-trash-alt"></i> </button>
+
       </div>
     </div>
   </div>
@@ -29,6 +31,7 @@
 import Vue from "vue";
 import { EventBusModal } from "../events/event-modals";
 import VueSweetalert2 from 'vue-sweetalert2';
+import { HTTP } from "./../http/http-base";
 
 import ImgCatHotel from './../assets/img/Hotel.svg';
 import ImgCatMonument from './../assets/img/Monument.svg';
@@ -103,6 +106,18 @@ export default {
               title: 'Fiche retirée !',
               text: 'Vous avez retirée : ' + card.title,
           });
+        },
+        deleteCard(){
+            var that = this;
+            HTTP.delete(`card/`+ this.card.id ).then(response => {
+                that.removeInCart(that.card)
+                Vue.swal({
+                    type: 'info',
+                    title: 'Fiche supprimée !',
+                    text: 'Vous avez supprimé : ' + this.card.title,
+                });
+                EventBusModal.$emit("reload-home", true);
+            });
         }
     }
 };

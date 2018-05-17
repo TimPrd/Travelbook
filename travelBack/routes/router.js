@@ -30,8 +30,8 @@ router.route('/cards/pagination/:page').get( (req, res, next) => {
 });
 
 /* Find the favorites */
-router.route("/favorites").get((req, res) => {
-  cardService.findFavorites(req, res);
+router.route("/recent").get((req, res) => {
+  cardService.findRecent(req, res);
 });
 /* Find all cards */
 router.route("/allcards").get((req, res) => {
@@ -87,12 +87,9 @@ router.route("/card/:id")
   })
   //@todo:seems ok
   .delete((req, res) => {
-    Card.remove({ _id: req.params.id }, function(err) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.end("success");
-      }
+    Card.remove({ id: req.params.id }, function(err) {
+      if (err) res.send(err);
+      return res.status(200).send({message: "deleted"});
     });
   });
 
