@@ -1,7 +1,7 @@
 <template>
-  <section class="container row">
-        <h2 class="center-align specialTitle">Fiches</h2>
-        <div class="section-deco center-align">v</div>
+  <section class="container row center-align">
+        <h2 class="specialTitle">Fiches</h2>
+        <div class="section-deco">v</div>
         <div class="deco-line col m12"></div>
 
         <div class="tb-cards row">
@@ -24,13 +24,17 @@
   </section>
 </template>
 <script>
+
 import {HTTP} from './../http/http-base';
 import tbCard from "./Card.vue";
+import tbLoader from "./Loader/Loader";
+import { EventBusModal } from "../events/event-modals";
 
 export default {
-  components: {
-    tbCard
-  },
+    components: {
+        tbCard,
+        tbLoader,
+    },
   data() {
     return {
       cards: [],
@@ -49,12 +53,14 @@ export default {
 
   methods: {
     fetchPagination(page){
-      HTTP.get(`cards/pagination/`+ page ).then(response => {
-        this.cards = response.data.cards;
-        this.current = response.data.current;
-        this.pages = response.data.pages;
-    })
-    }
+        EventBusModal.$emit("loading-loader", true);
+        HTTP.get(`cards/pagination/`+ page ).then(response => {
+            this.cards = response.data.cards;
+            this.current = response.data.current;
+            this.pages = response.data.pages;
+            EventBusModal.$emit("loading-loader", false);
+        });
+    },
   },
   computed:{
     range: function(){
