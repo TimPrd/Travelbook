@@ -1,7 +1,7 @@
 <template>
   <!-- Card (book version) -->
   <div class="tb-card">
-      <div :style="{ 'backgroundImage': 'url(' + imgSrc + ')' }" class="card-img col m5 s5"></div>
+      <div :style="{ 'backgroundImage': 'url(' + card.cover_picture + ')' }" class="card-img col m5 s5"></div>
     <div class="card-desc col m7 s7 row">
       <div class="header m12">
 

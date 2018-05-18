@@ -8,6 +8,16 @@ p.first {
   text-indent: 0;
 }
 
+.cover_pict {
+  width: 100%;
+}
+
+.main_title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
 /* Kindle Legacy Specific Styles */
 @media amzn-mobi {
   p.first {

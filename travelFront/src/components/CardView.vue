@@ -97,16 +97,16 @@
             },
             addInCart(card) {
                 if(typeof this.usr._id === 'undefined')
-                    EventBusModal.$emit("change-state-login", true).then(
-                        this.$store.commit("addCart", card)
-                    );
+                    EventBusModal.$emit("change-state-login", true)
                 else
+                {
                     this.$store.commit("addCart", card);
-                Vue.swal({
-                    type: 'info',
-                    title: 'Fiche ajoutée !',
-                    text: 'Vous avez ajouté : ' + card.title,
-                });
+                    Vue.swal({
+                        type: 'info',
+                        title: 'Fiche ajoutée !',
+                        text: 'Vous avez ajouté : ' + card.title,
+                    });
+                }
             },
             removeInCart(card){
                 this.$store.commit("removeCart", card);

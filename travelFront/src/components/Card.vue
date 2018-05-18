@@ -1,7 +1,7 @@
 <template>
   <!-- Card -->
   <div class="tb-card">
-      <div :style="{ 'backgroundImage': 'url(' + imgSrc + ')' }" class="card-img col m5 s5"></div>
+      <div :style="{ 'backgroundImage': 'url(' + card.cover_picture + ')' }" class="card-img col m5 s5"></div>
       <div class="card-desc col m7 s7 row">
       <div class="header m12">
 
@@ -17,8 +17,9 @@
         <router-link :to="{ name: 'cardView', params: {id:card.id} }">
             <button class="btn-white m4">Lire la suite</button>
         </router-link>
-        <button @click="addInCart(card)" class="btn-white m1"><i class="fas fa-plus"></i></button> <!-- trigger event : add -->
-        <button @click="removeInCart(card)" class="btn-white m1"><i class="fas fa-minus"></i></button> <!-- trigger event : add -->
+        <button v-if="isInBook" @click="removeInCart(card)" class="btn-white m1">-</button> <!-- trigger event : add -->
+        <button v-else @click="addInCart(card)" class="btn-white m1">+</button> <!-- trigger event : add -->
+    
         <button v-if="card.author === usr.username"  @click="deleteCard()" class="btn-red m1"><i  class="far fa-trash-alt"></i> </button>
 
       </div>
@@ -56,6 +57,18 @@ export default {
         usr: function() {
             // `this` pointe sur l'instance vm
             return this.$store.state.usr
+        },
+        isInBook: function(){
+            var e;
+            this.$store.state.cart.forEach(element => {
+                if(element.id == this.card.id) 
+                {
+                    console.log(element.id + " -- "+ this.card.id)
+                    e=true;
+                }
+                
+            });
+            return e
         }
     },
     mounted() {
