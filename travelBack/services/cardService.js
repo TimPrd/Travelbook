@@ -19,7 +19,7 @@ function findOneCard(req, res){
 
 
 function paginateCard(req,res,next){
-  var perPage = 1
+  var perPage = 4
   var page = req.params.page || 1
 
   Card
